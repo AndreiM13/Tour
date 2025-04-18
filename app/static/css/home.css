@@ -1,0 +1,220 @@
+/* home.css */
+.carousel-item {
+    position: relative;
+}
+
+/* Overlay text styling */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1; /* Ensures the text appears on top */
+    padding: 30px; /* Adds more space around the text */
+    border-radius: 10px;
+    width: 70%; /* Adjust the width of the text box */
+}
+
+/* Make the text much larger */
+.carousel-caption h3 {
+    font-size: 3rem; /* Larger title */
+    margin-bottom: 20px; /* More space between title and description */
+}
+
+.carousel-caption p {
+    font-size: 1.5rem; /* Larger text for description */
+    line-height: 1.5;  /* Adds spacing between lines of text */
+}
+
+/* Mobile responsiveness for the text */
+@media (max-width: 768px) {
+    .carousel-caption h3 {
+        font-size: 2rem;  /* Adjust for smaller screens */
+    }
+
+    .carousel-caption p {
+        font-size: 1.2rem;  /* Adjust for smaller screens */
+    }
+}
+
+/* Tour Section */
+.tour-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 40px 0; 
+    background-color: #FAF0E6; /* Adds space for the title and content */
+}
+
+/* Header (title) centered */
+.tour-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #003049;
+    margin-bottom: 20px;
+    background-color: #FAF0E6;  /* Space between title and cards */
+}
+
+/* The container for the cards */
+.tour-cards-container {
+    background-color: #FAF0E6;
+    display: flex;
+    flex-wrap: wrap;  /* Allows the cards to wrap */
+    justify-content: center;  /* Centers the cards horizontally */
+    gap: 20px;  /* Adds space between cards */
+}
+
+/* Styling for each individual card */
+.tour-card {
+    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+    color: white;
+    width: 300px;  /* Fixed width for cards */
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tour-card:hover {
+    transform: scale(1.05);  /* Slight zoom effect on hover */
+}
+
+/* Title inside each card */
+.tour-card-title {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Text inside each card */
+.tour-card-text {
+    font-size: 1rem;
+    color: #ddd;
+    margin-top: 10px;
+}
+
+/* Button styling */
+.tour-btn {
+    background-color: #003049;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tour-btn:hover {
+    background-color: #006699;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .tour-cards-container {
+        flex-direction: column;  /* Stack cards vertically */
+        align-items: center;  /* Center cards */
+    }
+
+    .tour-card {
+        width: 90%;  /* Cards take up more width on smaller screens */
+        margin-bottom: 15px;  /* Adds space between cards */
+    }
+}
+
+
+
+/* The container for the image and cards */
+.included {
+    position: relative;
+    width: 100%;
+    height: 100vh;  /* Full screen height */
+}
+
+/* Make the image fill the entire section */
+.included .bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Keeps the image in the background */
+}
+
+/* Overlay text centered over the image */
+.overlay-text {
+    position: absolute;
+    top: 20%; /* Adjust this value to move text higher */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+.overlay-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Container for cards that will be displayed over the image */
+.card-container {
+    position: absolute;
+    top: 30%; /* Adjusted from 65% to move the cards higher */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    z-index: 2; /* Ensures cards appear above the background */
+}
+
+/* Styling for each individual card */
+.card {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    width: 200px; /* Fixed width for cards */
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Image styling inside each card */
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Text in the card */
+.card-text {
+    margin-top: 15px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .overlay-text h2 {
+        font-size: 2rem; /* Smaller font size on mobile */
+    }
+
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 50%; /* Cards take up more width on smaller screens */
+        margin-bottom: 15px; /* Adds space between cards */
+    }
+    
+    /* Optional: Adjust the position of the card container further for smaller screens */
+    .card-container {
+        top: 40%; /* Adjusted for smaller screens to make it appear higher */
+    }
+}

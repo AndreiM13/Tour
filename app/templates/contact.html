@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <!-- Form Section on the Left -->
+
+        <h1 class="contact">Our Contact</h1>
+               <!-- Form for contact -->
+        <h3 class="ask">Ask Us a Question</h3>
+        <div class="contact-form">
+            <form action="https://formsubmit.co/your@email.com" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea name="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Information Section (Moved Down) -->
+        <div class="contact-info">
+            <p>Email: example@email.com</p>
+            <p>Phone: +1234567890</p>
+            <p>Location: Example Location, City</p>
+        </div>
+    </div>
+{% endblock %}

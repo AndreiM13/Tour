@@ -1,0 +1,78 @@
+/* Styling for the booking title */
+.booking-title {
+    text-align: center;
+    font-size: 28px; /* Adjust the font size as needed */
+    margin-top: 40px; /* Adds margin at the top */
+    margin-bottom: 20px; /* Adds margin at the bottom */
+    color: #333; /* Adjust the color if needed */
+}
+
+/* Other styles for the booking form */
+.booking-form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Form labels */
+.form-group label {
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Form fields */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Focused input field */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button styling */
+.btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .booking-form {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

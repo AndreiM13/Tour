@@ -1,0 +1,216 @@
+{% extends "layout.html" %}
+
+{% block content %}
+   <!-- Our Tours Section -->
+<div class="tour-wrapper">
+    <h1 class="tour-header">Our Tours</h1>
+    
+    <div class="tour-cards-container">
+        <div class="tour-card">
+            <h5 class="tour-card-title">The Photographer</h5>
+            <p class="tour-card-text">
+                If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
+                For the local celebrity, the divas, and everyone that loves photography.
+                <br>
+                <br>
+                <br>
+            </p>
+            <a href="#booking-form" class="tour-btn">Book the Tour</a>
+        </div>
+        
+        <div class="tour-card">
+            <h5 class="tour-card-title">The Explorer</h5>
+            <p class="tour-card-text">
+                Indiana Jones, Lara Croft, you name it! Adrenaline and curiosity drive the way you go.
+                You want to see it all: Mountain climbing, boat adventures, exploring remote caves.
+            </p>
+            <br>
+            <a href="#booking-form" class="tour-btn">Book the Tour</a>
+        </div>
+        
+        <div class="tour-card">
+            <h5 class="tour-card-title">The Beach Potato</h5>
+            <p class="tour-card-text">
+                So you probably heard of the pristine beaches and the turquoise waters of Socotra. 
+                If the beach is calling you, you can never refuse. Enjoy unforgettable views and activities!
+            </p>
+            <br>
+            <a href="#booking-form" class="tour-btn">Book the Tour</a>
+        </div>
+        
+        <div class="tour-card">
+            <h5 class="tour-card-title">The VIP</h5>
+            <p class="tour-card-text">
+                You are the boss, determined and adventurous but enjoy comfort. Customize your itinerary 
+                with a private consultation to make the tour exactly what you want.
+            </p>
+            <br>
+            <a href="#booking-form" class="tour-btn">Book the Tour</a>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="included">
+    <!-- Full-width background image -->
+    <img src="{{ url_for('static', filename='images/home1.jpeg') }}" alt="Socotra" class="bg-image">
+
+    <!-- Overlay text on top of the image -->
+    <div class="overlay-text">
+        <h2>What is included?</h2>
+    </div>
+
+    <!-- Cards Container: These should be positioned over the image -->
+    <div class="card-container">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/tent.png') }}" alt="Lodging" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Lodging: Clean, comfortable tents or hotels (upon request)</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/food.png') }}" alt="Food" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Delicious locally sourced meals and snacks</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/map.png') }}" alt="Guide" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Socotri guide: Professional, fun, and English-speaking!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Reliable 4x4 car and knowledgeable local driver</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="included">
+    <!-- Full-width background image -->
+    <img src="{{ url_for('static', filename='images/notincluded.jpeg') }}" alt="Socotra" class="bg-image">
+
+    <!-- Overlay text on top of the image -->
+    <div class="overlay-text">
+        <h2>What is  not included?</h2>
+    </div>
+
+    <!-- Cards Container: These should be positioned over the image -->
+    <div class="card-container">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/tent.png') }}" alt="Lodging" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>International airline ticket to and from Abu Dhabi</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/food.png') }}" alt="Food" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Roundtrip ticket Abu Dhabi-Socotra ($980 USD)</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/map.png') }}" alt="Guide" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Visa fee ($150 USD)  </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Travel Insurance</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
+            </div>
+            <div class="card-text">
+                <p>Extra activities</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+ <!-- Section for booking -->
+<div id="booking-form" class="booking-container">
+    <h2 class="booking-title">Book the Tour</h2> <!-- Title added here -->
+
+    <form method="POST" class="booking-form">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.client_name.label }}<br>
+            {{ form.client_name(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.client_email.label }}<br>
+            {{ form.client_email(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.country_code.label }}<br>
+            {{ form.country_code(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.phone_number.label }}<br>
+            {{ form.phone_number(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.travel_date.label }}<br>
+            {{ form.travel_date(class="form-control", type="date") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.number_nights.label }}<br>
+            {% for subfield in form.number_nights %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.number_people.label }}<br>
+            {{ form.number_people(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.tour_type.label }}<br>
+            {{ form.tour_type(class="form-control") }}
+        </div>
+
+        <div class="form-group mt-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

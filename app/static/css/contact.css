@@ -1,0 +1,111 @@
+/* Apply background color to the whole page */
+body {
+    background-color: #FAF0E6;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the page */
+.container {
+    max-width: 1200px;  /* Container width */
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Flexbox: Space between form and contact info */
+    align-items: flex-start; /* Align items at the top */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Style for the title "Our Contact" (Center it) */
+h1.contact {
+    text-align: center;  /* Center the title */
+    font-size: 36px;
+    margin-bottom: 20px;
+    width: 100%;  /* Ensure the title spans full width */
+}
+
+/* "Ask Us a Question" as the form title (positioned above the form) */
+h3.ask {
+    font-size: 28px;
+    margin-bottom: 15px;  /* Space between the title and form */
+    text-align: left;  /* Align the title to the left */
+}
+
+/* Form Section */
+.contact-form {
+    width: 70%;  /* Form takes 60% of the container width */
+    padding: 20px;
+    position: relative;  /* Keep relative positioning */
+    margin-top: 15px;
+    margin-left: -45%;
+}
+
+/* Form elements styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea.form-control {
+    min-height: 150px;
+}
+
+/* Submit Button Styling */
+.btn-primary {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Contact Info Section on the Right */
+.contact-info {
+    width: 50%;  /* Contact info takes 30% of the container width */
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;  /* Align contact info with the form */
+}
+
+/* Add some space between each paragraph inside contact-info */
+.contact-info p {
+    margin: 10px 0;
+}
+
+/* Optional: Add responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;  /* Stack form and contact info vertically */
+        align-items: center;
+    }
+
+    .contact-form, .contact-info {
+        width: 100%;  /* Full width on small screens */
+        margin-bottom: 20px;
+    }
+
+    /* Move contact info further down when stacked */
+    .contact-info {
+        margin-top: 20px;  
+        margin-left: 0;  /* Remove left margin on smaller screens */
+    }
+}

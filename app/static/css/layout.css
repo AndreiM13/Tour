@@ -1,0 +1,65 @@
+/* layout.css */
+
+/* Header styles */
+.custom-header {
+    background-color: #003049; /* Dark blue background */
+    padding: 2rem;
+    position: relative;
+    text-align: center;
+}
+
+.navbar-logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    height: 100px;
+    width: auto;  
+}
+
+.custom-navbar {
+    background-color: #264653; /* Dark greenish blue */
+    border-radius: 10px;
+}
+
+.navbar-center {
+    justify-content: center;
+}
+
+.navbar-nav .nav-item {
+    font-size: 1.2rem;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff9900; /* Gold color for hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #212529; /* Dark grey */
+    color: white;
+    padding: 1rem 0;
+}
+
+footer a {
+    color: #ff9900;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* General Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Container styles */
+.container {
+    margin-top: 2rem;
+}
