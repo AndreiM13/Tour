@@ -1,5 +1,25 @@
 /* layout.css */
 
+/* Ensure the body takes full height of the screen */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Flexbox layout to make sure footer is at the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main content section to grow and take available space */
+main {
+    flex-grow: 1;
+    padding-bottom: 2rem; /* Extra padding to ensure space for footer */
+}
+
 /* Header styles */
 .custom-header {
     background-color: #003049; /* Dark blue background */
@@ -8,58 +28,168 @@
     text-align: center;
 }
 
+/* Navbar Logo */
 .navbar-logo {
     position: absolute;
     top: 15px;
     left: 15px;
     height: 100px;
-    width: auto;  
+    width: auto;
 }
 
+/* Custom Navbar */
 .custom-navbar {
     background-color: #264653; /* Dark greenish blue */
     border-radius: 10px;
 }
 
-.navbar-center {
-    justify-content: center;
-}
-
+/* Navbar Links */
 .navbar-nav .nav-item {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    margin-right: 15px;
 }
 
 .navbar-nav .nav-link {
     color: #fff;
+    font-family: 'Garamond', serif;
+    padding: 4px 12px;
+    font-size: 1.8rem;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ff9900; /* Gold color for hover */
+    color: #ff9900;
+    background-color: rgba(255, 153, 0, 0.2);
+}
+
+/* Add Vertical Separator */
+.navbar-nav .nav-item:not(:last-child)::after {
+    /* content: '|'; */
+    color: #fff;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Navbar Container - Centering and Positioning */
+.navbar-collapse.navbar-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background-color: #264653;
+    border: none;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 153, 0, 0.2);
+    color: #ff9900;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 8px 16px;
+    }
 }
 
 /* Footer styles */
 footer {
-    background-color: #212529; /* Dark grey */
+    background-color: #212529;
     color: white;
     padding: 1rem 0;
+    margin-top: auto;
+    text-align: center;
 }
 
+/* Footer links */
 footer a {
-    color: #ff9900;
+    text-decoration: none;
 }
 
 footer a:hover {
     color: #fff;
+    text-decoration: none;
 }
 
-/* General Body styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
+/* Footer social media icons */
+footer a img {
+    width: 24px;
+    height: 24px;
+    margin: 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+    filter: brightness(0) invert(1); /* Make icons appear white */
+    transition: filter 0.3s ease;
 }
 
-/* Container styles */
-.container {
-    margin-top: 2rem;
+footer a:hover img {
+    filter: none; /* Restore original icon color on hover */
+}
+
+.social-icons {
+    font-size: 0;
+}
+
+.social-icon {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Facebook gradient */
+.social-icon.facebook:hover {
+    background: linear-gradient(45deg, #1877f2, #3b5998);
+}
+
+/* Instagram gradient */
+.social-icon.instagram:hover {
+    background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
+}
+
+/* TikTok gradient */
+.social-icon.tiktok:hover {
+    background: linear-gradient(135deg, #25f4ee, #fe2c55);
+}
+
+/* Mobile-specific footer tweaks */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        font-size: 1rem;
+    }
+
+    .navbar-logo {
+        height: 80px;
+    }
+
+    .custom-header {
+        padding: 1.5rem;
+    }
+}
+
+/* Section spacing */
+.main-section {
+    padding: 20px;
+    min-height: 200px;
 }

@@ -1,0 +1,103 @@
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Garamond', serif;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+.faq-item summary {
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+/* Remove default triangle arrow */
+.faq-item summary::-webkit-details-marker,
+.faq-item summary::marker {
+    display: none;
+}
+
+/* Custom "+" symbol */
+.faq-item summary::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+/* Change to "–" when open */
+.faq-item[open] summary::before {
+    content: "–";
+}
+
+.faq-item p {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+}
+/* Ensure FAQ layout works well on all screens */
+.faq-section {
+    padding: 1.5rem 1rem;
+}
+
+/* Title adjusts on small devices */
+.faq-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Each FAQ item stacks nicely */
+.faq-item {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Summary styles on small screens */
+.faq-item summary {
+    font-size: 1.2rem;
+    padding-left: 1.8rem;
+}
+
+/* Symbol positioning and size */
+.faq-item summary::before {
+    font-size: 1.2rem;
+    left: 0;
+}
+
+/* Paragraph spacing inside items */
+.faq-item p {
+    font-size: 1rem;
+    padding-left: 1.8rem;
+    line-height: 1.5;
+}
+
+/* Extra small screen fine-tuning */
+@media (max-width: 480px) {
+    .faq-title {
+        font-size: 1.6rem;
+    }
+
+    .faq-item summary {
+        font-size: 1.1rem;
+    }
+
+    .faq-item p {
+        font-size: 0.95rem;
+    }
+}

@@ -1,5 +1,97 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>{{current_user.email}}</h1>
+    <h1 class="text-center">Welcome, {{ current_user.email }}!</h1>
+    
+    <!-- Display the number of views -->
+    <h3 class="text-center">This web app has been viewed {{ view_count }} times.</h3>
+
+    <h2 class="text-center">Your Bookings</h2>
+
+    <!-- Table to display bookings -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Client Name</th>
+                    <th>Email</th>
+                    <th>Country Prefix</th>
+                    <th>Phone Number</th>
+                    <th>Travel Date</th>
+                    <th>Number of People</th>
+                    <th>Tour Type</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.client_name }}</td>
+                        <td>{{ booking.client_email }}</td>
+                        <td>{{ booking.country_code }}</td>
+                        <td>{{ booking.phone_number }}</td>
+                        <td>{{ booking.travel_date }}</td>
+                        <td>{{ booking.number_people }}</td>
+                        <td>{{ booking.tour_type }}</td>
+                        
+                        <!-- Status Column: Display the current status -->
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <span class="status-pending">Pending</span>
+                            {% elif booking.status == 'confirmed' %}
+                                <span class="status-confirmed">Confirmed</span>
+                            {% elif booking.status == 'canceled' %}
+                                <span class="status-canceled">Canceled</span>
+                            {% endif %}
+                        </td>
+                        
+                        <!-- Actions Column: Buttons to confirm, cancel, or delete -->
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <!-- Only show buttons for pending bookings -->
+                                <a href="{{ url_for('confirm_booking', booking_id=booking.id) }}" class="btn btn-small btn-success">Confirm Booking</a>
+                                <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}" class="btn btn-small btn-danger">Cancel Booking</a>
+                            {% elif booking.status == 'confirmed' %}
+                                <span class="status-confirmed">Confirmed</span>
+                            {% elif booking.status == 'canceled' %}
+                                <span class="status-canceled">Canceled</span>
+                            {% endif %}
+                            <!-- Delete button with confirmation -->
+                            <a href="{{ url_for('delete_booking', booking_id=booking.id) }}" class="btn btn-small btn-warning" onclick="return confirmDelete()">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Button to delete all bookings with confirmation -->
+    <form action="{{ url_for('delete_all_bookings') }}" method="POST" class="delete-form" onsubmit="return confirmDeleteAll()">
+        <button type="submit" class="btn btn-warning">Delete All Bookings</button>
+    </form>
+
+    <br>
+    <br>
+    <!-- Analytics Section for Countries -->
+    <h3 class="text-center">Booking Analytics by Country</h3>  
+
+    <div class="analytics-container">
+        <div class="graph-container">
+            <img src="data:image/png;base64,{{ img_data }}" alt="Booking Analytics by Country">
+        </div>
+    </div>
+
+    <!-- Add the confirmation scripts -->
+    <script type="text/javascript">
+        // Confirm delete for a single booking
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this booking? This action cannot be undone.");
+        }
+
+        // Confirm delete for all bookings
+        function confirmDeleteAll() {
+            return confirm("Are you sure you want to delete all bookings? This action cannot be undone.");
+        }
+    </script>
 {% endblock %}

@@ -18,7 +18,12 @@
 }
 
 /* Make the text much larger */
-.carousel-caption h3 {
+
+.carousel-caption h1 {
+    font-size: 3rem; /* Larger title */
+    margin-bottom: 20px; /* More space between title and description */
+}
+.carousel-caption h2 {
     font-size: 3rem; /* Larger title */
     margin-bottom: 20px; /* More space between title and description */
 }
@@ -123,98 +128,141 @@
 }
 
 
-
-/* The container for the image and cards */
-.included {
+/* --- "What is Included" Section Styles --- */
+/* Section Styling */
+.included-section {
     position: relative;
     width: 100%;
-    height: 100vh;  /* Full screen height */
+    padding: 60px 0;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-/* Make the image fill the entire section */
-.included .bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the entire container */
+/* Background Image */
+.included-section .bg-image {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1; /* Keeps the image in the background */
-}
-
-/* Overlay text centered over the image */
-.overlay-text {
-    position: absolute;
-    top: 20%; /* Adjust this value to move text higher */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    z-index: 1;
-}
-
-.overlay-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-/* Container for cards that will be displayed over the image */
-.card-container {
-    position: absolute;
-    top: 30%; /* Adjusted from 65% to move the cards higher */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    z-index: 2; /* Ensures cards appear above the background */
-}
-
-/* Styling for each individual card */
-.card {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    color: white;
-    width: 200px; /* Fixed width for cards */
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-}
-
-/* Image styling inside each card */
-.card img {
     width: 100%;
-    height: auto;
-    border-radius: 5px;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 1;
 }
 
-/* Text in the card */
-.card-text {
-    margin-top: 15px;
+/* Overlay Container */
+.included-section .overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Mobile responsiveness */
+/* Section Title */
+.included-section .overlay h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #003049;
+    margin-bottom: 40px;
+}
+
+/* Card Container */
+.included-section .tour-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card Style */
+.included-section .tour-card.transparent-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #003049;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 220px;
+    max-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Hover */
+.included-section .tour-card.transparent-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Title */
+.included-section .tour-card-title {
+    font-size: 1.6rem; /* Increased title size */
+    font-weight: bold;
+    color: #003049;
+    margin-bottom: 15px;
+}
+
+/* Card Text */
+.included-section .tour-card-text {
+    font-size: 1.1rem; /* Increased text size */
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Card Image */
+.included-section .tour-card img {
+    width: 150px; /* Increased size of the image */
+    height: auto; /* Ensures the image scales proportionally */
+    margin-bottom: 20px;  /* More space between the image and the text */
+    object-fit: contain;  /* Ensures the image fits well inside the container */
+}
+
+/* Responsive Adjustments */
+
+/* For Medium Screens */
+@media (max-width: 1024px) {
+    .included-section .tour-cards-container {
+        gap: 16px;
+    }
+
+    .included-section .tour-card.transparent-card {
+        flex: 1 1 45%; /* Cards will take up 45% of the width */
+    }
+}
+
+/* For Smaller Screens */
 @media (max-width: 768px) {
-    .overlay-text h2 {
-        font-size: 2rem; /* Smaller font size on mobile */
+    .included-section .overlay h1 {
+        font-size: 2.2rem; /* Smaller font size for title */
     }
 
-    .card-container {
-        flex-direction: column;
-        align-items: center;
+    .included-section .tour-card.transparent-card {
+        flex: 1 1 100%; /* Cards take up 100% width on mobile */
+        max-width: 90%;
     }
 
-    .card {
-        width: 50%; /* Cards take up more width on smaller screens */
-        margin-bottom: 15px; /* Adds space between cards */
-    }
-    
-    /* Optional: Adjust the position of the card container further for smaller screens */
-    .card-container {
-        top: 40%; /* Adjusted for smaller screens to make it appear higher */
+    /* Make images smaller for mobile */
+    .included-section .tour-card img {
+        width: 130px; /* Slightly smaller image on mobile */
     }
 }
+
+/* For Very Small Screens */
+@media (max-width: 480px) {
+    .included-section .overlay h1 {
+        font-size: 2rem; /* Even smaller title font size */
+    }
+
+    /* Make cards take full width on very small screens */
+    .included-section .tour-card.transparent-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    /* Adjust image size on small screens */
+    .included-section .tour-card img {
+        width: 110px; /* Even smaller image on very small screens */
+    }
+}
+

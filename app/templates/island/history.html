@@ -1,0 +1,30 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="island-history">
+    <h1 class="island-title">Did you know?</h1>
+
+    <div class="island-history-text">
+        <p>🧭 In ancient times, sailors believed Socotra was home to the Phoenix — 
+            the mythical bird that rose from its ashes — and that magical herbs growing there could heal any wound.
+             👑 The island was famous in the ancient world for its frankincense and myrrh, essential ingredients in sacred rituals. 
+             Some legends even say Alexander the Great tried to colonize Socotra to control its valuable plants. 
+             🎶 Traditional Socotri music and poetry are entirely oral and often improvised. Songs are deeply emotional,
+              passed down for centuries, and can last for hours during celebrations. 
+              🐉 "Dragon’s blood" resin from the island’s famous trees was so prized in the Middle Ages that it was used for medicines,
+               dyes, and even alchemy. Some medieval texts claim it had magical powers! 
+               🎬 Socotra’s alien landscapes have inspired countless filmmakers and artists — from science fiction settings to surreal
+                nature documentaries. Some say it looks more like Mars than Earth! 🐟 
+                Even the seas around Socotra are special: the island is surrounded by coral reefs teeming with hundreds of fish 
+                species, many found nowhere else in the world. Most Socotri families still live a semi-nomadic life, moving 
+                with the seasons to find fresh pasture for their goats — a rhythm of life that has remained almost unchanged for 
+                thousands of years.</p>
+
+    </div>
+
+    <img src="{{ url_for('static', filename='images/people1.png') }}" alt="History"> 
+</div>
+
+{% endblock %}

@@ -1,22 +1,38 @@
 from datetime import datetime
 from app import db
 from flask_login import UserMixin
+from sqlalchemy import Enum as SqlEnum
+from enum import Enum
 
 # Import login_manager from the app package
 from app import login_manager
 
-@login_manager.user_loader  # Use the login_manager correctly here
+# Use Enum for status in Tour and Booking
+class BookingStatusEnum(str, Enum):
+    PENDING = "pending"
+    CONFIRMED = "confirmed"
+    CANCELED = "canceled"
+
+class TourStatusEnum(str, Enum):
+    AVAILABLE = "available"
+    SOLD_OUT = "sold out"
+    IN_PROGRESS = "in progress"
+
+@login_manager.user_loader
 def load_user(user_id):
     return Admin.query.get(int(user_id))
 
 class Admin(db.Model, UserMixin):
     __tablename__ = 'admins'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False, index=True)  # Index added for faster lookups
     password = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    gallery_posts = db.relationship('Gallery', backref='admin', lazy=True)
-    tours = db.relationship('Tour', backref='admin', lazy=True)
+    
+    gallery_posts = db.relationship('Gallery', backref='admin', lazy=True, cascade="all, delete-orphan")
+    tours = db.relationship('Tour', backref='admin', lazy=True, cascade="all, delete-orphan")
+    bookings = db.relationship('Booking', backref='admin', lazy=True, cascade="all, delete-orphan")
+    contacts = db.relationship('Contact', backref='admin', lazy=True, cascade="all, delete-orphan")
 
 class Gallery(db.Model):
     __tablename__ = 'gallery'
@@ -26,19 +42,19 @@ class Gallery(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     alt_text = db.Column(db.String(255), nullable=True)
     admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
+
 class Tour(db.Model):
     __tablename__ = 'tours'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    number_person = db.Column(db.Integer, nullable=True)
+    number_person = db.Column(db.Integer, nullable=True)  # Allowing it to be nullable for flexibility
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    status = db.Column(SqlEnum(TourStatusEnum), nullable=False, default=TourStatusEnum.AVAILABLE)
+
     admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
-
-    # Relationship to Booking without backref to avoid conflict with 'tour_id'
-    bookings = db.relationship('Booking', backref='tour', lazy=True)
-
+    bookings = db.relationship('Booking', backref='tour', lazy=True, cascade="all, delete-orphan")
 
 class Booking(db.Model):
     __tablename__ = 'bookings'
@@ -46,22 +62,26 @@ class Booking(db.Model):
     client_name = db.Column(db.String(100), nullable=False)
     client_email = db.Column(db.String(120), nullable=False)
     phone_number = db.Column(db.String(20), nullable=True)
-    number_days = db.Column(db.Integer, nullable=False)
+    country_code = db.Column(db.String(10), nullable=True)
+    number_nights = db.Column(db.Integer, nullable=False)
     travel_date = db.Column(db.Date, nullable=False)
-    tour_type = db.Column(db.String(50), nullable=False)  # New field for tour type
-    number_people = db.Column(db.Integer, nullable=False)  # New field for number of people
+    tour_type = db.Column(db.String(50), nullable=False)
+    number_people = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    # Foreign key for tour relationship
+    status = db.Column(SqlEnum(BookingStatusEnum), nullable=False, default=BookingStatusEnum.PENDING)
     tour_id = db.Column(db.Integer, db.ForeignKey('tours.id'), nullable=False)
-
-
-
+    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
 
 class Contact(db.Model):
     __tablename__ = 'contacts'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False, index=True)  # Index for quicker lookups
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
+
+    
+class UniqueView(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    count = db.Column(db.Integer, default=0)

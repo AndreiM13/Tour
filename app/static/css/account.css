@@ -1,0 +1,162 @@
+/* Analytics Container */
+.analytics-container {
+    text-align: center;  /* Centers the content */
+    margin: 20px 0;  /* Adds margin on top and bottom */
+}
+
+/* Graph Container */
+.graph-container {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;  /* Adjust the width of the image */
+}
+
+/* Ensure the image is responsive and properly sized */
+.graph-container img {
+    width: 100%;
+    max-width: 800px; /* Max width to prevent too large images */
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Table Container */
+.table-container {
+    margin: 20px;
+    padding: 20px;
+    width: 40%; /* Ensure the container takes the full width */
+}
+
+/* Table Styling */
+table {
+    width: 40%;  /* Ensure table uses 100% of container's width */
+    font-size: 17px;  /* Font size */
+    margin-left: 140px;
+}
+
+/* Columns - Make sure they expand properly */
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Ensure text doesn’t overflow */
+}
+
+/* Add specific width for each column (min-width ensures no collapsing) */
+th:nth-child(1), td:nth-child(1) { /* Client Name column */
+    min-width: 200px;
+}
+
+th:nth-child(2), td:nth-child(2) { /* Email column */
+    min-width: 200px;
+}
+
+th:nth-child(3), td:nth-child(3) { /* Country Prefix column */
+    min-width: 150px;
+}
+
+th:nth-child(4), td:nth-child(4) { /* Phone Number column */
+    min-width: 180px;
+}
+
+th:nth-child(5), td:nth-child(5) { /* Travel Date column */
+    min-width: 180px;
+}
+
+th:nth-child(6), td:nth-child(6) { /* Number of People column */
+    min-width: 180px;
+}
+
+th:nth-child(7), td:nth-child(7) { /* Tour Type column */
+    min-width: 180px;
+}
+
+/* Status Colors */
+.status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-confirmed {
+    color: green;
+    font-weight: bold;
+}
+
+.status-canceled {
+    color: red;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.btn {
+    padding: 8px 15px;  /* Larger buttons */
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+    margin: 5px 5px;  /* Add margin to space out the buttons */
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-form {
+    margin-top: 20px;
+}
+
+/* Responsive Design: For smaller screens */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px; /* Smaller font size for mobile */
+    }
+
+    th, td {
+        padding: 10px;  /* Reduce padding for small screens */
+    }
+
+    .btn-small {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+
+    .delete-form {
+        text-align: center;
+    }
+
+    .text-center {
+        font-size: 18px;
+    }
+
+    /* Ensure the table fits without overflowing the screen on smaller screens */
+    .table-container {
+        width: 100%;
+        padding: 10px;
+        overflow-x: auto; /* Allow scrolling if necessary */
+    }
+
+    /* Ensure the graph is responsive as well */
+    .graph-container img {
+        width: 100%;
+        max-width: 100%;
+    }
+}

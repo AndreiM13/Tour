@@ -1,24 +1,74 @@
-
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request, session
 from app import app, db, bcrypt
 from app.forms import RegistrationForm, LoginForm, ContactForm, BookingForm
-from app.models import Admin, Tour,Contact,Booking
-from flask_login import login_user, current_user, logout_user,login_required
-from flask import request
+from app.models import Admin, Tour, Contact, Booking, BookingStatusEnum, UniqueView 
+from flask_login import login_user, current_user, logout_user, login_required
+from collections import defaultdict
+import matplotlib
+matplotlib.use('Agg')  # Use the non-GUI backend
+import matplotlib.pyplot as plt
+import io
+import base64
+import json
+# from flask_mail import Message
+# from app import mail  # Assuming 'mail' is imported from your app
 
+# Home Routes
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html')
 
+
 @app.route("/about")
 def about():
     return render_template('about.html')
 
-@app.route("/adminregsitration", methods=['GET', 'POST'])
-def adminregsitration():
+@app.route("/faq")
+def faq():
+    return render_template('faq.html')
+
+
+@app.route("/island")
+def island():
+    return render_template("island/index.html")  # Main island landing page
+
+@app.route("/island/history")
+def island_history():
+    return render_template("island/history.html")
+
+@app.route("/island/flora")
+def island_flora():
+    return render_template("island/flora.html")
+@app.route("/island/fauna")
+def island_fauna():
+    return render_template("island/fauna.html")
+
+@app.route("/island/people")
+def island_people():
+    return render_template("island/people.html")
+
+
+
+
+@app.route("/getting")
+def getting():
+    return render_template('getting.html')
+
+@app.route("/high")
+def high():
+    return render_template('high.html')
+
+@app.route("/blog")
+def blog():
+    return render_template('blog.html')
+
+# Admin Registration
+@app.route("/adminregistration", methods=['GET', 'POST'])
+def adminregistration():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
+
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -27,43 +77,124 @@ def adminregsitration():
         db.session.commit()
         flash(f'Account created for {form.email.data}!', 'success')
         return redirect(url_for('home'))
+
     return render_template('registration.html', title='Registration', form=form)
 
 
-
+# Admin Login
 @app.route("/adminlogin", methods=['GET', 'POST'])
 def adminlogin():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
+
     form = LoginForm()
     if form.validate_on_submit():
         admin = Admin.query.filter_by(email=form.email.data).first()
         if admin and bcrypt.check_password_hash(admin.password, form.password.data):
             login_user(admin, remember=form.remember.data)
-            next_page = request.args.get('next')  # Ensure this works correctly
+            next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
-            flash('Login Unsuccessful', 'danger')
+            flash('Login unsuccessful. Please check email and password.', 'danger')
+
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route("/adminlogout", methods=['GET', 'POST'])
+# Admin Logout
+@app.route("/adminlogout")
+@login_required
 def adminlogout():
     logout_user()
     return redirect(url_for('home'))
 
-
-@app.route("/account", methods=['GET', 'POST'])
+#account
+@app.route("/account", methods=['GET'])
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    # Load the country data from the JSON file 
+    with open('countries.json') as f:
+        countries_data = json.load(f)
+    # Create a dictionary to map country codes to country names
+    country_code_to_name = {country['dial_code']: country['name'] for country in countries_data}
 
+    # Fetch all bookings from the database
+    bookings = Booking.query.all()
 
+    # Track unique views using session
+    if 'viewed_account' not in session:
+        # Mark the session as viewed
+        session['viewed_account'] = True
+
+        # Check if a UniqueView entry exists, otherwise create one
+        unique_view = UniqueView.query.first()
+
+        if unique_view:
+            # Increment the view count
+            unique_view.count += 1
+        else:
+            # Create a new UniqueView entry if it doesn't exist
+            unique_view = UniqueView(count=1)
+            db.session.add(unique_view)
+
+        # Commit the changes to the database
+        db.session.commit()
+
+    # Create a dictionary to hold statistics per country
+    country_stats = defaultdict(lambda: {
+        'total_people': 0,
+        'confirmed': 0,
+        'canceled': 0,
+    })
+
+    # Loop through the bookings and update statistics
+    for booking in bookings:
+        country_code = booking.country_code
+        country_stats[country_code]['total_people'] += booking.number_people
+        
+        if booking.status == BookingStatusEnum.CONFIRMED:
+            country_stats[country_code]['confirmed'] += booking.number_people
+        elif booking.status == BookingStatusEnum.CANCELED:
+            country_stats[country_code]['canceled'] += booking.number_people
+
+    # Prepare the data for the chart
+    country_names = [country_code_to_name.get(country_code, country_code) for country_code in country_stats.keys()]
+    confirmed = [stats["confirmed"] for stats in country_stats.values()]
+    canceled = [stats["canceled"] for stats in country_stats.values()]
+
+    # Generate a bar chart for the booking analytics
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bar_width = 0.35
+    index = range(len(country_names))
+
+    # Plotting confirmed and canceled data
+    ax.bar(index, confirmed, bar_width, label='Confirmed', color='green')
+    ax.bar([i + bar_width for i in index], canceled, bar_width, label='Canceled', color='red')
+
+    ax.set_xlabel('Countries')
+    ax.set_ylabel('Number of People')
+    ax.set_title('Booking Analytics by Country')
+    ax.set_xticks([i + bar_width / 2 for i in index])
+    ax.set_xticklabels(country_names, rotation=45, ha='right')
+    ax.legend()
+
+    # Save the plot to a BytesIO object and encode it as base64 for embedding in the HTML
+    img = io.BytesIO()
+    plt.savefig(img, format='png', bbox_inches='tight')
+    img.seek(0)
+    img_data = base64.b64encode(img.getvalue()).decode('utf-8')
+
+    # Fetch the updated view count from the database
+    unique_view = UniqueView.query.first()
+    view_count = unique_view.count if unique_view else 0
+
+    # Pass the aggregated data and the image data to the template
+    return render_template("account.html", title='Account', bookings=bookings, country_stats=country_stats, img_data=img_data, view_count=view_count)
+
+# Contact Form
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
-        # Store the submitted data in the database
         contact = Contact(
             name=form.name.data,
             email=form.email.data,
@@ -71,41 +202,163 @@ def contact():
         )
         db.session.add(contact)
         db.session.commit()
-
         flash("Your message has been sent successfully!", "success")
         return redirect(url_for('contact'))
 
     return render_template('contact.html', form=form)
 
+
+# Tour Booking
 @app.route('/tour', methods=['GET', 'POST'])
 def tour():
     form = BookingForm()
 
-    # Populate the tour_id select field dynamically from the database
-    form.tour_id.choices = [(tour.id, tour.title) for tour in Tour.query.all()]
-
     if form.validate_on_submit():
-        # Get the tour instance selected by the user
-        tour = Tour.query.get(form.tour_id.data)
+        # Find all available tours
+        available_tours = Tour.query.filter_by(status="available").all()
 
-        # Create a new Booking instance with the form data
+        if not available_tours:
+            flash('No available tours. Please add a tour first.', 'danger')
+            return redirect(url_for('home'))
+
+        # For simplicity, let's select the first available tour
+        available_tour = available_tours[0]
+
+        # Automatically select the first admin (assuming admin exists)
+        admin = Admin.query.first()
+
+        # If no admin is found, show an error
+        if not admin:
+            flash('No admin found. Please add an admin first.', 'danger')
+            return redirect(url_for('home'))
+
+        # Create a new booking with the selected tour and automatically set admin_id
         new_booking = Booking(
             client_name=form.client_name.data,
             client_email=form.client_email.data,
             phone_number=form.phone_number.data,
             country_code=form.country_code.data,
             travel_date=form.travel_date.data,
-            number_nights=int(form.number_nights.data),
-            number_people=int(form.number_people.data),
+            number_nights=form.number_nights.data,
+            number_people=form.number_people.data,
             tour_type=form.tour_type.data,
-            tour_id=tour.id  # Associate the booking with the selected tour
+            admin_id=admin.id,  # Automatically setting admin_id
+            tour_id=available_tour.id  # Automatically setting tour_id
         )
 
-        # Add the new booking to the session and commit to the database
-        db.session.add(new_booking)
-        db.session.commit()
+        try:
+            db.session.add(new_booking)  # Add the new booking to the session
+            db.session.commit()  # Commit the changes to the database
 
-        return redirect(url_for('success'))  # Redirect to a success page
+            # Send email to admin notifying about the new booking
+            # admin_email = "admin@example.com"  # Replace with actual admin email
+            # admin_msg = Message("New Booking Received", recipients=[admin_email])
+            # admin_msg.body = f"""New booking received!
+
+            # Client Name: {form.client_name.data}
+            # Client Email: {form.client_email.data}
+            # Tour Type: {form.tour_type.data}
+            # Phone: {form.phone_number.data}
+            # Travel Date: {form.travel_date.data}
+            # Number of People: {form.number_people.data}
+            # """
+            # mail.send(admin_msg)
+
+            # Send personalized confirmation email to the client
+            # client_msg = Message("Your Booking Confirmation", recipients=[form.client_email.data])
+            # client_msg.body = f"""Dear {form.client_name.data},
+
+            # Thank you for booking with us!
+
+            # Here are your booking details:
+            # Tour Type: {form.tour_type.data}
+            # Number of Nights: {form.number_nights.data}
+            # Travel Date: {form.travel_date.data}
+
+            # We will review your booking and confirm soon.
+
+            # Payment Methods: You can pay via PayPal, Credit Card, or Bank Transfer.
+
+            # Thank you!
+            # """
+            # mail.send(client_msg)
+
+            flash('Booking successful! A confirmation email has been sent to you.', 'success')
+            return redirect(url_for('success'))
+
+        except Exception as e:
+            db.session.rollback()  # Rollback the session in case of an error
+            flash('An error occurred while processing your booking. Please try again later.', 'danger')
+            return redirect(url_for('tour'))
 
     return render_template('tour.html', form=form)
 
+
+# Booking Success Page
+@app.route("/success")
+def success():
+    return render_template("success.html")
+
+
+#Confirm Booking
+@app.route('/confirm_booking/<int:booking_id>', methods=['GET'])
+@login_required
+def confirm_booking(booking_id):
+    booking = Booking.query.get_or_404(booking_id)
+    print(f"Booking status: {booking.status}")  # This will log to your console
+    if booking.status == BookingStatusEnum.PENDING:
+        booking.status = BookingStatusEnum.CONFIRMED
+        db.session.commit()
+        flash('Booking confirmed successfully!', 'success')
+    else:
+        flash('Booking is already confirmed or canceled!', 'danger')
+    return redirect(url_for('account'))
+
+#Cancel Booking
+@app.route("/cancel_booking/<int:booking_id>")
+@login_required
+def cancel_booking(booking_id):
+    booking = Booking.query.get_or_404(booking_id)
+    booking.status = BookingStatusEnum.CANCELED
+    db.session.commit()
+    flash('Booking has been canceled.', 'danger')
+    return redirect(url_for('account'))
+
+#Delete Booking
+@app.route('/delete_booking/<int:booking_id>', methods=['GET'])
+@login_required
+def delete_booking(booking_id):
+    booking = Booking.query.get_or_404(booking_id)
+    db.session.delete(booking)
+    db.session.commit()
+    flash('Booking deleted successfully!', 'danger')
+    return redirect(url_for('account'))
+
+
+#Delete All Bookings
+@app.route('/delete_all_bookings', methods=['POST'])
+@login_required
+def delete_all_bookings():
+    Booking.query.delete()
+    db.session.commit()
+    flash('All bookings deleted successfully!', 'danger')
+    return redirect(url_for('account'))
+
+
+
+
+@app.route('/tour/photographer')
+def photographer_tour():
+    return render_template('tour_photographer.html')
+
+@app.route('/tour/explorer')
+def explorer_tour():
+    return render_template('tour_explorer.html')
+
+@app.route('/tour/beach-potato')
+def beach_potato_tour():
+    return render_template('tour_beach_potato.html')
+
+@app.route('/tour/vip')
+def vip_tour():
+    return render_template('tour_vip.html')

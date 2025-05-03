@@ -2,160 +2,164 @@
 
 {% block content %}
    <!-- Our Tours Section -->
+<!-- Our Tours Section -->
 <div class="tour-wrapper">
     <h1 class="tour-header">Our Tours</h1>
     
     <div class="tour-cards-container">
-        <div class="tour-card">
-            <h5 class="tour-card-title">The Photographer</h5>
-            <p class="tour-card-text">
-                If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
-                For the local celebrity, the divas, and everyone that loves photography.
-                <br>
-                <br>
-                <br>
-            </p>
-            <a href="#booking-form" class="tour-btn">Book the Tour</a>
-        </div>
+      <!-- The Photographer Tour Card -->
+      <div class="tour-card">
+        <h5 class="tour-card-title">The Photographer</h5>
+        <p class="tour-card-text">
+          If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
+          For the local celebrity, the divas, and everyone that loves photography.
+          <br>
+          <br>
+          <br>
+        </p>
+        <a href="#booking-form" class="tour-btn">Book the Tour</a>
         
-        <div class="tour-card">
-            <h5 class="tour-card-title">The Explorer</h5>
-            <p class="tour-card-text">
-                Indiana Jones, Lara Croft, you name it! Adrenaline and curiosity drive the way you go.
-                You want to see it all: Mountain climbing, boat adventures, exploring remote caves.
-            </p>
-            <br>
-            <a href="#booking-form" class="tour-btn">Book the Tour</a>
-        </div>
+        <!-- Learn More Text (Appears on Hover) -->
+        <a href="/tour/photographer" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+      </div>
+  
+      <!-- The Explorer Tour Card -->
+      <div class="tour-card">
+        <h5 class="tour-card-title">The Explorer</h5>
+        <p class="tour-card-text">
+          Indiana Jones, Lara Croft, you name it! Adrenaline and curiosity drive the way you go.
+          You want to see it all: Mountain climbing, boat adventures, exploring remote caves.
+        </p>
+        <br>
+        <a href="#booking-form" class="tour-btn">Book the Tour</a>
         
-        <div class="tour-card">
-            <h5 class="tour-card-title">The Beach Potato</h5>
-            <p class="tour-card-text">
-                So you probably heard of the pristine beaches and the turquoise waters of Socotra. 
-                If the beach is calling you, you can never refuse. Enjoy unforgettable views and activities!
-            </p>
-            <br>
-            <a href="#booking-form" class="tour-btn">Book the Tour</a>
-        </div>
+        <!-- Learn More Text (Appears on Hover) -->
+        <a href="/tour/explorer" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+      </div>
+  
+      <!-- The Beach Potato Tour Card -->
+      <div class="tour-card">
+        <h5 class="tour-card-title">Beach Lover</h5>
+        <p class="tour-card-text">
+          So you probably heard of the pristine beaches and the turquoise waters of Socotra. 
+          If the beach is calling you, you can never refuse. Enjoy unforgettable views and activities!
+        </p>
+        <a href="#booking-form" class="tour-btn">Book the Tour</a>
         
-        <div class="tour-card">
-            <h5 class="tour-card-title">The VIP</h5>
-            <p class="tour-card-text">
-                You are the boss, determined and adventurous but enjoy comfort. Customize your itinerary 
-                with a private consultation to make the tour exactly what you want.
-            </p>
-            <br>
-            <a href="#booking-form" class="tour-btn">Book the Tour</a>
-        </div>
+        <!-- Learn More Text (Appears on Hover) -->
+        <a href="/tour/beach-potato" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+      </div>
+  
+      <!-- The VIP Tour Card -->
+      <div class="tour-card">
+        <h5 class="tour-card-title">The VIP</h5>
+        <p class="tour-card-text">
+          You are the boss, determined and adventurous but enjoy comfort. Customize your itinerary 
+          with a private consultation to make the tour exactly what you want.
+        </p>
+        <br>
+        <a href="#booking-form" class="tour-btn">Book the Tour</a>
+        
+        <!-- Learn More Text (Appears on Hover) -->
+        <a href="/tour/vip" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+      </div>
     </div>
   </div>
+  
+  
+  
+<!-- What is Included Section -->
+<div class="included-section" style="position: relative;">
+    <img src="{{ url_for('static', filename='images/home1.jpeg') }}" alt="Included Background" class="bg-image">
+  
+    <div class="overlay">
+      <h1 class="tour-header">What is Included?</h1>
+      <div class="tour-cards-container">
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Lodging</h5>
+          <img src="{{ url_for('static', filename='images/newtent.png') }}" alt="Lodging" class="img-fluid" />
+          <p class="tour-card-text">
+            Clean, comfortable tents or hotels (upon request)
+          </p>
+        </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Food</h5>
+          <img src="{{ url_for('static', filename='images/newfood.png') }}" alt="Food" class="img-fluid" />
+          <p class="tour-card-text">
+            Delicious locally sourced meals and snacks
+          </p>
+        </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Guide</h5>
+          <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Guide" class="img-fluid" />
+          <p class="tour-card-text">
+            A great Socotri guide:  professional, fun and of course, English speaking!  
+            Local guides for the different natural protected areas
 
-
-  <div class="included">
-    <!-- Full-width background image -->
-    <img src="{{ url_for('static', filename='images/home1.jpeg') }}" alt="Socotra" class="bg-image">
-
-    <!-- Overlay text on top of the image -->
-    <div class="overlay-text">
-        <h2>What is included?</h2>
+          </p>
+        </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Transportation</h5>
+          <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid" />
+          <p class="tour-card-text">
+            Reliable 4x4 car and knowledgeable local driver
+          </p>
+        </div>
+      </div>
     </div>
-
-    <!-- Cards Container: These should be positioned over the image -->
-    <div class="card-container">
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/tent.png') }}" alt="Lodging" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Lodging: Clean, comfortable tents or hotels (upon request)</p>
-            </div>
+  </div>
+  
+  <!-- What is Not Included Section -->
+  <div class="included-section" style="position: relative;">
+    <img src="{{ url_for('static', filename='images/notincluded.jpeg') }}" alt="Not Included Background" class="bg-image">
+  
+    <div class="overlay">
+      <h1 class="tour-header">What is Not Included?</h1>
+      <div class="tour-cards-container">
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">International Flights</h5>
+          <p class="tour-card-text">
+            Airline ticket to and from Abu Dhabi
+          </p>
         </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/food.png') }}" alt="Food" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Delicious locally sourced meals and snacks</p>
-            </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Roundtrip to Socotra</h5>
+          <p class="tour-card-text">
+            Abu Dhabi – Socotra roundtrip flight ($980 USD)
+          </p>
         </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/map.png') }}" alt="Guide" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Socotri guide: Professional, fun, and English-speaking!</p>
-            </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Visa</h5>
+          <p class="tour-card-text">
+            Visa fee ($150 USD)
+          </p>
         </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Reliable 4x4 car and knowledgeable local driver</p>
-            </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Insurance</h5>
+          <p class="tour-card-text">
+            Travel insurance not included
+          </p>
         </div>
+  
+        <div class="tour-card transparent-card">
+          <h5 class="tour-card-title">Optional Activities</h5>
+          <p class="tour-card-text">
+            Extra activities not covered by base tour
+          </p>
+        </div>
+      </div>
     </div>
-</div>
-
-
-<div class="included">
-    <!-- Full-width background image -->
-    <img src="{{ url_for('static', filename='images/notincluded.jpeg') }}" alt="Socotra" class="bg-image">
-
-    <!-- Overlay text on top of the image -->
-    <div class="overlay-text">
-        <h2>What is  not included?</h2>
-    </div>
-
-    <!-- Cards Container: These should be positioned over the image -->
-    <div class="card-container">
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/tent.png') }}" alt="Lodging" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>International airline ticket to and from Abu Dhabi</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/food.png') }}" alt="Food" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Roundtrip ticket Abu Dhabi-Socotra ($980 USD)</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/map.png') }}" alt="Guide" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Visa fee ($150 USD)  </p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Travel Insurance</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="img-fluid">
-            </div>
-            <div class="card-text">
-                <p>Extra activities</p>
-            </div>
-        </div>
-        
-    </div>
-</div>
-
+  </div>
+  
  <!-- Section for booking -->
 <div id="booking-form" class="booking-container">
-    <h2 class="booking-title">Book the Tour</h2> <!-- Title added here -->
+    <h2 class="booking-title">Book the Tour</h2> <!-- Title -->
 
     <form method="POST" class="booking-form">
         {{ form.hidden_tag() }}
@@ -163,26 +167,61 @@
         <div class="form-group">
             {{ form.client_name.label }}<br>
             {{ form.client_name(class="form-control") }}
+            {% if form.client_name.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.client_name.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.client_email.label }}<br>
             {{ form.client_email(class="form-control") }}
+            {% if form.client_email.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.client_email.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.country_code.label }}<br>
             {{ form.country_code(class="form-control") }}
+            {% if form.country_code.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.country_code.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.phone_number.label }}<br>
             {{ form.phone_number(class="form-control") }}
+            {% if form.phone_number.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.phone_number.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.travel_date.label }}<br>
             {{ form.travel_date(class="form-control", type="date") }}
+            {% if form.travel_date.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.travel_date.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
@@ -193,16 +232,37 @@
                     {{ subfield.label(class="form-check-label") }}
                 </div>
             {% endfor %}
+            {% if form.number_nights.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.number_nights.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.number_people.label }}<br>
             {{ form.number_people(class="form-control") }}
+            {% if form.number_people.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.number_people.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group">
             {{ form.tour_type.label }}<br>
             {{ form.tour_type(class="form-control") }}
+            {% if form.tour_type.errors %}
+                <div class="invalid-feedback d-block">
+                    {% for error in form.tour_type.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="form-group mt-3">
@@ -210,6 +270,26 @@
         </div>
     </form>
 </div>
+
+<!-- Flash message displayed here below the form -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="alert-container">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+
+  
 
 
 

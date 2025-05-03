@@ -15,21 +15,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/regis.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tour.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/island.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/getting.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/island.css') }}?v=1">
 
     <!-- Favicon Link -->
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-icon">
 </head>
 
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+
 
     <!-- Header Section -->
     <header class="custom-header text-white text-center py-4 position-relative">
@@ -48,23 +46,41 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">About</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Gallery</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">The Island</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/tour">Tours</a>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/island" id="navbarIslandDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                The Island
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarIslandDropdown">
+                                <li><a class="dropdown-item" href="/island/history">History</a></li>
+                                <li><a class="dropdown-item" href="/island/flora">Flora</a></li>
+                                <li><a class="dropdown-item" href="/island/fauna">Fauna</a></li>
+                                <li><a class="dropdown-item" href="/island/people">People</a></li>
+                            </ul>
+                        </li>
+                        
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/getting">Getting here</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/high"> Highlights</a>
+                        </li>
+
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="/blog">Blog</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/faq">FAQ</a>
                         </li>
 
                         <!-- Authentication Links for logged-in users -->
@@ -82,15 +98,35 @@
         </nav>
     </header>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <!-- Main Content Section -->
     {% block content %}
     {% endblock %}
 
-    <!-- Footer Section -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 All Things Socotra | All Rights Reserved</p>
-        <p>Follow us on <a href="#" class="text-white">Facebook</a>, <a href="#" class="text-white">Instagram</a>, <a href="#" class="text-white">TikTok</a></p>
-    </footer>
+        <p>
+          Follow us on
+        </p>
+        <a href="#" class="social-icon facebook">
+            <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">    
+          </a>
+          <a href="#" class="social-icon instagram" >
+            <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
+          </a>
+          <a href="#" class="social-icon tiktok">
+            <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
+          </a>
+      </footer>
 
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

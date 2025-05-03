@@ -1,0 +1,40 @@
+.island-history, .island-flora, .island-fauna, .island-people {
+    display: flex;
+    justify-content: flex-start; /* Ensure both elements are aligned left */
+    align-items: flex-start;  /* Aligns items to the top */
+    padding: 2rem;
+    background-color: #FAF0E6;
+    gap: 1rem; /* Slightly reduced gap */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.island-title, .island-title-flora, .island-title-fauna, .island-title-people  {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #264653;
+    margin-bottom: 2rem;
+}
+
+.island-history-text, .island-flora-text, .island-fauna-text, .island-people-text {
+    flex: 2;
+    max-width: 60%; /* Giving more space to the text */
+}
+
+.island-history-text p, .island-flora-text p, .island-fauna-text p, .island-people-text p   {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.island-history img, .island-flora img, .island-fauna img, .island-people img {
+    flex: 1;
+    max-width: 650px; /* Resize the image to fit better */
+    height: 650px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-top: 0; /* Ensures the image starts at the top */
+    align-self: flex-start; /* Aligns the image to the top of the container */
+}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="island-people">
+    <h1 class="island-title-people">People</h1>
+
+    <div class="island-people-text">
+        <p>Far from the rush of the modern world, the people of Socotra have built a life deeply connected to their wild, beautiful island. 
+            Known as the Socotris, they are a small community of around 50,000, living much as their ancestors did for centuries — herding goats, 
+            fishing the clear blue waters, and tending the land that has shaped their culture and spirit.
+            The Socotri people speak their own ancient language, Socotri, a tongue so old it’s closer to the languages spoken by the Queen of 
+            Sheba’s traders than to modern Arabic. It’s a living echo of a time when Socotra was a vital stop on the frankincense and myrrh trade
+             routes, linking Africa, Arabia, and beyond.
+            Their traditions are simple but full of meaning. Life moves with the rhythm of the seasons — the monsoon winds, the arrival of rains,
+             the blooming of rare plants. Many families still live in stone huts or palm-leaf shelters during the dry months, close to their animals and
+              the land.
+            Socotri clothing is practical and shaped by the climate: men often wear light, flowing robes or simple cloth wraps, while women dress 
+            in colorful fabrics,
+             sometimes adorned with bright jewelry made from beads, silver, and seashells. Traditional dress is still common,
+              especially in the smaller villages tucked away between the mountains and shores.
+            Music and poetry are at the heart of Socotri life. The islanders gather for evenings filled with oral poetry, songs
+             passed down through generations, telling stories of love, loss, the sea, and the mountains. The melodies are haunting and raw,
+              often accompanied by simple drums and clapping — a soulful reminder of the island’s ancient spirit.
+            Despite the challenges of modern times, the Socotri people are proud stewards of their unique home. Their way of life, so deeply
+             tied to the land and sea, offers a rare glimpse into a world where human culture and nature still live in harmony.
+            Come meet the people of Socotra — and discover a culture as rare and beautiful as the island itself.
+            
+            </p>
+
+    </div>
+
+    <img src="{{ url_for('static', filename='images/people.png') }}" alt="People"> 
+</div>
+
+{% endblock %}

@@ -1,78 +1,262 @@
-/* Styling for the booking title */
-.booking-title {
-    text-align: center;
-    font-size: 28px; /* Adjust the font size as needed */
-    margin-top: 40px; /* Adds margin at the top */
-    margin-bottom: 20px; /* Adds margin at the bottom */
-    color: #333; /* Adjust the color if needed */
+/* === General Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* === Tour Section === */
+.tour-wrapper {
+  padding: 80px 20px;
 }
 
-/* Other styles for the booking form */
-.booking-form {
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-    margin-bottom: 30px;
+.tour-header {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  background-color: transparent;
 }
 
-/* Form groups */
-.form-group {
-    margin-bottom: 20px;
+.tour-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+  background-color: transparent;
 }
 
-/* Form labels */
-.form-group label {
-    font-weight: bold;
-    color: #555;
-    font-size: 14px;
+/* Only target tour cards within .tour-wrapper */
+.tour-wrapper .tour-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  position: relative; /* For positioning "Learn More" text */
+  cursor: pointer; /* Make the whole card clickable */
+  overflow: hidden; /* Hide content when hovered */
 }
 
-/* Form fields */
-.form-control {
+/* Hover effect applied only to tour card inside .tour-wrapper */
+.tour-wrapper .tour-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Title Style */
+.tour-wrapper .tour-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  z-index: 2; /* Ensure title is always visible */
+}
+
+/* Content Style */
+.tour-wrapper .tour-card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  opacity: 1; /* Content is visible initially */
+  transition: opacity 0.3s ease; /* Smooth transition when disappearing */
+}
+
+/* Hide Content on Hover */
+.tour-wrapper .tour-card:hover .tour-card-text {
+  opacity: 0; /* Hide the content on hover */
+}
+
+/* Learn More Text (Initially Hidden) */
+.tour-wrapper .tour-card .learn-more-text {
+  position: absolute;
+  top: 50%; /* Vertically center the text */
+  left: 50%; /* Horizontally center the text */
+  transform: translate(-50%, -50%); /* Offset by 50% to truly center */
+  color: #007bff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: underline;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially hidden */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 2; /* Ensure the "Learn More" text appears on top of everything else */
+}
+
+/* Show Learn More Text only on Hover */
+.tour-wrapper .tour-card:hover .learn-more-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tour-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.tour-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Add responsive behavior */
+@media (max-width: 768px) {
+  .tour-wrapper .tour-card {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
+  }
 }
 
-/* Focused input field */
+
+/* === Included / Not Included Sections === */
+.included-section, .not-included-section {
+  position: relative;
+  padding: 120px 30px;
+  overflow: hidden;
+  height: 700px; 
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensures the background image stays behind the content */
+  filter: brightness(100%); /* No shadow or brightness filter applied */
+}
+
+/* Overlay Text for the Sections */
+.overlay-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.overlay-text h2 {
+  color: white;
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+/* Cards Container in Included/Not Included Section */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Cards in Included/Not Included Section */
+.card {
+  background: rgba(255, 255, 255, 0.8); /* Lightly transparent card background */
+  border-radius: 12px;
+  padding: 20px;
+  width: 260px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image img {
+  max-width: 60px;
+  margin-bottom: 15px;
+}
+
+.card-text p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* === Booking Form === */
+.booking-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.booking-form {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 0 auto 80px auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
 .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Submit button styling */
 .btn {
-    padding: 12px 30px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
-/* Responsive Design */
+/* === Responsive Design === */
 @media (max-width: 767px) {
-    .booking-form {
-        padding: 20px;
-    }
+  .booking-form {
+    padding: 25px;
+  }
 
-    .btn {
-        width: 100%;
-    }
+  .btn {
+    width: 100%;
+  }
+
+  .card,
+  .tour-card {
+    width: 100%;
+  }
+
+  .tour-cards-container {
+    flex-direction: column;
+  }
 }

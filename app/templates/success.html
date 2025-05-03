@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="success-container" style="text-align: center; margin-top: 50px;">
+    <h1>🎉 Booking Successful!</h1>
+    <p>Thank you for booking your adventure with us! We can't wait to show you the beauty of Socotra 🌴🌊</p>
+    <p class="email-note">📧 Please check your email or spam folder for confirmation and information about your payment.</p>
+
+    <br>
+    <a href="{{ url_for('home') }}" class="btn btn-primary btn-sm custom-small-btn">Back to Home</a>
+</div>
+{% endblock %}
