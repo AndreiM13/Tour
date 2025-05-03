@@ -1,29 +1,34 @@
-name: Generate a build and push to another branch
+name: Flask CI
 
 on:
   push:
-    branches:
-      - main # The branch name your are commit the new changes
+    branches: [main]  # Trigger on push to main branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
+
     steps:
-      - name: git-checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install all dependencies
-        run: npm install
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'  # Adjust if needed
 
-      - name: Build
-        run: npm run build # The build command of your project
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH:  main # The branch name where you want to push the assets
-          FOLDER: main # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+      - name: Run app check (optional)
+        run: |
+          python -m compileall .
+
+      # - name: Run tests (optional)
+      #   run: |
+      #     pytest  # if you have tests set up
+
+      # - name: Deploy (optional)
+      #   run: echo "Deploy step would go here"
