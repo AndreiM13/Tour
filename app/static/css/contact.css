@@ -92,20 +92,33 @@ textarea.form-control {
 }
 
 /* Optional: Add responsiveness */
+
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;  /* Stack form and contact info vertically */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-form {
+        width: 100%;
+        margin: 0 auto 20px auto; /* Center the form and add spacing below */
+        display: flex;
+        flex-direction: column;
         align-items: center;
     }
 
-    .contact-form, .contact-info {
-        width: 100%;  /* Full width on small screens */
-        margin-bottom: 20px;
+    .contact-info {
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
     }
 
-    /* Move contact info further down when stacked */
-    .contact-info {
-        margin-top: 20px;  
-        margin-left: 0;  /* Remove left margin on smaller screens */
+    .contact-info p {
+        font-size: 16px;
     }
 }

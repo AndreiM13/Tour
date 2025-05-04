@@ -4,12 +4,25 @@
 .about-section {
     padding: 4rem 0;
     background-color: #FAF0E6;
+    display: flex;
+    flex-direction: column; /* Stack title, text, and image vertically */
+    align-items: center; /* Center everything horizontally */
 }
 
 .about-title {
     font-size: 3rem;
     color: #003049;
     margin-bottom: 2rem;
+    text-align: center; /* Ensure title is centered */
+    width: 100%; /* Ensure title takes full width */
+}
+
+.about-text-container {
+    display: flex; /* Use flex to align text and image side by side */
+    justify-content: space-between; /* Space between text and image */
+    gap: 2rem; /* Add some gap between text and image */
+    width: 100%;
+    max-width: 1200px; /* Optional: Limit the width of the container */
 }
 
 .about-text {
@@ -17,6 +30,13 @@
     line-height: 1.8;
     color: #333;
     max-width: 800px;
-    margin: 0 auto;
     text-align: justify;
+    width: 60%; /* Limit the width of the text */
+}
+
+.about-section img {
+    width: 35%; /* Set image width */
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
 }

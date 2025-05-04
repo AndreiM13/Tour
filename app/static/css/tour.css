@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* === Tour Section === */
 .tour-wrapper {
   padding: 80px 20px;
@@ -26,7 +27,6 @@
   background-color: transparent;
 }
 
-/* Only target tour cards within .tour-wrapper */
 .tour-wrapper .tour-card {
   background: #ffffff;
   border-radius: 12px;
@@ -35,56 +35,50 @@
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
-  position: relative; /* For positioning "Learn More" text */
-  cursor: pointer; /* Make the whole card clickable */
-  overflow: hidden; /* Hide content when hovered */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-/* Hover effect applied only to tour card inside .tour-wrapper */
 .tour-wrapper .tour-card:hover {
   transform: translateY(-5px);
 }
 
-/* Title Style */
 .tour-wrapper .tour-card-title {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 10px;
   color: #333;
-  z-index: 2; /* Ensure title is always visible */
+  z-index: 2;
 }
 
-/* Content Style */
 .tour-wrapper .tour-card-text {
   font-size: 1rem;
   color: #555;
   margin-bottom: 15px;
-  opacity: 1; /* Content is visible initially */
-  transition: opacity 0.3s ease; /* Smooth transition when disappearing */
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* Hide Content on Hover */
 .tour-wrapper .tour-card:hover .tour-card-text {
-  opacity: 0; /* Hide the content on hover */
+  opacity: 0;
 }
 
-/* Learn More Text (Initially Hidden) */
 .tour-wrapper .tour-card .learn-more-text {
   position: absolute;
-  top: 50%; /* Vertically center the text */
-  left: 50%; /* Horizontally center the text */
-  transform: translate(-50%, -50%); /* Offset by 50% to truly center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #007bff;
   font-size: 1.1rem;
   font-weight: 500;
   text-decoration: underline;
-  opacity: 0; /* Initially hidden */
-  visibility: hidden; /* Initially hidden */
+  opacity: 0;
+  visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 2; /* Ensure the "Learn More" text appears on top of everything else */
+  z-index: 2;
 }
 
-/* Show Learn More Text only on Hover */
 .tour-wrapper .tour-card:hover .learn-more-text {
   opacity: 1;
   visibility: visible;
@@ -104,20 +98,13 @@
   background-color: #0056b3;
 }
 
-/* Add responsive behavior */
-@media (max-width: 768px) {
-  .tour-wrapper .tour-card {
-    width: 100%;
-  }
-}
-
-
 /* === Included / Not Included Sections === */
-.included-section, .not-included-section {
+.included-section,
+.not-included-section {
   position: relative;
   padding: 120px 30px;
   overflow: hidden;
-  height: 700px; 
+  min-height: 700px; /* Allows flexibility */
 }
 
 .bg-image {
@@ -127,11 +114,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Ensures the background image stays behind the content */
-  filter: brightness(100%); /* No shadow or brightness filter applied */
+  z-index: -1;
+  filter: brightness(100%);
 }
 
-/* Overlay Text for the Sections */
 .overlay-text {
   position: relative;
   z-index: 2;
@@ -145,7 +131,6 @@
   margin: 0;
 }
 
-/* Cards Container in Included/Not Included Section */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -155,9 +140,9 @@
   z-index: 2;
 }
 
-/* Cards in Included/Not Included Section */
-.card {
-  background: rgba(255, 255, 255, 0.8); /* Lightly transparent card background */
+.card,
+.tour-card.transparent-card {
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 20px;
   width: 260px;
@@ -242,7 +227,7 @@
 }
 
 /* === Responsive Design === */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .booking-form {
     padding: 25px;
   }
@@ -251,12 +236,21 @@
     width: 100%;
   }
 
-  .card,
-  .tour-card {
-    width: 100%;
-  }
-
   .tour-cards-container {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .tour-card,
+  .card,
+  .tour-card.transparent-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .included-section,
+  .not-included-section {
+    padding: 80px 15px;
+    min-height: auto;
   }
 }

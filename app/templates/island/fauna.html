@@ -1,32 +1,43 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 <div class="island-fauna">
     <h1 class="island-title-fauna">Fauna</h1>
 
     <div class="island-fauna-text">
-        <p>Lost between Africa and Arabia, Socotra is one of the most isolated places on Earth — and because of that, 
-            life here evolved in ways you won’t see anywhere else. Over 90% of its reptiles, many of its birds, insects,
-             and even marine life, are found nowhere else. It's often called the "Galápagos of the Indian Ocean", 
-             but Socotra feels even more like a living dream — wild, ancient, and untouched.
-            Wander through rocky plains and dragon tree forests and you’ll spot creatures straight from another world. 
-            The brilliant Socotra Sunbird flashes between flowers, its feathers glittering like jewels. Starling flocks 
-            stir the silence, their songs filling the hot, dry air. Beneath your feet, rare reptiles — like the Socotra 
-            Blue-tailed Skink and Dwarf Geckos — scurry across the stones, perfectly adapted to this strange, harsh landscape.
-            Above it all, the Egyptian Vulture, a sacred bird in many ancient cultures, soars high over the cliffs. 
-            It’s one of the few places on Earth where you can still easily see these remarkable birds in the wild.
-            
-            Hidden away in caves and under brush lies the Socotra Shrew, a tiny mammal so rare and ancient that it
-             feels like a leftover piece of Earth's deep past. Even the waters around Socotra hide a separate world: 
-             reefs teeming with endemic fish, corals, and crustaceans, shaped by the island's isolation.
-            Socotra’s animals are survivors of a world before modern civilization — an ecosystem so unique and delicate
-             that every bird call, every lizard, every ripple in the water tells a story millions of years in the making.
+        <!-- Text block on the left -->
+        <div class="left-column">
+            <p>
+                Lost between Africa and Arabia, Socotra is one of the most isolated places on Earth — and because of that, 
+                life here evolved in ways you won’t see anywhere else. Over 90% of its reptiles, many of its birds, insects,
+                and even marine life, are found nowhere else. It's often called the "Galápagos of the Indian Ocean", 
+                but Socotra feels even more like a living dream — wild, ancient, and untouched.
             </p>
+            <p>
+                Wander through rocky plains and dragon tree forests and you’ll spot creatures straight from another world. 
+                The brilliant Socotra Sunbird flashes between flowers, its feathers glittering like jewels. Starling flocks 
+                stir the silence, their songs filling the hot, dry air. Beneath your feet, rare reptiles — like the Socotra 
+                Blue-tailed Skink and Dwarf Geckos — scurry across the stones, perfectly adapted to this strange, harsh landscape.
+            </p>
+            <p>
+                Above it all, the Egyptian Vulture, a sacred bird in many ancient cultures, soars high over the cliffs. 
+                It’s one of the few places on Earth where you can still easily see these remarkable birds in the wild.
+            </p>
+            <p>
+                Hidden away in caves and under brush lies the Socotra Shrew, a tiny mammal so rare and ancient that it
+                feels like a leftover piece of Earth's deep past. Even the waters around Socotra hide a separate world: 
+                reefs teeming with endemic fish, corals, and crustaceans, shaped by the island's isolation.
+            </p>
+            <p>
+                Socotra’s animals are survivors of a world before modern civilization — an ecosystem so unique and delicate
+                that every bird call, every lizard, every ripple in the water tells a story millions of years in the making.
+            </p>
+        </div>
 
+        <!-- Image on the right -->
+        <div class="image-wrapper">
+            <img src="{{ url_for('static', filename='images/fauna.png') }}" alt="Fauna">
+        </div>
     </div>
-
-    <img src="{{ url_for('static', filename='images/fauna.png') }}" alt="Fauna"> 
 </div>
-
 {% endblock %}

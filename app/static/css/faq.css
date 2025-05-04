@@ -9,6 +9,7 @@
     font-size: 2.5rem;
     text-transform: uppercase;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .faq-item {
@@ -17,6 +18,13 @@
     padding-bottom: 0.5rem;
 }
 
+/* Enforce stacking of FAQ items */
+.faq-item {
+    display: block;
+    width: 100%;
+}
+
+/* Summary inside each FAQ item */
 .faq-item summary {
     font-size: 1.3rem;
     font-weight: bold;
@@ -24,6 +32,7 @@
     list-style: none;
     padding-left: 1.5rem;
     position: relative;
+    display: block;  /* Forces the summary to take full width */
 }
 
 /* Remove default triangle arrow */
@@ -45,11 +54,13 @@
     content: "–";
 }
 
+/* Paragraph styling */
 .faq-item p {
     margin-top: 0.5rem;
     padding-left: 1.5rem;
     line-height: 1.6;
 }
+
 /* Ensure FAQ layout works well on all screens */
 .faq-section {
     padding: 1.5rem 1rem;
@@ -66,12 +77,14 @@
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #ddd;
+    display: block;
 }
 
 /* Summary styles on small screens */
 .faq-item summary {
     font-size: 1.2rem;
     padding-left: 1.8rem;
+    display: block;
 }
 
 /* Symbol positioning and size */

@@ -158,118 +158,119 @@
   </div>
   
  <!-- Section for booking -->
-<div id="booking-form" class="booking-container">
-    <h2 class="booking-title">Book the Tour</h2> <!-- Title -->
+ <div id="booking-form" class="booking-container">
+  <h2 class="booking-title">Book the Tour</h2> <!-- Title -->
 
-    <form method="POST" class="booking-form">
-        {{ form.hidden_tag() }}
+  <form method="POST" class="booking-form">
+      {{ form.hidden_tag() }}
 
-        <div class="form-group">
-            {{ form.client_name.label }}<br>
-            {{ form.client_name(class="form-control") }}
-            {% if form.client_name.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.client_name.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.client_name.label }}<br>
+          {{ form.client_name(class="form-control") }}
+          {% if form.client_name.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.client_name.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.client_email.label }}<br>
-            {{ form.client_email(class="form-control") }}
-            {% if form.client_email.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.client_email.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.client_email.label }}<br>
+          {{ form.client_email(class="form-control") }}
+          {% if form.client_email.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.client_email.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.country_code.label }}<br>
-            {{ form.country_code(class="form-control") }}
-            {% if form.country_code.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.country_code.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.country_code.label }}<br>
+          {{ form.country_code(class="form-control") }}
+          {% if form.country_code.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.country_code.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.phone_number.label }}<br>
-            {{ form.phone_number(class="form-control") }}
-            {% if form.phone_number.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.phone_number.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.phone_number.label }}<br>
+          {{ form.phone_number(class="form-control") }}
+          {% if form.phone_number.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.phone_number.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.travel_date.label }}<br>
-            {{ form.travel_date(class="form-control", type="date") }}
-            {% if form.travel_date.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.travel_date.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.travel_date.label }}<br>
+          {{ form.travel_date(class="form-control", type="date") }}
+          {% if form.travel_date.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.travel_date.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.number_nights.label }}<br>
-            {% for subfield in form.number_nights %}
-                <div class="form-check">
-                    {{ subfield(class="form-check-input") }}
-                    {{ subfield.label(class="form-check-label") }}
-                </div>
-            {% endfor %}
-            {% if form.number_nights.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.number_nights.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.number_nights.label }}<br>
+          {% for subfield in form.number_nights %}
+              <div class="form-check">
+                  {{ subfield(class="form-check-input") }}
+                  {{ subfield.label(class="form-check-label") }}
+              </div>
+          {% endfor %}
+          {% if form.number_nights.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.number_nights.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.number_people.label }}<br>
-            {{ form.number_people(class="form-control") }}
-            {% if form.number_people.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.number_people.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.number_people.label }}<br>
+          {{ form.number_people(class="form-control") }}
+          {% if form.number_people.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.number_people.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group">
-            {{ form.tour_type.label }}<br>
-            {{ form.tour_type(class="form-control") }}
-            {% if form.tour_type.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.tour_type.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+      <div class="form-group">
+          {{ form.tour_type.label }}<br>
+          {{ form.tour_type(class="form-control") }}
+          {% if form.tour_type.errors %}
+              <div class="invalid-feedback d-block">
+                  {% for error in form.tour_type.errors %}
+                      {{ error }}
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
 
-        <div class="form-group mt-3">
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
-    </form>
+      <div class="form-group mt-3">
+          {{ form.submit(class="btn btn-primary") }}
+      </div>
+  </form>
 </div>
+
 
 <!-- Flash message displayed here below the form -->
 {% with messages = get_flashed_messages(with_categories=true) %}

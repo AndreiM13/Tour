@@ -1,37 +1,28 @@
-/* Style for the entire "here" section */
-.here {
-    text-align: center; /* Center-align the content */
-    background-color: #FAF0E6; /* Set background color to Linen */
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* Stack the content vertically */
-    align-items: center; /* Center the content horizontally */
-}
-
-/* Style for the title */
-.title-here {
-    font-size: 2em;
-    font-weight: bold;
-    color: black; /* Navy Blue for the title */
-    margin-bottom: 30px; /* Space below the title */
-}
-
-/* Style for the "here-right" and "here-left" divs */
-.here-right, .here-left {
-    background-color: #264653; /* Dark Teal background */
+/* Circle container */
+.here-circle {
+    background-color: #264653;
     color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 40%; /* Set width to 80% for both divs */
-    text-align: left;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    margin-bottom: 20px; /* Add space between the divs */
-    box-sizing: border-box; /* Prevents padding from affecting width */
+    width: 220px;               /* Slightly larger */
+    height: 220px;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;           /* Prevents spill */
+    position: relative;
 }
 
-/* Responsive behavior for smaller screens */
-@media (max-width: 768px) {
-    .here-right, .here-left {
-        width: 90%; /* Set width to 90% on smaller screens */
-    }
+/* Inner text styling */
+.here-circle p {
+    font-size: 0.78em;          /* Smaller font */
+    line-height: 1.2em;
+    max-height: 90%;            /* Ensures vertical fit */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+
 }

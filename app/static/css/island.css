@@ -1,40 +1,80 @@
-.island-history, .island-flora, .island-fauna, .island-people {
-    display: flex;
-    justify-content: flex-start; /* Ensure both elements are aligned left */
-    align-items: flex-start;  /* Aligns items to the top */
-    padding: 2rem;
-    background-color: #FAF0E6;
-    gap: 1rem; /* Slightly reduced gap */
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-}
-
-.island-title, .island-title-flora, .island-title-fauna, .island-title-people  {
-    width: 100%;
+/* Title styling */
+.island-title,
+.island-title-flora,
+.island-title-fauna,
+.island-title-people {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.5em;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
     font-weight: bold;
-    color: #264653;
-    margin-bottom: 2rem;
 }
 
-.island-history-text, .island-flora-text, .island-fauna-text, .island-people-text {
-    flex: 2;
-    max-width: 60%; /* Giving more space to the text */
+/* Layout containers */
+.island-history-text,
+.island-flora-text,
+.island-fauna-text,
+.island-people-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1em;
+    gap: 2em;
 }
 
-.island-history-text p, .island-flora-text p, .island-fauna-text p, .island-people-text p   {
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: #333;
+/* Left column */
+.left-column {
+    flex: 1 1 50%;
+    text-align: left;
 }
 
-.island-history img, .island-flora img, .island-fauna img, .island-people img {
-    flex: 1;
-    max-width: 650px; /* Resize the image to fit better */
-    height: 650px;
-    border-radius: 12px;
+/* Right column */
+.image-wrapper {
+    flex: 1 1 35%;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 5px;
+    align-items: stretch;
+}
+
+.image-wrapper img {
+    height: 90%;
+    width: 110%;
+    margin-left: 5px;
     object-fit: cover;
-    margin-top: 0; /* Ensures the image starts at the top */
-    align-self: flex-start; /* Aligns the image to the top of the container */
+    border-radius: 9px;
+}
+
+/* Paragraph styling */
+.left-column p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+    font-size: 1.7em;
+    margin-right: 9px;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .island-history-text,
+    .island-flora-text,
+    .island-fauna-text,
+    .island-people-text {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-column,
+    .image-wrapper {
+        flex: 1 1 100%;
+        text-align: left;
+    }
+
+    .image-wrapper img {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
 }

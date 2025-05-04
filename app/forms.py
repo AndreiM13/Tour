@@ -84,7 +84,7 @@ class BookingForm(FlaskForm):
         'Tour Type',
         choices=[('photographer', 'The Photographer'),
                  ('explorer', 'The Explorer'),
-                 ('beach', 'The Beach Potato'),
+                 ('beach', ' Beach Lover'),
                  ('vip', 'The VIP')],
         validators=[DataRequired()]
     )
