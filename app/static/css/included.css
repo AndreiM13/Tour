@@ -1,0 +1,141 @@
+/* ====== Section Containers ====== */
+.included, .not-included {
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* ====== Section Headers ====== */
+.included-header, .not-included-header {
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  width: 100%;                /* Full width */
+  text-align: center;         /* Centered */
+}
+
+/* ====== Cards ====== */
+.included-card, .not-included-card {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ====== Hover Effect ====== */
+.included-card:hover, .not-included-card:hover {
+  transform: scale(1.05);
+}
+
+/* ====== Image Inside Circle ====== */
+.included-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* ====== Title Over Image ====== */
+.included-title-inside, .not-included-title-inside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  padding: 0 10px;
+}
+
+/* ====== Hidden Text on Hover ====== */
+.included-text, .not-included-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 20px;
+  font-size: 1em;
+  line-height: 1.5em;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+  width: 90%;
+  height: auto;
+  box-sizing: border-box;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/* ====== Show Hidden Text on Hover ====== */
+.included-card:hover .included-title-inside,
+.not-included-card:hover .not-included-title-inside {
+  opacity: 0;
+}
+
+.included-card:hover .included-text,
+.not-included-card:hover .not-included-text {
+  opacity: 1;
+}
+
+/* ====== Tablet View ====== */
+@media (max-width: 768px) {
+  .included-card, .not-included-card {
+    width: 45%;
+    height: 180px;
+  }
+
+  .included-title-inside, .not-included-title-inside {
+    font-size: 0.85em;
+    padding: 0 5px;
+  }
+
+  .included-text, .not-included-text {
+    font-size: 0.95em;
+    padding: 15px;
+  }
+}
+
+/* ====== Mobile View (≤480px, 2 cards per row) ====== */
+@media (max-width: 480px) {
+  .included, .not-included {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .included-card, .not-included-card {
+    width: 47%;
+    height: 150px;
+  }
+
+  .included-title-inside, .not-included-title-inside {
+    font-size: 0.75em;
+    padding: 0 5px;
+  }
+
+  .included-text, .not-included-text {
+    font-size: 0.85em;
+    padding: 10px;
+  }
+}

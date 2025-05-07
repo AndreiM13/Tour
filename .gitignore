@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/python,flask,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,flask,windows
 
@@ -69,8 +68,8 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+# db.sqlite3  <-- Removed
+# db.sqlite3-journal  <-- Removed
 
 # Flask stuff:
 instance/
@@ -120,7 +119,7 @@ ipython_config.py
 .pdm.toml
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
+__pypackages__/ 
 
 # Celery stuff
 celerybeat-schedule

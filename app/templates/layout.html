@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/regis.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}?v=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/tour.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/island.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}?v=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/getting.css') }}?v=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/island.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/included.css') }}?v=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/high.css') }}?v=1">
 
     <!-- Favicon Link -->
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-icon">
@@ -30,9 +31,9 @@
 
     <!-- Header Section -->
     <header class="custom-header text-white text-center py-4 position-relative">
-        <h1>All Things Socotra</h1>
+        <h1 class="title-main">All Things Socotra</h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="navbar-logo">
-        <p>Socotra eco expeditions</p>
+        <p class="sub-title-main">Socotra eco expeditions</p>
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark custom-navbar mt-3">
@@ -76,9 +77,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/blog">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/faq">FAQ</a>

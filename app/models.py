@@ -28,20 +28,10 @@ class Admin(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)  # Index added for faster lookups
     password = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    gallery_posts = db.relationship('Gallery', backref='admin', lazy=True, cascade="all, delete-orphan")
     tours = db.relationship('Tour', backref='admin', lazy=True, cascade="all, delete-orphan")
     bookings = db.relationship('Booking', backref='admin', lazy=True, cascade="all, delete-orphan")
     contacts = db.relationship('Contact', backref='admin', lazy=True, cascade="all, delete-orphan")
 
-class Gallery(db.Model):
-    __tablename__ = 'gallery'
-    id = db.Column(db.Integer, primary_key=True)
-    image_filename = db.Column(db.String(200), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    alt_text = db.Column(db.String(255), nullable=True)
-    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
 
 class Tour(db.Model):
     __tablename__ = 'tours'

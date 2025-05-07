@@ -1,268 +1,208 @@
-/* home.css */
+/* ============================================================
+CAROUSEL SECTION
+============================================================ */
+
 .carousel-item {
     position: relative;
-}
-
-/* Overlay text styling */
-.carousel-caption {
+  }
+  
+  .carousel-caption {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
-    z-index: 1; /* Ensures the text appears on top */
-    padding: 30px; /* Adds more space around the text */
+    z-index: 1;
+    padding: 30px;
     border-radius: 10px;
-    width: 70%; /* Adjust the width of the text box */
-}
-
-/* Make the text much larger */
-
-.carousel-caption h1 {
-    font-size: 3rem; /* Larger title */
-    margin-bottom: 20px; /* More space between title and description */
-}
-.carousel-caption h2 {
-    font-size: 3rem; /* Larger title */
-    margin-bottom: 20px; /* More space between title and description */
-}
-
-.carousel-caption p {
-    font-size: 1.5rem; /* Larger text for description */
-    line-height: 1.5;  /* Adds spacing between lines of text */
-}
-
-/* Mobile responsiveness for the text */
-@media (max-width: 768px) {
-    .carousel-caption h3 {
-        font-size: 2rem;  /* Adjust for smaller screens */
-    }
-
-    .carousel-caption p {
-        font-size: 1.2rem;  /* Adjust for smaller screens */
-    }
-}
-
-/* Tour Section */
-.tour-wrapper {
-    position: relative;
-    width: 100%;
-    padding: 40px 0; 
-    background-color: #FAF0E6; /* Adds space for the title and content */
-}
-
-/* Header (title) centered */
-.tour-header {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    color: #003049;
+    width: 70%;
+  }
+  
+  .carousel-caption h1,
+  .carousel-caption h2 {
+    font-size: 3rem;
     margin-bottom: 20px;
-    background-color: #FAF0E6;  /* Space between title and cards */
+  }
+  
+  .carousel-caption p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  /* === Responsive Styling for Carousel === */
+  @media (max-width: 768px) {
+    .carousel-item img {
+      height: 450px;
+      object-fit: cover;
+    }
+    .carousel-caption {
+      padding: 40px;
+      width: 80%;
+    }
+    .carousel-caption h1,
+    .carousel-caption h2 {
+      font-size: 3rem;
+    }
+    .carousel-caption p {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel-item img {
+      height: 400px;
+    }
+    .carousel-caption h1,
+    .carousel-caption h2 {
+      font-size: 2.5rem;
+    }
+    .carousel-caption p {
+      font-size: 1.3rem;
+    }
+  }
+/* ====== Tour Section ====== */
+/* ====== Tour Section ====== */
+.tour-wrapper {
+  padding: 40px 20px;
+  text-align: center;
 }
 
-/* The container for the cards */
+.tour-header {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+/* ====== Tour Cards Container ====== */
 .tour-cards-container {
-    background-color: #FAF0E6;
-    display: flex;
-    flex-wrap: wrap;  /* Allows the cards to wrap */
-    justify-content: center;  /* Centers the cards horizontally */
-    gap: 20px;  /* Adds space between cards */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* Styling for each individual card */
+/* ====== Individual Tour Card ====== */
 .tour-card {
-    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
-    color: white;
-    width: 300px;  /* Fixed width for cards */
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
+  position: relative;
+  width: 250px;
+  height: 350px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: visible; /* Ensure content is not clipped */
 }
 
 .tour-card:hover {
-    transform: scale(1.05);  /* Slight zoom effect on hover */
+  transform: scale(1.05);
 }
 
-/* Title inside each card */
+/* ====== Card Content ====== */
 .tour-card-title {
-    font-size: 1.5rem;
-    color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  transition: opacity 0.3s ease;
 }
 
-/* Text inside each card */
 .tour-card-text {
-    font-size: 1rem;
-    color: #ddd;
-    margin-top: 10px;
+  font-size: 1em;
+  line-height: 1.4em;
+  color: #555;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease;
 }
 
-/* Button styling */
 .tour-btn {
-    background-color: #003049;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  z-index: 2;
 }
 
 .tour-btn:hover {
-    background-color: #006699;
+  background-color: #218838;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .tour-cards-container {
-        flex-direction: column;  /* Stack cards vertically */
-        align-items: center;  /* Center cards */
-    }
-
-    .tour-card {
-        width: 90%;  /* Cards take up more width on smaller screens */
-        margin-bottom: 15px;  /* Adds space between cards */
-    }
+/* ====== Learn More Overlay ====== */
+.learn-more-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 123, 255, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
+.tour-card:hover .learn-more-text {
+  opacity: 1;
+}
 
-/* --- "What is Included" Section Styles --- */
-/* Section Styling */
-.included-section {
-    position: relative;
+/* ====== Hover Effects for Devices with Hover Capability ====== */
+@media (hover: hover) {
+  .tour-card:hover .tour-card-title,
+  .tour-card:hover .tour-card-text {
+    opacity: 0;
+  }
+}
+
+/* ====== Responsive Design for Devices with Fine Pointer (e.g., Desktops) ====== */
+@media (max-width: 768px) and (pointer: fine) {
+  .tour-card {
+    width: 45%;
+    height: 320px;
+  }
+
+  .tour-card-title {
+    font-size: 1.2em;
+  }
+
+  .tour-card-text {
+    font-size: 0.9em;
+  }
+
+  .tour-btn {
+    font-size: 1em;
+    width: 80%;
+    margin: 10px auto 0;
+    display: block;
+  }
+}
+
+/* ====== Responsive Design for Devices with Coarse Pointer (e.g., Touchscreens) ====== */
+@media (max-width: 768px) and (pointer: coarse) {
+  .tour-card {
     width: 100%;
-    padding: 60px 0;
-    min-height: 100vh;
-    overflow: hidden;
+    height: 280px;
+  }
+
+  .tour-card-title {
+    font-size: 1.1em;
+  }
+
+  .tour-card-text {
+    font-size: 0.85em;
+  }
+
+  .tour-btn {
+    font-size: 0.9em;
+    width: 80%;
+    margin: 10px auto 0;
+    display: block;
+  }
 }
-
-/* Background Image */
-.included-section .bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    opacity: 1;
-}
-
-/* Overlay Container */
-.included-section .overlay {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Section Title */
-.included-section .overlay h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #003049;
-    margin-bottom: 40px;
-}
-
-/* Card Container */
-.included-section .tour-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* Card Style */
-.included-section .tour-card.transparent-card {
-    background-color: rgba(255, 255, 255, 0.85);
-    color: #003049;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    flex: 1 1 220px;
-    max-width: 250px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Card Hover */
-.included-section .tour-card.transparent-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Card Title */
-.included-section .tour-card-title {
-    font-size: 1.6rem; /* Increased title size */
-    font-weight: bold;
-    color: #003049;
-    margin-bottom: 15px;
-}
-
-/* Card Text */
-.included-section .tour-card-text {
-    font-size: 1.1rem; /* Increased text size */
-    color: #333;
-    margin-top: 10px;
-}
-
-/* Card Image */
-.included-section .tour-card img {
-    width: 150px; /* Increased size of the image */
-    height: auto; /* Ensures the image scales proportionally */
-    margin-bottom: 20px;  /* More space between the image and the text */
-    object-fit: contain;  /* Ensures the image fits well inside the container */
-}
-
-/* Responsive Adjustments */
-
-/* For Medium Screens */
-@media (max-width: 1024px) {
-    .included-section .tour-cards-container {
-        gap: 16px;
-    }
-
-    .included-section .tour-card.transparent-card {
-        flex: 1 1 45%; /* Cards will take up 45% of the width */
-    }
-}
-
-/* For Smaller Screens */
-@media (max-width: 768px) {
-    .included-section .overlay h1 {
-        font-size: 2.2rem; /* Smaller font size for title */
-    }
-
-    .included-section .tour-card.transparent-card {
-        flex: 1 1 100%; /* Cards take up 100% width on mobile */
-        max-width: 90%;
-    }
-
-    /* Make images smaller for mobile */
-    .included-section .tour-card img {
-        width: 130px; /* Slightly smaller image on mobile */
-    }
-}
-
-/* For Very Small Screens */
-@media (max-width: 480px) {
-    .included-section .overlay h1 {
-        font-size: 2rem; /* Even smaller title font size */
-    }
-
-    /* Make cards take full width on very small screens */
-    .included-section .tour-card.transparent-card {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    /* Adjust image size on small screens */
-    .included-section .tour-card img {
-        width: 110px; /* Even smaller image on very small screens */
-    }
-}
-

@@ -1,14 +1,128 @@
 {% extends "layout.html" %}
 
 {% block content %}
- <div class="high">
+<div class="high">
+  <h1 class="high-title">What will you see on the way?</h1>
 
-    <h1 class="high-title">What will you see on the way?</h1>
+  <!-- First Block: Image Left, Text Right -->
+  <section class="feature-block">
+    <div class="feature-content">
+      <div class="feature-image">
+        <img src="{{ url_for('static', filename='images/Detwah.png') }}" alt="Detwah Lagoon and Qalansyia Beach" />
+      </div>
+      <div class="feature-text">
+        <h2>Detwah lagoon and Qalansyia beach</h2>
+        <p>Tucked away on the island of Socotra, Detwah Lagoon and Qalansyia Beach feel like a secret the world hasn’t 
+           discovered yet. Soft, white sand stretches out beneath your feet, warm and smooth, leading to shallow,
+           clear waters that shift from turquoise to deep blue as they meet the horizon. The lagoon sparkles in the sunlight,
+           surrounded by rocky cliffs and wild, untouched landscapes that make the whole scene feel almost unreal. Small fishing boats
+           float gently near the shore, and the peaceful village of Qalansyia sits quietly in the background, adding to the laid-back charm.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    
+  <!-- Second Block: Image Right, Text Left -->
+  <section class="feature-block reverse">
+    <div class="feature-content">
+      <div class="feature-text">
+        <h2>Shuab beach</h2>
+        <p>
+          Shuab Beach is one of Socotra’s best-kept treasures—a quiet, breathtaking stretch of coastline that feels like it was made just for you.
+          Reached by a short boat ride from Qalansyia, the journey itself is part of the magic, with dolphins often swimming alongside and dramatic
+          cliffs rising from the sea. 
 
+          When you arrive, you’re greeted by powdery white sand that feels soft and cool underfoot, and water so clear and blue it looks like 
+          something from a dream. The beach is completely untouched—no buildings, no crowds—just the sound of gentle waves and the occasional
+          seabird flying overhead. 
 
+          Whether you're swimming, walking along the shore, or just lying back and listening to the sea, Shuab Beach gives you that rare feeling
+          of true escape—a quiet freedom you didn’t know you were missing.
+        </p>
+      </div>
+      <div class="feature-image">
+         <img src="{{ url_for('static', filename='images/Shuab.png') }}" alt="Shaub" />
+      </div>
+    </div>
+  </section>
 
- </div>
+  <!-- Third Block: Image Left, Text Right -->
+  <section class="feature-block">
+    <div class="feature-content">
+      <div class="feature-image">
+         <img src="{{ url_for('static', filename='images/tree.png') }}" alt="Dixam plateau Fermahin protected area" />
+      </div>
+      <div class="feature-text">
+        <h2>Dixam plateau Fermahin protected area</h2>
+        <p>High in the central mountains, Dixam Forest feels like a scene from another world. Towering dragon blood trees, with their
+          thick trunks and umbrella-shaped canopies, dot the rocky landscape like natural sculptures frozen in time. The air is crisp and cool
+         , a refreshing change from the coast, and carries the scent of stone and wind. 
+         From the edge of the plateau, sweeping views stretch over deep canyons and rolling hills, making you feel like you’re 
+         standing on the edge of something ancient and untouched. As you wander through the forest, surrounded by silence and strange beauty, 
+         there's a sense of stillness that invites you to pause and just take it all in. 
+         Whether you're exploring on foot or simply soaking in the view, this highland wilderness offers a rare kind of peace—and a powerful
+          reminder of how wild and wonderfully different the natural world can be.
+         </p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Fourth Block: Image Right, Text Left -->
+  <section class="feature-block reverse">
+    <div class="feature-content">
+      <div class="feature-text">
+        <h2>Qalisan swimming pool</h2>
+        <p>Tucked in a quiet canyon surrounded by palms and stone, 
+         this natural freshwater pool glows in vibrant shades of green and blue. Cool and clear, 
+         it's the perfect retreat after a warm day. Gentle streams feed into the pool, dragonflies dance above the surface,
+          and time seems to slow down. Whether you're swimming, relaxing on sun-warmed rocks, or simply taking in the peaceful surroundings,
+           Qalisan offers a quiet kind of magic you’ll carry with you long after you leave.
+      </p>
+      </div>
+      <div class="feature-image">
+         <img src="{{ url_for('static', filename='images/pool.png') }}" alt="Qalisan swimming pool" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Fifth Block: Image Left, Text Right -->
+  <section class="feature-block">
+    <div class="feature-content">
+      <div class="feature-image">
+         <img src="{{ url_for('static', filename='images/arther.png') }}" alt="Arher Beach" />
+      </div>
+      <div class="feature-text">
+        <h2>Arher Beach</h2>
+        <p>Where the desert dramatically meets the sea, Arher Beach offers one of the most surreal landscapes you’ll
+             ever lay eyes on. Towering white sand dunes spill down from the cliffs and crash almost directly into the waves,
+              creating a striking contrast between dry and wet, soft and wild. Climb to the top for a sweeping view of the endless ocean on 
+              one side and wind-sculpted desert on the other. Freshwater springs bubble up from beneath the dunes, forming small pools where you 
+              can cool off at the foot of the sand walls. It’s a place of contrasts—quiet yet bold, 
+            vast yet intimate—where nature plays with scale and color in a way that leaves you completely spellbound.
+           </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sixth Block: Image Right, Text Left -->
+  <section class="feature-block reverse">
+    <div class="feature-content">
+      <div class="feature-text">
+        <h2>Hoq cave</h2>
+        <p>Stretching over 3 kilometers into the mountainside,
+             Hoq Cave is one of the largest and most impressive natural caverns in the region. What makes it truly special isn’t
+              just its size—but the sense of deep time you feel the moment you enter. Inside, the temperature drops and the air becomes still, 
+              as massive stalactites and stalagmites rise and fall like ancient architecture carved by water and time. Remarkably well-preserved
+               wooden inscriptions and drawings near the entrance—some dating back to the 1st century AD—offer evidence of early maritime traders
+                who stopped here for shelter on their way across the Indian Ocean. As you walk deeper into the cave, every chamber reveals
+                 something new: glittering mineral walls, strange stone shapes, and the echo of your own footsteps in the silence. Hoq Cave isn’t
+                  just a geological wonder—it’s a living archive of history, mystery, and natural beauty.
+        </p>
+      </div>
+      <div class="feature-image">
+        <img src="{{ url_for('static', filename='images/hoq.png') }}" alt="Hoq cave" />
+      </div>
+    </div>
+  </section>
+</div>
 {% endblock %}

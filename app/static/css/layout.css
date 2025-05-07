@@ -199,3 +199,26 @@ footer a:hover img {
     padding: 20px;
     min-height: 200px;
 }
+
+
+.title-main,
+.sub-title-main {
+    text-align: center;
+}
+
+/* Shift to the right slightly on small (mobile) screens */
+@media (max-width: 576px) {
+    .title-main,
+    .sub-title-main {
+        text-align: left;
+        margin-left: 29%;
+    }
+    .sub-title-main{
+        margin-left: 130px;
+  
+      
+
+
+    }
+}
+

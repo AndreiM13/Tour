@@ -59,9 +59,6 @@ def getting():
 def high():
     return render_template('high.html')
 
-@app.route("/blog")
-def blog():
-    return render_template('blog.html')
 
 # Admin Registration
 @app.route("/adminregistration", methods=['GET', 'POST'])
