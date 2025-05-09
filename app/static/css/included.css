@@ -1,6 +1,6 @@
 /* ====== Section Containers ====== */
 .included, .not-included {
-  padding: 40px 20px;
+  padding: 70px 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,8 +17,8 @@
 
 /* ====== Cards ====== */
 .included-card, .not-included-card {
-  width: 250px;
-  height: 250px;
+  width: 290px;
+  height: 290px;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -74,13 +74,13 @@
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
-  padding: 20px;
-  font-size: 1em;
+  padding: 60px;
+  font-size: 0.9em;
   line-height: 1.5em;
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 3;
-  width: 90%;
+  width: 95%;
   height: auto;
   box-sizing: border-box;
   border-radius: 50%;
@@ -98,16 +98,21 @@
   opacity: 1;
 }
 
-/* ====== Tablet View ====== */
+/* ====== Tablet View (≤768px) ====== */
 @media (max-width: 768px) {
+  .included, .not-included {
+    padding: 40px 20px;
+    gap: 15px;
+  }
+
   .included-card, .not-included-card {
-    width: 45%;
+    width: calc(50% - 15px);
     height: 180px;
   }
 
   .included-title-inside, .not-included-title-inside {
-    font-size: 0.85em;
-    padding: 0 5px;
+    font-size: 0.9em;
+    padding: 0 8px;
   }
 
   .included-text, .not-included-text {
@@ -116,26 +121,27 @@
   }
 }
 
-/* ====== Mobile View (≤480px, 2 cards per row) ====== */
+/* ====== Mobile View (≤480px) ====== */
 @media (max-width: 480px) {
   .included, .not-included {
+    padding: 30px 15px;
     flex-direction: row;
     justify-content: space-between;
     gap: 10px;
   }
 
   .included-card, .not-included-card {
-    width: 47%;
-    height: 150px;
+    width: calc(50% - 10px);
+    height: 140px;
   }
 
   .included-title-inside, .not-included-title-inside {
-    font-size: 0.75em;
-    padding: 0 5px;
+    font-size: 0.8em;
+    padding: 0 10px;
   }
 
   .included-text, .not-included-text {
     font-size: 0.85em;
-    padding: 10px;
+    padding: 15px;
   }
 }

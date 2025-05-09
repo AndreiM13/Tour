@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1 class="text-center">Welcome, {{ current_user.email }}!</h1>
+    <h1 class="text-center-account">Welcome, {{ current_user.email }}!</h1>
     
     <!-- Display the number of views -->
-    <h3 class="text-center">This web app has been viewed {{ view_count }} times.</h3>
+    <h3 class="text-center-account">This web app has been viewed {{ view_count }} times.</h3>
 
-    <h2 class="text-center">Your Bookings</h2>
+    <h2 class="text-center-account">Your Bookings</h2>
 
     <!-- Table to display bookings -->
-    <div class="table-container">
+    <div class="table-container-account">
         <table>
             <thead>
                 <tr>
@@ -38,11 +38,11 @@
                         <!-- Status Column: Display the current status -->
                         <td>
                             {% if booking.status == 'pending' %}
-                                <span class="status-pending">Pending</span>
+                                <span class="status-pending-account">Pending</span>
                             {% elif booking.status == 'confirmed' %}
-                                <span class="status-confirmed">Confirmed</span>
+                                <span class="status-confirmed-account">Confirmed</span>
                             {% elif booking.status == 'canceled' %}
-                                <span class="status-canceled">Canceled</span>
+                                <span class="status-canceled-account">Canceled</span>
                             {% endif %}
                         </td>
                         
@@ -53,9 +53,9 @@
                                 <a href="{{ url_for('confirm_booking', booking_id=booking.id) }}" class="btn btn-small btn-success">Confirm Booking</a>
                                 <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}" class="btn btn-small btn-danger">Cancel Booking</a>
                             {% elif booking.status == 'confirmed' %}
-                                <span class="status-confirmed">Confirmed</span>
+                                <span class="status-confirmed-account">Confirmed</span>
                             {% elif booking.status == 'canceled' %}
-                                <span class="status-canceled">Canceled</span>
+                                <span class="status-canceled-account">Canceled</span>
                             {% endif %}
                             <!-- Delete button with confirmation -->
                             <a href="{{ url_for('delete_booking', booking_id=booking.id) }}" class="btn btn-small btn-warning" onclick="return confirmDelete()">Delete</a>
@@ -68,13 +68,18 @@
 
     <!-- Button to delete all bookings with confirmation -->
     <form action="{{ url_for('delete_all_bookings') }}" method="POST" class="delete-form" onsubmit="return confirmDeleteAll()">
-        <button type="submit" class="btn btn-warning">Delete All Bookings</button>
+        <button type="submit" class="btn btn-warning btn-small">Delete All Bookings</button>
     </form>
-
+     <!-- Separate Form for Download CSV (prevents submission) -->
+         <!-- Download CSV button -->
+        <form onsubmit="return false;" style="max-width: 200px; margin: 10px auto 0;">
+            <button type="button" onclick="exportTableToCSV('bookings.csv')" class="btn btn-warning">Download CSV</button>
+        </form>
+    </div>
     <br>
     <br>
     <!-- Analytics Section for Countries -->
-    <h3 class="text-center">Booking Analytics by Country</h3>  
+    <h3 class="text-center-account">Booking Analytics by Country</h3>  
 
     <div class="analytics-container">
         <div class="graph-container">
@@ -93,5 +98,30 @@
         function confirmDeleteAll() {
             return confirm("Are you sure you want to delete all bookings? This action cannot be undone.");
         }
+            // CSV export function
+    function downloadCSV(csv, filename) {
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function exportTableToCSV(filename) {
+        const rows = document.querySelectorAll("table tr");
+        let csv = [];
+        for (let row of rows) {
+            const cols = row.querySelectorAll("th, td");
+            let rowData = [];
+            cols.forEach(col => rowData.push('"' + col.innerText.replace(/"/g, '""') + '"'));
+            csv.push(rowData.join(","));
+        }
+        downloadCSV(csv.join("\n"), filename);
+    }
+
     </script>
 {% endblock %}

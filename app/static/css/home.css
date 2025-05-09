@@ -68,12 +68,13 @@ CAROUSEL SECTION
   text-align: center;
 }
 
+/* ====== Header ====== */
 .tour-header {
   font-size: 2.5em;
   margin-bottom: 30px;
 }
 
-/* ====== Tour Cards Container ====== */
+/* ====== Cards Container ====== */
 .tour-cards-container {
   display: flex;
   justify-content: center;
@@ -91,34 +92,40 @@ CAROUSEL SECTION
   padding: 20px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  overflow: visible; /* Ensure content is not clipped */
+  overflow: hidden;
 }
 
+/* Hover Scale Effect */
 .tour-card:hover {
   transform: scale(1.05);
 }
 
-/* ====== Card Content ====== */
+/* ====== Title and Description ====== */
 .tour-card-title {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
   transition: opacity 0.3s ease;
+  z-index: 2; /* Ensure title is above other elements */
+  opacity: 1; /* Titles should be visible by default */
 }
 
+/* Description text */
 .tour-card-text {
   font-size: 1em;
   line-height: 1.4em;
   color: #555;
   margin-bottom: 20px;
   transition: opacity 0.3s ease;
+  z-index: 2; /* Ensure text is above other elements */
+  opacity: 1; /* Description is visible by default */
 }
 
+/* ====== Action Button ====== */
 .tour-btn {
   display: inline-block;
   padding: 10px 20px;
-  margin-top: 15px;
   font-size: 1.1em;
   font-weight: bold;
   text-decoration: none;
@@ -126,83 +133,77 @@ CAROUSEL SECTION
   color: white;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  z-index: 2;
+  position: relative;
+  z-index: 3; /* Ensure button stays visible */
 }
 
 .tour-btn:hover {
   background-color: #218838;
 }
 
-/* ====== Learn More Overlay ====== */
+/* ====== Learn More Overlay Button (Centered) ====== */
 .learn-more-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 123, 255, 0.8);
+  transform: translate(-50%, -50%); /* Center the button */
+  background-color: rgba(0, 123, 255, 0.9);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 1;
+  z-index: 3;
 }
-
-.tour-card:hover .learn-more-text {
-  opacity: 1;
-}
-
-/* ====== Hover Effects for Devices with Hover Capability ====== */
+/* ====== DESKTOP HOVER (hover supported devices) ====== */
 @media (hover: hover) {
-  .tour-card:hover .tour-card-title,
+  /* On hover, hide the description text */
   .tour-card:hover .tour-card-text {
-    opacity: 0;
+    opacity: 0; /* Hide text */
+    visibility: hidden; /* Ensure text is completely hidden */
+  }
+
+  /* On hover, show the title and buttons */
+  .tour-card:hover .tour-card-title,
+  .tour-card:hover .learn-more-text,
+  .tour-card:hover .tour-btn {
+    opacity: 1; /* Show title and buttons */
+    visibility: visible; /* Ensure they are visible */
   }
 }
 
-/* ====== Responsive Design for Devices with Fine Pointer (e.g., Desktops) ====== */
-@media (max-width: 768px) and (pointer: fine) {
-  .tour-card {
-    width: 45%;
-    height: 320px;
-  }
-
-  .tour-card-title {
-    font-size: 1.2em;
-  }
-
-  .tour-card-text {
-    font-size: 0.9em;
-  }
-
-  .tour-btn {
-    font-size: 1em;
-    width: 80%;
-    margin: 10px auto 0;
-    display: block;
-  }
-}
-
-/* ====== Responsive Design for Devices with Coarse Pointer (e.g., Touchscreens) ====== */
+/* ====== MOBILE (coarse pointer — no hover support) ====== */
 @media (max-width: 768px) and (pointer: coarse) {
   .tour-card {
     width: 100%;
     height: 280px;
+    position: relative;
+    cursor: pointer; /* Indicate tappable area */
   }
 
   .tour-card-title {
     font-size: 1.1em;
+    opacity: 1;
+    visibility: visible;
   }
 
   .tour-card-text {
-    font-size: 0.85em;
+    opacity: 1; /* Text is visible initially */
+    visibility: visible;
+    transition: opacity 0.3s ease;
   }
 
-  .tour-btn {
-    font-size: 0.9em;
-    width: 80%;
-    margin: 10px auto 0;
-    display: block;
+  /* When the card is tapped (active), hide the text and show the title and buttons */
+  .tour-card:active .tour-card-text {
+    opacity: 0; /* Hide text */
+    visibility: hidden; /* Ensure text is completely hidden */
+  }
+
+  .tour-card:active .tour-card-title,
+  .tour-card:active .learn-more-text,
+  .tour-card:active .tour-btn {
+    opacity: 1; /* Show title and buttons */
+    visibility: visible; /* Ensure they are visible */
   }
 }

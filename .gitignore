@@ -286,3 +286,18 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,flask,windows
+
+# --- Local dev scripts (excluded from deploy) ---
+rebuilddb.py
+add_tour.py
+
+# --- DO NOT ignore SQLite DB ---
+# If you want to include your SQLite database in the repo for Render
+# make sure these lines are removed or commented out:
+# db.sqlite3
+# db.sqlite3-journal
+
+# Optional: If your DB is named differently, ensure it's not ignored
+# Example: if your DB is named app.db, make sure *.db is NOT ignored globally
+# If it is, whitelist it like:
+!app.db

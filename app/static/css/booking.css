@@ -1,5 +1,5 @@
 /* === Booking Form === */
-.booking-title {
+.booking-title-tour {
   text-align: center;
   font-size: 2.5rem;
   margin-top: 80px;
@@ -7,7 +7,7 @@
   color: #222;
 }
 
-.booking-form {
+.booking-form-tour {
   background-color: #f9f9f9;
   padding: 40px;
   border-radius: 10px;
@@ -16,17 +16,17 @@
   margin: 0 auto 80px auto;
 }
 
-.form-group {
+.form-group-tour {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form-group-tour label {
   font-weight: bold;
   color: #555;
   font-size: 14px;
 }
 
-.form-control {
+.form-control-tour {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -36,12 +36,12 @@
   color: #333;
 }
 
-.form-control:focus {
+.form-control-tour:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.btn {
+.btn-tour {
   padding: 12px 30px;
   font-size: 16px;
   border: none;
@@ -50,27 +50,27 @@
   transition: background-color 0.3s ease;
 }
 
-.btn-primary {
+.btn-primary-tour {
   background-color: #007bff;
   color: white;
 }
 
-.btn-primary:hover {
+.btn-primary-tour:hover {
   background-color: #0056b3;
 }
 
 /* === Responsive Design for Booking Form === */
 @media (max-width: 768px) {
-  .booking-form {
+  .booking-form-tour {
     padding: 25px;
   }
 
-  .form-control,
-  .btn {
+  .form-control-tour,
+  .btn-tour {
     width: 100%;
   }
 
-  .btn {
+  .btn-tour {
     font-size: 14px;
   }
 }

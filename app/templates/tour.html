@@ -118,13 +118,13 @@
        </div>
 
  <!-- Section for booking -->
- <div id="booking-form" class="booking-container">
-    <h2 class="booking-title">Book the Tour</h2> <!-- Title -->
+ <div id="booking-form-tour" class="booking-container-tour">
+    <h2 class="booking-title-tour">Book the Tour</h2> <!-- Title -->
   
-    <form method="POST" class="booking-form">
+    <form method="POST" class="booking-form-tour">
         {{ form.hidden_tag() }}
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.client_name.label }}<br>
             {{ form.client_name(class="form-control") }}
             {% if form.client_name.errors %}
@@ -136,7 +136,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.client_email.label }}<br>
             {{ form.client_email(class="form-control") }}
             {% if form.client_email.errors %}
@@ -148,7 +148,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.country_code.label }}<br>
             {{ form.country_code(class="form-control") }}
             {% if form.country_code.errors %}
@@ -160,7 +160,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.phone_number.label }}<br>
             {{ form.phone_number(class="form-control") }}
             {% if form.phone_number.errors %}
@@ -172,7 +172,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.travel_date.label }}<br>
             {{ form.travel_date(class="form-control", type="date") }}
             {% if form.travel_date.errors %}
@@ -184,7 +184,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.number_nights.label }}<br>
             {% for subfield in form.number_nights %}
                 <div class="form-check">
@@ -201,7 +201,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.number_people.label }}<br>
             {{ form.number_people(class="form-control") }}
             {% if form.number_people.errors %}
@@ -213,7 +213,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group">
+        <div class="form-group-tour">
             {{ form.tour_type.label }}<br>
             {{ form.tour_type(class="form-control") }}
             {% if form.tour_type.errors %}
@@ -225,7 +225,7 @@
             {% endif %}
         </div>
   
-        <div class="form-group mt-3">
+        <div class="form-group-tour mt-3">
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>

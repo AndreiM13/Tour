@@ -1,0 +1,140 @@
+/* Table container */
+.table-container-account {
+    margin: 2rem auto;
+    max-width: 95%;
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    background-color: #fff;
+    visibility: visible;  /* Ensure the table is visible */
+    display: block;       /* Ensure the container is displayed */
+    padding: 10px;        /* Added padding for better spacing */
+    min-height: 200px;    /* Set a minimum height to prevent collapsing */
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;  /* Ensures that borders are collapsed */
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    table-layout: auto;         /* Ensures it renders properly */
+    visibility: visible;       /* Make sure the table is visible */
+    border: 1px solid #ddd;    /* Adds border to table */
+}
+
+/* Table header */
+thead {
+    background-color: #4a90e2;
+    color: white;
+}
+
+thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    min-width: 120px;  /* Set a minimum width for each column to avoid collapsing */
+}
+
+/* Table body */
+tbody td {
+    padding: 0.9rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;  /* Ensures content is vertically aligned */
+}
+
+/* Table rows hover effect */
+tbody tr:hover {
+    background-color: #f5f9ff;
+}
+
+tbody tr {
+    visibility: visible;  /* Ensures rows are not hidden */
+}
+
+/* Status styles */
+.status-pending-account {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.status-confirmed-account {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.status-canceled-account {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;        /* Small size */
+    font-size: 0.85rem;       /* Smaller font size */
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    margin: 5px 0;            /* Space between buttons when stacked */
+    width: 100%;              /* Make buttons full width when stacked */
+    box-sizing: border-box;   /* Ensure padding and width don't break layout */
+}
+
+/* Button Colors */
+.btn-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+}
+
+/* Center the buttons and stack them vertically */
+.button-container {
+    text-align: center;
+    margin-top: 20px;   /* Adds space between table and buttons */
+    width: 100%;        /* Ensures the container is full width */
+}
+
+/* Center text */
+.text-center-account {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 1.5rem;
+}
+
+/* Analytics container centered */
+.analytics-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.graph-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
