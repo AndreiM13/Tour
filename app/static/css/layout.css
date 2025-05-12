@@ -1,119 +1,168 @@
-/* layout.css */
-
-/* Ensure the body takes full height of the screen */
+/* =============================
+   Base Typography & Layout
+============================= */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Merriweather', Georgia, serif;
+    background-color: #fdf6e3;
+    color: #333;
 }
 
-/* Flexbox layout to make sure footer is at the bottom */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Main content section to grow and take available space */
 main {
     flex-grow: 1;
-    padding-bottom: 2rem; /* Extra padding to ensure space for footer */
+    padding-bottom: 2rem;
 }
 
-/* Header styles */
+/* =============================
+   Header & Branding
+============================= */
 .custom-header {
-    background-color: #003049; /* Dark blue background */
-    padding: 2rem;
+    background-color: #8C3B00;
+    color: #fdf6e3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
     position: relative;
-    text-align: center;
 }
 
-/* Navbar Logo */
 .navbar-logo {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    height: 100px;
+    height: 60px;
     width: auto;
-}
-
-/* Custom Navbar */
-.custom-navbar {
-    background-color: #264653; /* Dark greenish blue */
-    border-radius: 10px;
-}
-
-/* Navbar Links */
-.navbar-nav .nav-item {
-    font-size: 1.6rem;
+    object-fit: contain;
     margin-right: 15px;
+}
+
+.site-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #fdf6e3;
+    margin: 0;
+    line-height: 1;
+}
+
+/* =============================
+   Navbar
+============================= */
+.custom-navbar {
+    background-color: #A0522D;
+    border-top: 1px solid #fff2;
+}
+
+.navbar-nav .nav-item {
+    font-size: 1.1rem;
+    margin: 0 10px;
 }
 
 .navbar-nav .nav-link {
     color: #fff;
-    font-family: 'Garamond', serif;
-    padding: 4px 12px;
-    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
     border-radius: 5px;
-    display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #ff9900;
-    background-color: rgba(255, 153, 0, 0.2);
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: #FFD79D;
+    background-color: rgba(255, 215, 157, 0.1);
+    text-decoration: none;
 }
 
-/* Add Vertical Separator */
-.navbar-nav .nav-item:not(:last-child)::after {
-    /* content: '|'; */
-    color: #fff;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-/* Navbar Container - Centering and Positioning */
-.navbar-collapse.navbar-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Dropdown menu */
+/* =============================
+   Dropdown Menu
+============================= */
 .dropdown-menu {
-    background-color: #264653;
+    background-color: #A0522D;
     border: none;
 }
 
-.dropdown-menu .dropdown-item {
+.dropdown-item {
     color: #fff;
     padding: 10px 20px;
+    font-weight: 500;
 }
 
-.dropdown-menu .dropdown-item:hover {
-    background-color: rgba(255, 153, 0, 0.2);
-    color: #ff9900;
+.dropdown-item:hover {
+    background-color: rgba(255, 215, 157, 0.15);
+    color: #FFD79D;
 }
 
-/* Mobile Responsive Adjustments */
+/* =============================
+   Responsive Navbar (≤768px)
+============================= */
 @media (max-width: 768px) {
-    .navbar-collapse {
+    .custom-header {
         flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
+        align-items: center;
+        padding: 1rem 1rem;
+    }
+
+    .navbar-logo {
+        height: 50px;
+        margin: 0 auto 10px;
+    }
+
+    .site-title {
+        font-size: 1.6rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    .navbar-toggler {
+        position: relative;
+        margin: 10px auto;
+        display: block;
     }
 
     .navbar-nav {
         width: 100%;
+        text-align: center;
     }
 
     .navbar-nav .nav-link {
         width: 100%;
-        padding: 12px 16px;
+        padding: 12px;
+    }
+
+    .dropdown-menu {
+        left: auto !important;
+        right: 40px !important;
+        transform: none !important;
+        min-width: 160px;
     }
 }
 
-/* Footer styles */
+/* =============================
+   Responsive Typography (≤576px)
+============================= */
+@media (max-width: 576px) {
+    .site-title {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        right: 20px !important;
+    }
+
+    .navbar-toggler {
+        margin: 10px auto;
+    }
+}
+
+/* =============================
+   Footer
+============================= */
 footer {
     background-color: #212529;
     color: white;
@@ -122,7 +171,6 @@ footer {
     text-align: center;
 }
 
-/* Footer links */
 footer a {
     text-decoration: none;
 }
@@ -132,25 +180,23 @@ footer a:hover {
     text-decoration: none;
 }
 
-/* Footer social media icons */
 footer a img {
     width: 24px;
     height: 24px;
     margin: 0 5px;
     display: inline-block;
     vertical-align: middle;
-    filter: brightness(0) invert(1); /* Make icons appear white */
+    filter: brightness(0) invert(1);
     transition: filter 0.3s ease;
 }
 
 footer a:hover img {
-    filter: none; /* Restore original icon color on hover */
+    filter: none;
 }
 
-.social-icons {
-    font-size: 0;
-}
-
+/* =============================
+   Social Icon Hover Effects
+============================= */
 .social-icon {
     display: inline-block;
     padding: 5px;
@@ -158,67 +204,50 @@ footer a:hover img {
     transition: background 0.3s ease;
 }
 
-.social-icon img {
-    width: 24px;
-    height: 24px;
-    display: block;
-}
-
-/* Facebook gradient */
 .social-icon.facebook:hover {
     background: linear-gradient(45deg, #1877f2, #3b5998);
 }
 
-/* Instagram gradient */
 .social-icon.instagram:hover {
     background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
 }
 
-/* TikTok gradient */
 .social-icon.tiktok:hover {
     background: linear-gradient(135deg, #25f4ee, #fe2c55);
 }
 
-/* Mobile-specific footer tweaks */
-@media (max-width: 768px) {
-    .navbar-nav .nav-item {
-        font-size: 1rem;
-    }
-
-    .navbar-logo {
-        height: 80px;
-    }
-
-    .custom-header {
-        padding: 1.5rem;
-    }
-}
-
-/* Section spacing */
+/* =============================
+   Section Adjustments
+============================= */
 .main-section {
-    padding: 20px;
-    min-height: 200px;
+    padding: 40px 20px;
+    min-height: 300px;
+}
+
+/* =============================
+   Typography Headers
+============================= */
+h1, h2, h3, h4 {
+    font-family: 'Merriweather', Georgia, serif;
 }
 
 
-.title-main,
-.sub-title-main {
-    text-align: center;
+.whatsapp-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
 }
 
-/* Shift to the right slightly on small (mobile) screens */
-@media (max-width: 576px) {
-    .title-main,
-    .sub-title-main {
-        text-align: left;
-        margin-left: 29%;
-    }
-    .sub-title-main{
-        margin-left: 130px;
-  
-      
-
-
-    }
+.whatsapp-chat img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
+.whatsapp-chat:hover {
+  transform: scale(1.1);
+}

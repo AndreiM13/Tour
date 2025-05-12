@@ -1,129 +1,157 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <!-- Main Content for Home Page -->
-    <div class="container-fluid p-0">
-        <!-- Your content like carousel, images, etc. -->
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ url_for('static', filename='images/carusel1.jpeg') }}" class="d-block w-100" alt="carousel image">
-                    <div class="carousel-caption">
-                        <h1>All Things Socotra</h1>
-                        <h2>Travel more, discover more</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ url_for('static', filename='images/carusel2.jpeg') }}" class="d-block w-100" alt="carousel image">
-                    <div class="carousel-caption">
-                        <h1>All Things Socotra</h1>
-                        <h2>Travel more, discover more</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ url_for('static', filename='images/carusel3.jpeg') }}" class="d-block w-100" alt="carousel image">
-                    <div class="carousel-caption">
-                        <h1>All Things Socotra</h1>
-                        <h2>Travel more, discover more</h2>
-                    </div>
+<!-- Carousel (unchanged) -->
+<div class="container-fluid p-0">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url_for('static', filename='images/carusel1.jpeg') }}" class="d-block w-100" alt="carousel image">
+                <div class="carousel-caption">
+                    <h1>All Things Socotra</h1>
+                    <h2>Travel more, discover more</h2>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/carusel2.jpeg') }}" class="d-block w-100" alt="carousel image">
+                <div class="carousel-caption">
+                    <h1>All Things Socotra</h1>
+                    <h2>Travel more, discover more</h2>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/carusel3.jpeg') }}" class="d-block w-100" alt="carousel image">
+                <div class="carousel-caption">
+                    <h1>All Things Socotra</h1>
+                    <h2>Travel more, discover more</h2>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/carusel4.jpeg') }}" class="d-block w-100" alt="carousel image">
+                <div class="carousel-caption">
+                    <h1>All Things Socotra</h1>
+                    <h2>Travel more, discover more</h2>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Redesigned Tour Section -->
+<section class="tours-section">
+    <h2 class="section-title">Choose Your Adventure</h2>
+    <div class="tour-card-grid">
+        <div class="tour-square-card">
+            <h5>The Photographer</h5>
+            <p>For the spotlight seekers and camera lovers.</p>
+            <a href="/tour/photographer" class="tour-card-btn">Learn More</a>
+        </div>
+        <div class="tour-square-card">
+            <h5>The Explorer</h5>
+            <p>For thrill seekers chasing the unknown.</p>
+            <a href="/tour/explorer" class="tour-card-btn">Learn More</a>
+        </div>
+        <div class="tour-square-card">
+            <h5>Beach Lover</h5>
+            <p>For sun worshipers and chill vibes.</p>
+            <a href="/tour/beach-potato" class="tour-card-btn">Learn More</a>
+        </div>
+        <div class="tour-square-card">
+            <h5>The VIP</h5>
+            <p>For luxury adventurers with a plan.</p>
+            <a href="/tour/vip" class="tour-card-btn">Learn More</a>
         </div>
     </div>
-    
-    <!-- Our Tours Section -->
-  <div class="tour-wrapper">
-    <h1 class="tour-header">Our Tours</h1>
-    
-    <div class="tour-cards-container">
-        <div class="tour-card">
-            <h5 class="tour-card-title">The Photographer</h5>
-            <p class="tour-card-text">
-                If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
-                For the local celebrity, the divas, and everyone that loves photography.
-                <br>
-                <br>
-                <br>
-                <br>
-            </p>
-            <a href="/tour" class="tour-btn">Go to Tour</a>
-  
-             <!-- Learn More Text (Appears on Hover) -->
-          <a href="/tour/photographer" class="learn-more-text">Learn More</a> 
+</section>
+
+
+<!-- Experience Highlights Section -->
+<section class="experience-highlights">
+    <h2 class="section-title">Experience Socotra</h2>
+    <div class="highlight-card-grid">
+        <div class="highlight-card">
+            <img src="{{ url_for('static', filename='images/carusel1.jpeg') }}" alt="Island Life">
+            <div class="highlight-content">
+                <h5>UNMATCHED ISOLATION</h5>
+                <p class="caption">Socotra: Where Earth Still Breathes</p>
+                <div class="hover-reveal">
+
+                    Step off the map and into a world unlike anywhere else. 
+                    Socotra Island travel is not about luxury in things — it's about the luxury of silence, space, and solitude.
+                    No crowds. No chaos. Just you, the wind, and a world untouched by time
+                </div>
+            </div>
         </div>
-        
-        <div class="tour-card">
-            <h5 class="tour-card-title">The Explorer</h5>
-            <p class="tour-card-text">
-                Indiana Jones, Lara Croft, you name it! Adrenaline and curiosity drive the way you go.
-                You want to see it all: Mountain climbing, boat adventures, exploring remote caves.
-            </p>
-            <br>
-            <br>
-            <a href="/tour" class="tour-btn">Go to Tour</a>
-               <!-- Learn More Text (Appears on Hover) -->
-          <a href="/tour/explorer" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+
+        <div class="highlight-card">
+            <img src="{{ url_for('static', filename='images/carusel2.jpeg') }}" alt="Wild Nature">
+            <div class="highlight-content">
+                <h5>NATURE UNTOUCHED</h5>
+                <p class="caption">Discover Earth’s Last Natural Secret</p>
+                <div class="hover-reveal">
+                 Swim in hidden wadis, climb untouched cliffs, and hike into Dragon Blod Tree forests — all in one island.
+                 Socotra’s untouched nature is more than a destination, it’s a revelation where every corner feels like a first discovery.
+                </div>
+            </div>
         </div>
-        
-        <div class="tour-card">
-            <h5 class="tour-card-title">Beach Lover </h5>
-            <p class="tour-card-text">
-                So you probably heard of the pristine beaches and the turquoise waters of Socotra. 
-                If the beach is calling you, you can never refuse. Enjoy unforgettable views and activities!
-            </p>
-            <br>
-            <br>
-            <a href="/tour" class="tour-btn">Go to Tour</a>
-             <!-- Learn More Text (Appears on Hover) -->
-          <a href="/tour/beach-potato" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
-        </div>
-        
-        <div class="tour-card">
-            <h5 class="tour-card-title">The VIP</h5>
-            <p class="tour-card-text">
-                You are the boss, determined and adventurous but enjoy comfort. Customize your itinerary 
-                with a private consultation to make the tour exactly what you want.
-            </p>
-            <br>
-            <br>
-            <br>
-            <a href="/tour" class="tour-btn">Go to Tour</a>
-            <!-- Learn More Text (Appears on Hover) -->
-          <a href="/tour/vip" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+
+        <div class="highlight-card">
+            <img src="{{ url_for('static', filename='images/carusel4.jpeg') }}" alt="Coastal Magic">
+            <div class="highlight-content">
+                <h5>IMMERSIVE CULTURE</h5>
+                <p class="caption">Live the Island, Not Just Visit It</p>
+                <div class="hover-reveal">
+                    Meet the resilient people of Socotra — fishermen, nomads, storytellers.
+                    Learn traditional ways of living, share meals under starlit skies, and feel what it means to truly belong, even as a guest.
+                    Here, culture isn't curated — it’s lived. Socotra is a journey into deep authenticity
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+
+<!-- Upcoming Departures Section -->
+<section class="departures-section">
+  <div class="departure-intro">
+    <h2 class="departure-title">Upcoming Group Tour Departures</h2>
+    <p class="departure-subtitle">
+      2025 / 2026 Season – 8 Days / 7 Nights Option  
+      <br>
+      <strong>Limited spaces available:</strong> Book as early as possible to secure your spot!
+    </p>
   </div>
-      <!-- What is included -->
-       <div class="included">
-        <h1 class="included-header">What is Included?</h1>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newtent.png') }}" alt="Lodging" class="included-card-img" />
-            <h5 class="included-title-inside">Lodging</h5>
-            <p class="included-text"> Clean, comfortable tents or hotels (upon request)</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newfood.png') }}" alt="Food" class="included-card-img" />
-            <h5 class="included-title-inside">Food</h5>
-            <p class="included-text"> Delicious locally sourced meals and snacks</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Guide" class="included-card-img" />
-            <h5 class="included-title-inside">Guide</h5>
-            <p class="included-text">  A great Socotri guide: professional, fun, and English-speaking.
-                 Local guides for the different natural protected areas.</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="included-card-img" />
-            <h5 class="included-title-inside">Transportation</h5>
-            <p class="included-text">Reliable 4x4 car and knowledgeable local driver</p>
-        </div>
-       </div>
+
+  <div class="departure-dates-grid">
+    <div class="departure-card">Feb 3 – Feb 10, 2025</div>
+    <div class="departure-card">Mar 10 – Mar 17, 2025</div>
+    <div class="departure-card">Apr 7 – Apr 14, 2025</div>
+    <div class="departure-card">Oct 6 – Oct 13, 2025</div>
+    <div class="departure-card">Nov 17 – Nov 24, 2025</div>
+    <div class="departure-card">Jan 12 – Jan 19, 2026</div>
+  </div>
+
+  <div class="cancellation-box">
+    <h3 class="cancellation-title">Cancellation Policy</h3>
+    <p class="cancellation-text">
+      In case you cannot travel and you want to cancel your booking we can help you to get a refund for your flight tickets.
+       The WTS tour deposit is non-refundable. Please note that the company operating the charter flight "Emirates Aviation Services"
+        cancellation policy is as stated on their tickets: "Ticket refund must be requested 8 days before departure" (400 AED penalty fees apply). 
+      <br><br>
+      Within 8 days before departure modification/cancellation is not allowed.”
+    </p>
+  </div>
+</section>
+
+
+
+
 {% endblock %}

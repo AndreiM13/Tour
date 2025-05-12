@@ -1,20 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="about-section text-center">
-    <h1 class="about-title">Our Story</h1>
-    <div class="about-text-container">
-        <div class="about-text">
-            <p>
-                Our story, similar to yours, began when we visited Socotra for the first time. Nervous and unsure even where to start, we spent days searching for information about the island, the tours, and what to expect. 
-                When we met Adnan and his capable team, our worries disappeared. Since then, our love for the island and the people of Socotra inspired us to build something special — a project that helps others discover all the natural wonders Socotra has to offer.
-            </p>
-            <p>
-                Adnan, born and raised on the island, has been working in tourism for as long as he can remember. His warm personality and deep knowledge of Socotra will make you want to stay forever. Unlike other agencies, our mission goes beyond tourism. We are committed to reinvesting in the local community—the very people who make your journey extraordinary.
-                At All Things Socotra, we offer more than just a tour. You'll be immersed in the Socotri way of life—its crafts, traditions, and cuisine—creating memories that last a lifetime.
-            </p>
-        </div>
-        <img src="{{ url_for('static', filename='images/adnan.png') }}" alt="Adnan Guide">
+<section class="about-hero-image">
+    <img src="{{ url_for('static', filename='images/adnan2.jpeg') }}" alt="Adnan smiling">
+</section>
+
+<section class="about-story-section">
+    <div class="about-wrapper">
+        <h1 class="about-story-title">Our Story</h1>
+        <p>
+            Our story, similar to yours, began when we visited Socotra for the first time. Nervous and unsure even where to start, we spent days searching for information about the island, the tours, and what to expect. When we met Adnan and his capable team, our worries disappeared. Since then, our love for the island and people of Socotra inspired us to build something special—a project that helps others discover all the natural wonders Socotra has to offer.
+        </p>
+        <p>
+            Adnan, born and raised on the island, has been working in tourism for as long as he can remember. His warm personality and deep knowledge of Socotra will make you want to stay forever. Unlike other agencies, our mission goes beyond tourism. We are committed to reinvesting in the local community—the very people who make your journey extraordinary. At All Things Socotra, we offer more than just a tour. You’ll be immersed in the Socotri way of life—its crafts, traditions, and cuisine—creating memories that last a lifetime.
+        </p>
     </div>
-</div>
+</section>
 {% endblock %}

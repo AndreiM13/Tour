@@ -1,89 +1,144 @@
-/* About Section */
-.about-section {
-    padding: 4rem 0;
-    background-color: #FAF0E6;
-    display: flex;
-    flex-direction: column; /* Stack title, text, and image vertically */
-    align-items: center; /* Center everything horizontally */
-}
-
-.about-title {
-    font-size: 3rem;
-    color: #003049;
-    margin-bottom: 2rem;
-    text-align: center; /* Ensure title is centered */
-    width: 100%; /* Ensure title takes full width */
-}
-
-.about-text-container {
-    display: flex; /* Use flex to align text and image side by side */
-    justify-content: space-between; /* Space between text and image */
-    gap: 2rem; /* Add some gap between text and image */
+/* ===============================
+   HERO BANNER SECTION — USING <img>
+================================== */
+.about-hero-image {
     width: 100%;
-    max-width: 1200px; /* Optional: Limit the width of the container */
-}
-
-.about-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #333;
-    max-width: 800px;
-    text-align: justify;
-    width: 60%; /* Limit the width of the text */
-}
-
-.about-section img {
-    width: 35%; /* Set image width */
+    min-height: 700px;
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  
+    /* removed display: flex for safety */
+  }
+  
+  .about-hero-image img {
+    width: 100%;
     height: auto;
+    max-height: 800px;
+    display: block;
     object-fit: cover;
-    border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-    .about-text-container {
-        flex-direction: column; /* Stack text and image vertically on small screens */
-        align-items: center;
-        text-align: center;
+    object-position: center;
+  }
+  
+  /* ===============================
+     STORY SECTION
+  ================================== */
+  .about-story-section {
+    background-color: #fdf6e3;
+    padding: 60px 20px 80px;
+  }
+  
+  .about-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-story-title {
+    font-size: 2.6rem;
+    font-family: 'Merriweather', Georgia, serif;
+    color: #5c2e00;
+    margin-bottom: 30px;
+  }
+  
+  /* Paragraph Styling */
+  .about-wrapper p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 2;
+    letter-spacing: 0.01em;
+    margin-bottom: 25px;
+    text-align: justify;
+  }
+  
+  /* ===============================
+     SOCIAL ICONS (OPTIONAL INLINE)
+  ================================== */
+  .about-social-icons {
+    margin-top: 40px;
+  }
+  
+  .about-social-icons a img {
+    width: 28px;
+    height: 28px;
+    margin: 0 10px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+  
+  .about-social-icons a:hover img {
+    filter: none;
+  }
+  
+  /* ===============================
+   RESPONSIVE DESIGN
+================================== */
+@media (max-width: 992px) {
+    .about-hero-image {
+      height: 350px;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
     }
-
-    .about-text {
-        width: 90%; /* Ensure the text takes up the full width */
-        font-size: 1rem; /* Adjust font size for mobile */
-        text-align: justify;
-        line-height: 1.6; /* Adjust line height for better readability */
+  
+    .about-hero-image img {
+      height: 100%;
+      width: auto;
+      object-fit: cover;
+      object-position: center;
     }
-
-    .about-section img {
-        width: 80%; /* Adjust the image width on mobile */
-        margin-top: 1rem;
+  
+    .about-story-title {
+      font-size: 2.2rem;
     }
-
-    .about-title {
-        font-size: 2rem;
+  
+    .about-wrapper p {
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
-}
-
-@media (max-width: 480px) {
-    /* Even smaller screen adjustments */
-    .about-text-container {
-        flex-direction: column; /* Stack text and image vertically */
-        align-items: center;
-        text-align: center;
+  }
+  
+  @media (max-width: 576px) {
+    .about-hero-image {
+      width: 100%;
+      height: auto;
+      min-height: 200px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
     }
-
-    .about-text {
-        width: 70%; /* Ensure the text takes up the full width */
-        font-size: 0.8rem; /* Reduce font size for smaller screens */
-        text-align: justify;
-        line-height: 1.4; /* Adjust line height for better readability */
+  
+    .about-hero-image img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
     }
-
-    .about-section img {
-        width: 75%; /* Adjust image size to fit on smaller screens */
-        margin-top: 0.4rem;
+  
+    .about-story-title {
+      font-size: 1.8rem;
     }
-
-    .about-title {
-        font-size: 1.8rem;
+  
+    .about-wrapper {
+      padding: 0 10px;
     }
-}
+  
+    .about-wrapper p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  
+    .about-social-icons a img {
+      width: 22px;
+      height: 22px;
+    }
+  }
+  
+  

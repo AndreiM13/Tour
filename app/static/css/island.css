@@ -4,59 +4,67 @@
 .island-title-fauna,
 .island-title-people {
     text-align: center;
-    font-size: 2.5em;
-    margin-top: 2.5em;
-    margin-bottom: 1.5em;
-    font-weight: bold;
+    color: #8C3B00;
+    font-size: 2.8em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
 }
 
-/* Layout containers */
+/* Main layout container */
 .island-history-text,
 .island-flora-text,
 .island-fauna-text,
 .island-people-text {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1em;
-    gap: 2em;
+    padding: 2em 1.5em;
+    gap: 3em;
 }
 
-/* Left column */
+/* Left column for text */
 .left-column {
-    flex: 1 1 50%;
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: left;
 }
 
-/* Right column */
+.left-column p {
+    margin-bottom: 1.2em;
+    line-height: 1.7;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+}
+
+/* Right column for image */
 .image-wrapper {
-    flex: 1 1 35%;
+    flex: 1 1 40%;
     display: flex;
-    justify-content: flex-end;
-    margin-left: 5px;
+    justify-content: center;
     align-items: stretch;
 }
 
 .image-wrapper img {
-    height: 90%;
-    width: 110%;
-    margin-left: 5px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 9px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-/* Paragraph styling */
-.left-column p {
-    margin-bottom: 1em;
-    line-height: 1.6;
-    font-size: 1.7em;
-    margin-right: 9px;
+.image-wrapper img:hover {
+    transform: scale(1.03);
 }
 
-/* Responsive behavior */
+/* Responsive design */
 @media (max-width: 768px) {
     .island-history-text,
     .island-flora-text,
@@ -64,17 +72,23 @@
     .island-people-text {
         flex-direction: column;
         align-items: center;
+        padding: 1.5em 1em;
     }
 
     .left-column,
     .image-wrapper {
         flex: 1 1 100%;
-        text-align: left;
+        max-width: 100%;
+    }
+
+    .left-column {
+        font-size: 1.1em;
     }
 
     .image-wrapper img {
         height: auto;
         width: 100%;
         object-fit: contain;
+        margin-top: 1em;
     }
 }

@@ -1,6 +1,6 @@
 /* Circle container */
 .here-circle {
-    background-color: #264653;
+    background-color: #8C3B00;
     color: white;
     width: 300px;               /* Even larger circle */
     height: 300px;              /* Even larger circle */
@@ -24,4 +24,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
+}
+.title-here{
+
+    color: #8C3B00;
 }

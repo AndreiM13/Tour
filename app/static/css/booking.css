@@ -1,19 +1,21 @@
 /* === Booking Form === */
 .booking-title-tour {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   margin-top: 80px;
   margin-bottom: 30px;
-  color: #222;
+  color: #5c2e00;
+  font-family: 'Merriweather', Georgia, serif;
 }
 
 .booking-form-tour {
-  background-color: #f9f9f9;
+  background-color: #fff8f0;
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   max-width: 700px;
   margin: 0 auto 80px auto;
+  font-family: 'Merriweather', Georgia, serif;
 }
 
 .form-group-tour {
@@ -22,55 +24,54 @@
 
 .form-group-tour label {
   font-weight: bold;
-  color: #555;
-  font-size: 14px;
+  color: #5c2e00;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 8px;
 }
 
-.form-control-tour {
+.form-control {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: 'Merriweather', Georgia, serif;
   color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-control-tour:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.form-control:focus {
+  border-color: #8C3B00;
+  box-shadow: 0 0 0 3px rgba(140, 59, 0, 0.2);
+  outline: none;
 }
 
-.btn-tour {
+.btn-primary {
+  background-color: #8C3B00;
+  color: white;
   padding: 12px 30px;
   font-size: 16px;
+  font-weight: bold;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
-.btn-primary-tour {
-  background-color: #007bff;
-  color: white;
+.btn-primary:hover {
+  background-color: #722b0a;
 }
 
-.btn-primary-tour:hover {
-  background-color: #0056b3;
-}
-
-/* === Responsive Design for Booking Form === */
+/* === Responsive Design === */
 @media (max-width: 768px) {
   .booking-form-tour {
     padding: 25px;
   }
 
-  .form-control-tour,
-  .btn-tour {
-    width: 100%;
-  }
-
-  .btn-tour {
-    font-size: 14px;
+  .btn-primary {
+    font-size: 15px;
   }
 }

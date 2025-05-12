@@ -3,207 +3,364 @@ CAROUSEL SECTION
 ============================================================ */
 
 .carousel-item {
-    position: relative;
-  }
-  
-  .carousel-caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    z-index: 1;
-    padding: 30px;
-    border-radius: 10px;
-    width: 70%;
-  }
-  
-  .carousel-caption h1,
-  .carousel-caption h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .carousel-caption p {
-    font-size: 1.5rem;
-    line-height: 1.5;
-  }
-  
-  /* === Responsive Styling for Carousel === */
-  @media (max-width: 768px) {
-    .carousel-item img {
-      height: 450px;
-      object-fit: cover;
-    }
-    .carousel-caption {
-      padding: 40px;
-      width: 80%;
-    }
-    .carousel-caption h1,
-    .carousel-caption h2 {
-      font-size: 3rem;
-    }
-    .carousel-caption p {
-      font-size: 1.4rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .carousel-item img {
-      height: 400px;
-    }
-    .carousel-caption h1,
-    .carousel-caption h2 {
-      font-size: 2.5rem;
-    }
-    .carousel-caption p {
-      font-size: 1.3rem;
-    }
-  }
-/* ====== Tour Section ====== */
-/* ====== Tour Section ====== */
-.tour-wrapper {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-/* ====== Header ====== */
-.tour-header {
-  font-size: 2.5em;
-  margin-bottom: 30px;
-}
-
-/* ====== Cards Container ====== */
-.tour-cards-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-/* ====== Individual Tour Card ====== */
-.tour-card {
   position: relative;
-  width: 250px;
-  height: 350px;
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  overflow: hidden;
 }
 
-/* Hover Scale Effect */
-.tour-card:hover {
-  transform: scale(1.05);
+.carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  max-height: 700px;
 }
 
-/* ====== Title and Description ====== */
-.tour-card-title {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #333;
-  transition: opacity 0.3s ease;
-  z-index: 2; /* Ensure title is above other elements */
-  opacity: 1; /* Titles should be visible by default */
-}
-
-/* Description text */
-.tour-card-text {
-  font-size: 1em;
-  line-height: 1.4em;
-  color: #555;
-  margin-bottom: 20px;
-  transition: opacity 0.3s ease;
-  z-index: 2; /* Ensure text is above other elements */
-  opacity: 1; /* Description is visible by default */
-}
-
-/* ====== Action Button ====== */
-.tour-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-decoration: none;
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  position: relative;
-  z-index: 3; /* Ensure button stays visible */
-}
-
-.tour-btn:hover {
-  background-color: #218838;
-}
-
-/* ====== Learn More Overlay Button (Centered) ====== */
-.learn-more-text {
+/* Centered caption block */
+.carousel-caption {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center the button */
-  background-color: rgba(0, 123, 255, 0.9);
+  transform: translate(-50%, -50%);
   color: white;
-  padding: 10px 20px;
+  text-align: center;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0); /* Reduced background opacity */
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.carousel-caption h2 {
+  font-size: 1.8rem;
+  margin-top: 10px;
+  text-shadow: none;
+}
+
+/* === Responsive Styling for Carousel === */
+@media (max-width: 992px) {
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-caption h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 400px;
+  }
+
+  .carousel-caption {
+    padding: 15px 20px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img {
+    height: 300px;
+  }
+
+  .carousel-caption h1 {
+    font-size: 1.6rem;
+  }
+
+  .carousel-caption h2 {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================
+TOURS SECTION
+============================================================ */
+
+.tours-section {
+  padding: 60px 20px;
+  background-color: #fff8f0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #8C3B00;
+  margin-bottom: 40px;
+}
+
+/* Grid layout */
+.tour-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Square card style */
+.tour-square-card {
+  background-color: #fdf6e3;
+  border: 2px solid #8C3B00;
+  border-radius: 10px;
+  width: 260px;
+  height: 260px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+}
+
+.tour-square-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tour-square-card h5 {
+  font-size: 1.4rem;
+  color: #8C3B00;
+  margin-bottom: 15px;
+}
+
+.tour-square-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.tour-card-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background-color: #8C3B00;
+  color: #fff;
   border-radius: 5px;
+  font-weight: bold;
   text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.tour-card-btn:hover {
+  background-color: #722b0a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .tour-square-card {
+    width: 90%;
+    max-width: 320px;
+    height: auto;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.7rem;
+    margin: 40px 0 20px;
+  }
+
+  .tour-card-grid {
+    gap: 15px;
+  }
+
+  .tour-card-btn {
+    padding: 8px 14px;
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* ================================
+   EXPERIENCE HIGHLIGHT SECTION (with <img>)
+================================= */
+.experience-highlights {
+  padding: 70px 20px;
+  background-color: #fff8f0;
+  text-align: center;
+}
+
+.highlight-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.highlight-card {
+  background-color: #fef6e9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+}
+
+.highlight-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.highlight-content {
+  padding: 20px;
+  position: relative;
+}
+
+.highlight-content h5 {
+  font-size: 1.2rem;
+  color: #8C3B00;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.caption {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.hover-reveal {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #8C3B00;
+  padding: 15px;
+  border-radius: 8px;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 3;
-}
-/* ====== DESKTOP HOVER (hover supported devices) ====== */
-@media (hover: hover) {
-  /* On hover, hide the description text */
-  .tour-card:hover .tour-card-text {
-    opacity: 0; /* Hide text */
-    visibility: hidden; /* Ensure text is completely hidden */
-  }
-
-  /* On hover, show the title and buttons */
-  .tour-card:hover .tour-card-title,
-  .tour-card:hover .learn-more-text,
-  .tour-card:hover .tour-btn {
-    opacity: 1; /* Show title and buttons */
-    visibility: visible; /* Ensure they are visible */
-  }
+  transition: opacity 0.4s ease;
 }
 
-/* ====== MOBILE (coarse pointer — no hover support) ====== */
-@media (max-width: 768px) and (pointer: coarse) {
-  .tour-card {
+.highlight-card:hover .hover-reveal {
+  opacity: 1;
+}
+
+
+/* =============================
+   Departures Section Styling
+============================= */
+.departures-section {
+  background-color: #fff8f0;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.departure-intro {
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.departure-title {
+  font-size: 2.4rem;
+  color: #8C3B00;
+  margin-bottom: 10px;
+}
+
+.departure-subtitle {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Departure Cards Grid */
+.departure-dates-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.departure-card {
+  background-color: #fdf6e3;
+  color: #8C3B00;
+  border: 2px solid #8C3B00;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.departure-card:hover {
+  background-color: #8C3B00;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+/* Cancellation Policy Box */
+.cancellation-box {
+  background-color: #e9ffe4;
+  border-left: 6px solid #3e8e41;
+  padding: 30px 25px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.cancellation-title {
+  font-size: 1.4rem;
+  color: #3e8e41;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cancellation-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .departure-title {
+    font-size: 1.8rem;
+  }
+
+  .departure-card {
+    padding: 16px 24px;
+    font-size: 0.95rem;
+  }
+
+  .cancellation-box {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .departure-subtitle {
+    font-size: 1rem;
+  }
+
+  .departure-card {
     width: 100%;
-    height: 280px;
-    position: relative;
-    cursor: pointer; /* Indicate tappable area */
+    max-width: 300px;
   }
 
-  .tour-card-title {
-    font-size: 1.1em;
-    opacity: 1;
-    visibility: visible;
+  .cancellation-title {
+    font-size: 1.2rem;
   }
 
-  .tour-card-text {
-    opacity: 1; /* Text is visible initially */
-    visibility: visible;
-    transition: opacity 0.3s ease;
-  }
-
-  /* When the card is tapped (active), hide the text and show the title and buttons */
-  .tour-card:active .tour-card-text {
-    opacity: 0; /* Hide text */
-    visibility: hidden; /* Ensure text is completely hidden */
-  }
-
-  .tour-card:active .tour-card-title,
-  .tour-card:active .learn-more-text,
-  .tour-card:active .tour-btn {
-    opacity: 1; /* Show title and buttons */
-    visibility: visible; /* Ensure they are visible */
+  .cancellation-text {
+    font-size: 0.95rem;
   }
 }
+
