@@ -251,3 +251,11 @@ h1, h2, h3, h4 {
 .whatsapp-chat:hover {
   transform: scale(1.1);
 }
+a.d-flex.align-items-center {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.d-flex.align-items-center:hover .site-title {
+    color: #FFD79D; /* Optional: match hover style */
+}

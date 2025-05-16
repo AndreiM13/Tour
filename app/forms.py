@@ -1,10 +1,10 @@
 import json
-import datetime
+from datetime import date
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField, DateField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField, DateField, SelectField, IntegerField, HiddenField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import re
-from app.models import Admin, Tour
+from app.models import Admin, Tour,Departure
 from flask import current_app
 
 # Load countries with flags and prefixes
@@ -63,17 +63,15 @@ class ContactForm(FlaskForm):
     message = TextAreaField('Message', validators=[DataRequired()])
 
 
+
 class BookingForm(FlaskForm):
     client_name = StringField('Full Name', validators=[DataRequired(), Length(min=2, max=150)])
     client_email = StringField('Email Address', validators=[DataRequired(), Email()])
     country_code = SelectField('Country Prefix', choices=country_prefix_choices, validators=[DataRequired()])
     phone_number = StringField('Phone Number', validators=[DataRequired()])
-    travel_date = DateField(
-        'Travel Date',
-        validators=[DataRequired()],
-        format='%Y-%m-%d',
-        default=datetime.date.today
-    )
+
+    departure_id = HiddenField('Departure ID')
+
     number_nights = RadioField(
         'Number of Nights',
         choices=[('6', '6 Nights'), ('8', '8 Nights'), ('11', '11 Nights')],
@@ -84,7 +82,7 @@ class BookingForm(FlaskForm):
         'Tour Type',
         choices=[('photographer', 'The Photographer'),
                  ('explorer', 'The Explorer'),
-                 ('beach', ' Beach Lover'),
+                 ('beach', 'Beach Lover'),
                  ('vip', 'The VIP')],
         validators=[DataRequired()]
     )
@@ -99,15 +97,18 @@ class BookingForm(FlaskForm):
         if not re.match(r'^\d{7,15}$', phone_number.data):
             raise ValidationError('Phone number must be between 7 and 15 digits and contain only numbers.')
 
-    def validate_travel_date(self, travel_date):
-        if travel_date.data < datetime.date.today():
-            raise ValidationError('Travel date cannot be in the past.')
+    def validate_departure_id(form, field):
+        dep = Departure.query.get(field.data)
+        if not dep:
+            raise ValidationError("Invalid departure date")
 
-    def validate_number_people(self, number_people):
-        if number_people.data < 1:
-            raise ValidationError('Number of people must be a positive number.')
+        dep_date = dep.date
+        # Convert datetime.datetime to datetime.date for comparison
+        if hasattr(dep_date, 'date'):
+            dep_date = dep_date.date()
 
-
+        if dep_date < date.today():
+            raise ValidationError("Departure date cannot be in the past.")
 
 class TourUpdateForm(FlaskForm):
     title = StringField('Tour Title', validators=[DataRequired()])

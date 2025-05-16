@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from app import app, db, bcrypt
 from app.forms import RegistrationForm, LoginForm, ContactForm, BookingForm
-from app.models import Admin, Tour, Contact, Booking, BookingStatusEnum, UniqueView 
+from app.models import Admin, Tour, Contact, Booking, BookingStatusEnum, UniqueView,  Departure 
 from flask_login import login_user, current_user, logout_user, login_required
 from collections import defaultdict
 import matplotlib
@@ -13,11 +13,20 @@ import json
 # from flask_mail import Message
 # from app import mail  # Assuming 'mail' is imported from your app
 
-# Home Routes
+
+#Home Route
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    # Fetch all departures with their related tours
+    departures = Departure.query.join(Tour).order_by(Departure.date).all()
+
+    # Optionally, calculate spots left for each departure if not stored in the DB
+    for dep in departures:
+        dep.spots_left = dep.calculate_spots_left()  
+
+    return render_template("home.html", departures=departures)
+
 
 
 @app.route("/about")
@@ -210,6 +219,31 @@ def contact():
 def tour():
     form = BookingForm()
 
+    # Prepare available departure dates from the database (next 14 days or more)
+    from datetime import date, timedelta
+    upcoming_departures = Departure.query.filter(Departure.date >= date.today()).order_by(Departure.date).all()
+    form.departure_id.choices = [(dep.id, dep.date.strftime('%Y-%m-%d')) for dep in upcoming_departures]
+
+    # Optional: fallback for available_dates for front-end use (if still needed)
+    available_dates = [
+        (date.today() + timedelta(days=i)).strftime('%Y-%m-%d')
+        for i in range(1, 15)
+    ]
+
+    # Prepare departures JSON for JavaScript use
+    departures_json = [
+        {"id": dep.id, "date": dep.date.strftime('%Y-%m-%d')}
+        for dep in upcoming_departures
+    ]
+
+    # Pre-fill the departure_id if coming from homepage with a departure link
+    preselected_departure_id = request.args.get("departure_id")
+    if preselected_departure_id:
+        try:
+            form.departure_id.data = int(preselected_departure_id)
+        except ValueError:
+            pass  # Invalid ID format, ignore
+
     if form.validate_on_submit():
         # Find all available tours
         available_tours = Tour.query.filter_by(status="available").all()
@@ -229,13 +263,19 @@ def tour():
             flash('No admin found. Please add an admin first.', 'danger')
             return redirect(url_for('home'))
 
+        # Retrieve the selected departure date object from DB
+        selected_departure = Departure.query.get(form.departure_id.data)
+        if not selected_departure:
+            flash('Selected departure date is invalid.', 'danger')
+            return redirect(url_for('tour'))
+
         # Create a new booking with the selected tour and automatically set admin_id
         new_booking = Booking(
             client_name=form.client_name.data,
             client_email=form.client_email.data,
             phone_number=form.phone_number.data,
             country_code=form.country_code.data,
-            travel_date=form.travel_date.data,
+            travel_date=selected_departure.date,  # Use departure date here
             number_nights=form.number_nights.data,
             number_people=form.number_people.data,
             tour_type=form.tour_type.data,
@@ -256,7 +296,7 @@ def tour():
             # Client Email: {form.client_email.data}
             # Tour Type: {form.tour_type.data}
             # Phone: {form.phone_number.data}
-            # Travel Date: {form.travel_date.data}
+            # Travel Date: {selected_departure.date}
             # Number of People: {form.number_people.data}
             # """
             # mail.send(admin_msg)
@@ -270,7 +310,7 @@ def tour():
             # Here are your booking details:
             # Tour Type: {form.tour_type.data}
             # Number of Nights: {form.number_nights.data}
-            # Travel Date: {form.travel_date.data}
+            # Travel Date: {selected_departure.date}
 
             # We will review your booking and confirm soon.
 
@@ -288,7 +328,10 @@ def tour():
             flash('An error occurred while processing your booking. Please try again later.', 'danger')
             return redirect(url_for('tour'))
 
-    return render_template('tour.html', form=form)
+    # Pass available_dates and departures_json to template for calendar control and JS
+    return render_template('tour.html', form=form, available_dates=available_dates, departures_json=departures_json)
+
+
 
 
 # Booking Success Page

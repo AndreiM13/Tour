@@ -4,25 +4,20 @@
   <!-- Our Tours Section -->
   <div class="tour-wrapper">
     <h1 class="tour-header">Our Tours</h1>
-    
+
     <div class="tour-cards-container">
-      <!-- The Photographer Tour Card -->
+      <!-- Tour Cards (unchanged) -->
       <div class="tour-card">
         <h5 class="tour-card-title">The Photographer</h5>
         <p class="tour-card-text">
           If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
           For the local celebrity, the divas, and everyone that loves photography.
-          <br>
-          <br>
-          <br>
+          <br><br><br>
         </p>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        
-        <!-- Learn More Text (Appears on Hover) -->
-        <a href="/tour/photographer" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+        <a href="/tour/photographer" class="learn-more-text">Learn More</a>
       </div>
-  
-      <!-- The Explorer Tour Card -->
+
       <div class="tour-card">
         <h5 class="tour-card-title">The Explorer</h5>
         <p class="tour-card-text">
@@ -31,12 +26,9 @@
         </p>
         <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        
-        <!-- Learn More Text (Appears on Hover) -->
-        <a href="/tour/explorer" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+        <a href="/tour/explorer" class="learn-more-text">Learn More</a>
       </div>
-  
-      <!-- The Beach Potato Tour Card -->
+
       <div class="tour-card">
         <h5 class="tour-card-title">Beach Lover</h5>
         <p class="tour-card-text">
@@ -45,209 +37,236 @@
         </p>
         <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        
-        <!-- Learn More Text (Appears on Hover) -->
-        <a href="/tour/beach-potato" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+        <a href="/tour/beach-potato" class="learn-more-text">Learn More</a>
       </div>
-  
-      <!-- The VIP Tour Card -->
+
       <div class="tour-card">
         <h5 class="tour-card-title">The VIP</h5>
         <p class="tour-card-text">
           You are the boss, determined and adventurous but enjoy comfort. Customize your itinerary 
           with a private consultation to make the tour exactly what you want.
         </p>
-        <br>
-        <br>
+        <br><br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        
-        <!-- Learn More Text (Appears on Hover) -->
-        <a href="/tour/vip" class="learn-more-text">Learn More</a> <!-- Update with actual route -->
+        <a href="/tour/vip" class="learn-more-text">Learn More</a>
       </div>
     </div>
   </div>
-       <!-- What is included -->
-       <div class="included">
-        <h1 class="included-header">What is Included?</h1>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newtent.png') }}" alt="Lodging" class="included-card-img" />
-            <h5 class="included-title-inside">Lodging</h5>
-            <p class="included-text"> Clean, comfortable tents or hotels (upon request)</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newfood.png') }}" alt="Food" class="included-card-img" />
-            <h5 class="included-title-inside">Food</h5>
-            <p class="included-text"> Delicious locally sourced meals and snacks</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Guide" class="included-card-img" />
-            <h5 class="included-title-inside">Guide</h5>
-            <p class="included-text">  A great Socotri guide: professional, fun, and English-speaking.
-                 Local guides for the different natural protected areas.</p>
-        </div>
-        <div class="included-card">
-            <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="included-card-img" />
-            <h5 class="included-title-inside">Transportation</h5>
-            <p class="included-text">Reliable 4x4 car and knowledgeable local driver</p>
-        </div>
-       </div>
 
-    <!-- What is not included -->
-    <div class="not-included">
-        <h1 class="not-included-header">What is not Included?</h1>
-        <div class="not-included-card">
-            <h5 class="not-included-title-inside">International Flights</h5>
-            <p class="not-included-text">Airline ticket to and from Abu Dhabi</p>
-        </div>
-        <div class="not-included-card">
-            <h5 class="not-included-title-inside">Roundtrip to Socotra</h5>
-            <p class="not-included-text">Abu Dhabi – Socotra roundtrip flight ($980 USD)</p>
-        </div>
-        <div class="not-included-card">
-            <h5 class="not-included-title-inside">Visa</h5>
-            <p class="not-included-text"> Visa fee ($150 USD)</p>
-        </div>
-        <div class="not-included-card">
-            <h5 class="not-included-title-inside">Insurance</h5>
-            <p class="not-included-text">Travel insurance not included</p>
-        </div>
-        <div class="not-included-card">
-            <h5 class="not-included-title-inside">Optional Activities</h5>
-            <p class="not-included-text">Extra activities not covered by base tour</p>
-        </div>
-       </div>
-
- <!-- Section for booking -->
- <div id="booking-form-tour" class="booking-container-tour">
-    <h2 class="booking-title-tour">Book the Tour</h2> <!-- Title -->
-  
-    <form method="POST" class="booking-form-tour">
-        {{ form.hidden_tag() }}
-  
-        <div class="form-group-tour">
-            {{ form.client_name.label }}<br>
-            {{ form.client_name(class="form-control") }}
-            {% if form.client_name.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.client_name.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.client_email.label }}<br>
-            {{ form.client_email(class="form-control") }}
-            {% if form.client_email.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.client_email.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.country_code.label }}<br>
-            {{ form.country_code(class="form-control") }}
-            {% if form.country_code.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.country_code.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.phone_number.label }}<br>
-            {{ form.phone_number(class="form-control") }}
-            {% if form.phone_number.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.phone_number.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.travel_date.label }}<br>
-            {{ form.travel_date(class="form-control", type="date") }}
-            {% if form.travel_date.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.travel_date.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.number_nights.label }}<br>
-            {% for subfield in form.number_nights %}
-                <div class="form-check">
-                    {{ subfield(class="form-check-input") }}
-                    {{ subfield.label(class="form-check-label") }}
-                </div>
-            {% endfor %}
-            {% if form.number_nights.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.number_nights.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.number_people.label }}<br>
-            {{ form.number_people(class="form-control") }}
-            {% if form.number_people.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.number_people.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour">
-            {{ form.tour_type.label }}<br>
-            {{ form.tour_type(class="form-control") }}
-            {% if form.tour_type.errors %}
-                <div class="invalid-feedback d-block">
-                    {% for error in form.tour_type.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-  
-        <div class="form-group-tour mt-3">
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
-    </form>
+  <!-- Included / Not Included (unchanged) -->
+  <div class="included">
+    <h1 class="included-header">What is Included?</h1>
+    <div class="included-card">
+      <img src="{{ url_for('static', filename='images/newtent.png') }}" alt="Lodging" class="included-card-img" />
+      <h5 class="included-title-inside">Lodging</h5>
+      <p class="included-text">Clean, comfortable tents or hotels (upon request)</p>
+    </div>
+    <div class="included-card">
+      <img src="{{ url_for('static', filename='images/newfood.png') }}" alt="Food" class="included-card-img" />
+      <h5 class="included-title-inside">Food</h5>
+      <p class="included-text">Delicious locally sourced meals and snacks</p>
+    </div>
+    <div class="included-card">
+      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Guide" class="included-card-img" />
+      <h5 class="included-title-inside">Guide</h5>
+      <p class="included-text">A great Socotri guide: professional, fun, and English-speaking. Local guides for the different natural protected areas.</p>
+    </div>
+    <div class="included-card">
+      <img src="{{ url_for('static', filename='images/image.png') }}" alt="Vehicle" class="included-card-img" />
+      <h5 class="included-title-inside">Transportation</h5>
+      <p class="included-text">Reliable 4x4 car and knowledgeable local driver</p>
+    </div>
   </div>
-  
-  
-  <!-- Flash message displayed here below the form -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-          <div class="alert-container">
-              {% for category, message in messages %}
-                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                      {{ message }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-              {% endfor %}
-          </div>
-      {% endif %}
-  {% endwith %}
 
-       
+  <div class="not-included">
+    <h1 class="not-included-header">What is not Included?</h1>
+    <div class="not-included-card">
+      <h5 class="not-included-title-inside">International Flights</h5>
+      <p class="not-included-text">Airline ticket to and from Abu Dhabi</p>
+    </div>
+    <div class="not-included-card">
+      <h5 class="not-included-title-inside">Roundtrip to Socotra</h5>
+      <p class="not-included-text">Abu Dhabi – Socotra roundtrip flight ($980 USD)</p>
+    </div>
+    <div class="not-included-card">
+      <h5 class="not-included-title-inside">Visa</h5>
+      <p class="not-included-text">Visa fee ($150 USD)</p>
+    </div>
+    <div class="not-included-card">
+      <h5 class="not-included-title-inside">Insurance</h5>
+      <p class="not-included-text">Travel insurance not included</p>
+    </div>
+    <div class="not-included-card">
+      <h5 class="not-included-title-inside">Optional Activities</h5>
+      <p class="not-included-text">Extra activities not covered by base tour</p>
+    </div>
+  </div>
+
+  <!-- Booking Form -->
+ <!-- Booking Form -->
+<div id="booking-form-tour" class="booking-container-tour">
+  <h2 class="booking-title-tour">Book the Tour</h2>
+
+  <form method="POST" class="booking-form-tour">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group-tour">
+      {{ form.client_name.label }}<br>
+      {{ form.client_name(class="form-control") }}
+      {% if form.client_name.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.client_name.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.client_email.label }}<br>
+      {{ form.client_email(class="form-control") }}
+      {% if form.client_email.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.client_email.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.country_code.label }}<br>
+      {{ form.country_code(class="form-control") }}
+      {% if form.country_code.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.country_code.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.phone_number.label }}<br>
+      {{ form.phone_number(class="form-control") }}
+      {% if form.phone_number.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.phone_number.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Calendar-style departure date picker -->
+    <div class="form-group-tour">
+      <label for="departure-picker">Select a Departure Date</label><br>
+      <input type="text" id="departure-picker" class="form-control" placeholder="Pick a date">
+      {{ form.departure_id(id="departure-id", type="hidden") }}
+      {% if form.departure_id.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.departure_id.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.number_nights.label }}<br>
+      {% for subfield in form.number_nights %}
+        <div class="form-check">
+          {{ subfield(class="form-check-input") }}
+          {{ subfield.label(class="form-check-label") }}
+        </div>
+      {% endfor %}
+      {% if form.number_nights.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.number_nights.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.number_people.label }}<br>
+      {{ form.number_people(class="form-control") }}
+      {% if form.number_people.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.number_people.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour">
+      {{ form.tour_type.label }}<br>
+      {{ form.tour_type(class="form-control") }}
+      {% if form.tour_type.errors %}
+        <div class="invalid-feedback d-block">
+          {% for error in form.tour_type.errors %}{{ error }}{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group-tour mt-3">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+</div>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="alert-container">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- Flatpickr Calendar Integration -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<style>
+  /* Just in case: hide any rogue select for departure_id */
+  select#departure-id {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const departures = JSON.parse('{{ departures_json | tojson | safe }}');
+
+  // Normalize dates to YYYY-MM-DD only (strip time)
+  const availableDates = departures.map(dep => dep.date.split('T')[0]);
+
+  flatpickr("#departure-picker", {
+    dateFormat: "Y-m-d",
+    enable: availableDates,
+    onChange: function(selectedDates, dateStr) {
+      const selected = departures.find(dep => dep.date.split('T')[0] === dateStr);
+      if (selected) {
+        document.getElementById("departure-id").value = selected.id;
+      } else {
+        document.getElementById("departure-id").value = "";
+      }
+    }
+  });
+
+  // Preselect if editing existing form
+  const preselectedId = "{{ form.departure_id.data }}";
+  if (preselectedId) {
+    const matched = departures.find(dep => dep.id == preselectedId);
+    if (matched) {
+      document.getElementById("departure-picker").value = matched.date.split('T')[0];
+      document.getElementById("departure-id").value = matched.id;
+    }
+  }
+
+  // Prevent submitting if no valid departure selected
+  document.querySelector('form.booking-form-tour').addEventListener('submit', function(e) {
+    if (!document.getElementById("departure-id").value) {
+      e.preventDefault();
+      alert("Please select a valid departure date.");
+    }
+  });
+</script>
+
 
 {% endblock %}
