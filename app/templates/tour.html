@@ -7,19 +7,10 @@
 
     <div class="tour-cards-container">
       <!-- Tour Cards (unchanged) -->
-      <div class="tour-card">
-        <h5 class="tour-card-title">The Photographer</h5>
-        <p class="tour-card-text">
-          If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
-          For the local celebrity, the divas, and everyone that loves photography.
-          <br><br><br>
-        </p>
-        <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        <a href="/tour/photographer" class="learn-more-text">Learn More</a>
-      </div>
+
 
       <div class="tour-card">
-        <h5 class="tour-card-title">The Explorer</h5>
+        <h5 class="tour-card-title">Full Island Tour</h5>
         <p class="tour-card-text">
           Indiana Jones, Lara Croft, you name it! Adrenaline and curiosity drive the way you go.
           You want to see it all: Mountain climbing, boat adventures, exploring remote caves.
@@ -27,6 +18,17 @@
         <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
         <a href="/tour/explorer" class="learn-more-text">Learn More</a>
+      </div>
+      
+      <div class="tour-card">
+        <h5 class="tour-card-title">Trekking Tour</h5>
+        <p class="tour-card-text">
+          If ‘I’m sexy and I know it’ is your motto? This is the package for you! 
+          For the local celebrity, the divas, and everyone that loves photography.
+          <br><br><br>
+        </p>
+        <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
+        <a href="/tour/photographer" class="learn-more-text">Learn More</a>
       </div>
 
       <div class="tour-card">
@@ -103,16 +105,17 @@
   </div>
 
   <!-- Booking Form -->
- <!-- Booking Form -->
+
 <div id="booking-form-tour" class="booking-container-tour">
   <h2 class="booking-title-tour">Book the Tour</h2>
 
   <form method="POST" class="booking-form-tour">
-    {{ form.hidden_tag() }}
+    <input type="hidden" name="csrf_token" value="{{ form.csrf_token._value() }}">
 
+    <!-- Client Name -->
     <div class="form-group-tour">
-      {{ form.client_name.label }}<br>
-      {{ form.client_name(class="form-control") }}
+      <label for="client-name">Name</label>
+      <input type="text" class="form-control" id="client-name" name="client_name" value="{{ request.form.client_name or '' }}">
       {% if form.client_name.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.client_name.errors %}{{ error }}{% endfor %}
@@ -120,9 +123,10 @@
       {% endif %}
     </div>
 
+    <!-- Email -->
     <div class="form-group-tour">
-      {{ form.client_email.label }}<br>
-      {{ form.client_email(class="form-control") }}
+      <label for="client-email">Email</label>
+      <input type="email" class="form-control" id="client-email" name="client_email" value="{{ request.form.client_email or '' }}">
       {% if form.client_email.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.client_email.errors %}{{ error }}{% endfor %}
@@ -130,9 +134,15 @@
       {% endif %}
     </div>
 
+    <!-- Country Code Dropdown -->
     <div class="form-group-tour">
-      {{ form.country_code.label }}<br>
-      {{ form.country_code(class="form-control") }}
+      <label for="country-code">Country Code</label>
+      <select class="form-control" id="country-code" name="country_code">
+        {% set selected_cc = request.form.country_code or '' %}
+        {% for value, label in form.country_code.choices %}
+          <option value="{{ value }}" {% if selected_cc == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
       {% if form.country_code.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.country_code.errors %}{{ error }}{% endfor %}
@@ -140,9 +150,10 @@
       {% endif %}
     </div>
 
+    <!-- Phone Number -->
     <div class="form-group-tour">
-      {{ form.phone_number.label }}<br>
-      {{ form.phone_number(class="form-control") }}
+      <label for="phone-number">Phone Number</label>
+      <input type="text" class="form-control" id="phone-number" name="phone_number" value="{{ request.form.phone_number or '' }}">
       {% if form.phone_number.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.phone_number.errors %}{{ error }}{% endfor %}
@@ -150,11 +161,11 @@
       {% endif %}
     </div>
 
-    <!-- Calendar-style departure date picker -->
+    <!-- Departure Date Picker -->
     <div class="form-group-tour">
       <label for="departure-picker">Select a Departure Date</label><br>
-      <input type="text" id="departure-picker" class="form-control" placeholder="Pick a date">
-      {{ form.departure_id(id="departure-id", type="hidden") }}
+      <input type="text" id="departure-picker" name="departure_picker" class="form-control" placeholder="Pick a date" value="{{ request.form.departure_picker or '' }}">
+      <input type="hidden" id="departure-id" name="departure_id" value="{{ request.form.departure_id or '' }}">
       {% if form.departure_id.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.departure_id.errors %}{{ error }}{% endfor %}
@@ -162,12 +173,14 @@
       {% endif %}
     </div>
 
+    <!-- Number of Nights -->
     <div class="form-group-tour">
-      {{ form.number_nights.label }}<br>
+      <label>Number of Nights</label><br>
       {% for subfield in form.number_nights %}
         <div class="form-check">
-          {{ subfield(class="form-check-input") }}
-          {{ subfield.label(class="form-check-label") }}
+          <input type="radio" class="form-check-input" id="night-{{ loop.index }}" name="number_nights" value="{{ subfield.data }}"
+            {% if subfield.checked or request.form.number_nights == subfield.data %}checked{% endif %}>
+          <label class="form-check-label" for="night-{{ loop.index }}">{{ subfield.label.text }}</label>
         </div>
       {% endfor %}
       {% if form.number_nights.errors %}
@@ -177,9 +190,10 @@
       {% endif %}
     </div>
 
+    <!-- Number of People -->
     <div class="form-group-tour">
-      {{ form.number_people.label }}<br>
-      {{ form.number_people(class="form-control") }}
+      <label for="number-people">Number of People</label>
+      <input type="number" class="form-control" id="number-people" name="number_people" value="{{ request.form.number_people or '' }}">
       {% if form.number_people.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.number_people.errors %}{{ error }}{% endfor %}
@@ -187,9 +201,15 @@
       {% endif %}
     </div>
 
+    <!-- Tour Type -->
     <div class="form-group-tour">
-      {{ form.tour_type.label }}<br>
-      {{ form.tour_type(class="form-control") }}
+      <label for="tour-type">Tour Type</label>
+      <select class="form-control" id="tour-type" name="tour_type">
+        {% set selected_tour = request.form.tour_type or '' %}
+        {% for value, label in form.tour_type.choices %}
+          <option value="{{ value }}" {% if selected_tour == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
       {% if form.tour_type.errors %}
         <div class="invalid-feedback d-block">
           {% for error in form.tour_type.errors %}{{ error }}{% endfor %}
@@ -197,11 +217,13 @@
       {% endif %}
     </div>
 
+    <!-- Submit Button -->
     <div class="form-group-tour mt-3">
-      {{ form.submit(class="btn btn-primary") }}
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </div>
+
 
 <!-- Flash messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -219,6 +241,7 @@
   {% endif %}
 {% endwith %}
 
+
 <!-- Flatpickr Calendar Integration -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -231,15 +254,15 @@
 </style>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
   const departures = JSON.parse('{{ departures_json | tojson | safe }}');
 
-  // Normalize dates to YYYY-MM-DD only (strip time)
   const availableDates = departures.map(dep => dep.date.split('T')[0]);
 
-  flatpickr("#departure-picker", {
+  const fp = flatpickr("#departure-picker", {
     dateFormat: "Y-m-d",
     enable: availableDates,
-    onChange: function(selectedDates, dateStr) {
+    onChange: function (selectedDates, dateStr) {
       const selected = departures.find(dep => dep.date.split('T')[0] === dateStr);
       if (selected) {
         document.getElementById("departure-id").value = selected.id;
@@ -249,24 +272,60 @@
     }
   });
 
-  // Preselect if editing existing form
-  const preselectedId = "{{ form.departure_id.data }}";
-  if (preselectedId) {
-    const matched = departures.find(dep => dep.id == preselectedId);
-    if (matched) {
-      document.getElementById("departure-picker").value = matched.date.split('T')[0];
-      document.getElementById("departure-id").value = matched.id;
-    }
+  function getUrlParameter(name) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(window.location.href);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 
-  // Prevent submitting if no valid departure selected
-  document.querySelector('form.booking-form-tour').addEventListener('submit', function(e) {
-    if (!document.getElementById("departure-id").value) {
+  (function preselectDeparture() {
+    const preselectedIdFromForm = "{{ form.departure_id.data }}";
+    let preselectedId = preselectedIdFromForm || getUrlParameter('departure_id');
+
+    if (preselectedId) {
+      preselectedId = preselectedId.toString();
+      const matched = departures.find(dep => dep.id.toString() === preselectedId);
+      if (matched) {
+        fp.setDate(matched.date.split('T')[0], true);
+        document.getElementById("departure-id").value = matched.id;
+      }
+    }
+  })();
+
+  (function setTourTypeFromUrl() {
+    const tourTitleFromUrl = getUrlParameter('tour_title');
+    if (tourTitleFromUrl) {
+      const tourTypeSelect = document.getElementById('tour-type');
+      if (tourTypeSelect) {
+        for (let i = 0; i < tourTypeSelect.options.length; i++) {
+          const optionText = tourTypeSelect.options[i].text.toLowerCase().replace(/\s+/g, '');
+          const urlTitle = tourTitleFromUrl.toLowerCase().replace(/\s+/g, '');
+          if (optionText.includes(urlTitle)) {
+            tourTypeSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+  })();
+
+  // Block submission if departure-id is missing
+  const form = document.querySelector("form.booking-form-tour");
+  const departureIdInput = document.getElementById("departure-id");
+
+  form.addEventListener("submit", function (e) {
+    if (!departureIdInput.value) {
       e.preventDefault();
-      alert("Please select a valid departure date.");
+      alert("Please select a departure date.");
+      document.getElementById("departure-picker").classList.add("is-invalid");
     }
   });
+});
 </script>
+
 
 
 {% endblock %}

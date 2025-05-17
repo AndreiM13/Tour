@@ -69,8 +69,7 @@ class BookingForm(FlaskForm):
     client_email = StringField('Email Address', validators=[DataRequired(), Email()])
     country_code = SelectField('Country Prefix', choices=country_prefix_choices, validators=[DataRequired()])
     phone_number = StringField('Phone Number', validators=[DataRequired()])
-
-    departure_id = HiddenField('Departure ID')
+    departure_id = HiddenField("Departure Date", validators=[DataRequired()])
 
     number_nights = RadioField(
         'Number of Nights',
@@ -80,12 +79,15 @@ class BookingForm(FlaskForm):
     number_people = IntegerField('Number of People', validators=[DataRequired()])
     tour_type = SelectField(
         'Tour Type',
-        choices=[('photographer', 'The Photographer'),
-                 ('explorer', 'The Explorer'),
-                 ('beach', 'Beach Lover'),
-                 ('vip', 'The VIP')],
+        choices=[
+            ('trekking', 'Trekking Tour'),
+            ('full_island', 'Full Island Tour'),
+            ('beach', 'Beach Lover'),
+            ('vip', 'The VIP')
+        ],
         validators=[DataRequired()]
     )
+
 
     submit = SubmitField('Book Tour')
 
@@ -96,19 +98,9 @@ class BookingForm(FlaskForm):
     def validate_phone_number(self, phone_number):
         if not re.match(r'^\d{7,15}$', phone_number.data):
             raise ValidationError('Phone number must be between 7 and 15 digits and contain only numbers.')
+        
+    
 
-    def validate_departure_id(form, field):
-        dep = Departure.query.get(field.data)
-        if not dep:
-            raise ValidationError("Invalid departure date")
-
-        dep_date = dep.date
-        # Convert datetime.datetime to datetime.date for comparison
-        if hasattr(dep_date, 'date'):
-            dep_date = dep_date.date()
-
-        if dep_date < date.today():
-            raise ValidationError("Departure date cannot be in the past.")
 
 class TourUpdateForm(FlaskForm):
     title = StringField('Tour Title', validators=[DataRequired()])

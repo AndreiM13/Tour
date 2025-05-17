@@ -1,5 +1,73 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="trek-container">
 
+  <!-- Page Title -->
+  <h1 class="trek-title">Full Island Tour 🌟 Socotra Essentials: 8-Day Island Discovery</h1>
+  <p class="trek-subtitle">Tour Duration: 8 days / 7 nights — Guided overland adventure with wild camping</p>
+
+  <div class="trek-content">
+    <!-- Main Article -->
+    <article class="trek-article">
+      <h2 class="trek-section-title">🏕️ The Journey That Captures It All</h2>
+      <p>
+        This is our signature island experience — a curated journey through Socotra’s most iconic landscapes, from high plateaus and ancient forests to dazzling beaches and hidden freshwater pools.
+      </p>
+      <p>
+        You’ll sleep under the stars among Dragon’s Blood trees, swim in turquoise lagoons, snorkel vibrant reefs, and travel by boat to remote coastlines where dolphins may greet you along the way.
+      </p>
+      <p>
+        Although the itinerary is thoughtfully designed, we keep it flexible to ensure the best experience — adjusting routes when necessary due to weather or to avoid larger groups. Your comfort, safety, and immersion always come first.
+      </p>
+
+      <h3 class="trek-section-title">🌍 Tour Highlights</h3>
+      <ul class="trek-highlights">
+        <li><strong>Fermhin Forest:</strong> World’s highest density of Dragon’s Blood trees.</li>
+        <li><strong>Detwah Lagoon:</strong> "The Magic Eye," with serene turquoise waters and white sands.</li>
+        <li><strong>Shoab Beach:</strong> Boat-access only, ideal for dolphin and ray sightings.</li>
+        <li><strong>Diksam Plateau:</strong> Hike through the island’s grandest canyon with panoramic views.</li>
+        <li><strong>Homhil Infinity Pool:</strong> Cliffside spring pool with views of the sea and canyon.</li>
+        <li><strong>Wadi Kalisan:</strong> Socotra’s largest natural swimming hole in a white limestone gorge.</li>
+        <li><strong>Arher Beach:</strong> Where dunes, rivers, and cliffs meet — home to unique wildlife.</li>
+        <li><strong>Ras Erissel:</strong> Eastern tip of the island where two oceans converge.</li>
+        <li><strong>Hoq & Dugub Caves:</strong> Underground wonders filled with ancient formations.</li>
+        <li><strong>Zahag Dunes:</strong> Towering dunes perfect for sunset views.</li>
+        <li><strong>Amak Beach:</strong> Remote, private campsite on the Indian Ocean.</li>
+        <li><strong>Dihamri Marine Reserve:</strong> Snorkel with turtles, coral fish, and moray eels.</li>
+      </ul>
+
+      <h3 class="trek-section-title">✅ What’s Included</h3>
+      <ul class="trek-includes">
+        <li>8 days of fully supported camping</li>
+        <li>4x4 Toyota Land Cruiser (max 3 guests per vehicle)</li>
+        <li>English-speaking local guide</li>
+        <li>All meals: freshly prepared daily + snacks and unlimited water</li>
+        <li>Camping gear: tent, mattress, blanket, pillow</li>
+        <li>All permits and entrance fees</li>
+        <li>Boat trip to Shoab Beach (weather permitting)</li>
+      </ul>
+
+      <h3 class="trek-section-title">🗓️ Want More or Less?</h3>
+      <ul class="trek-options">
+        <li>5-Day / 4-Night condensed version</li>
+        <li>8-Day / 7-Night basic tour</li>
+        <li>11-Day / 10-Night extended expedition</li>
+      </ul>
+      <a href="/tour" class="book-tour-button">Book This Tour</a>
+    </article>
+
+    <!-- Sidebar: Image Collage -->
+    <aside class="trek-sidebar">
+      <div class="trek-photo-grid">
+        <img src="{{ url_for('static', filename='images/trakking1.jpeg') }}" alt="Trakking1">
+        <img src="{{ url_for('static', filename='images/trakking2.jpeg') }}" alt="Trakking2">
+        <img src="{{ url_for('static', filename='images/trakking3.jpeg') }}" alt="Trakking3">
+        <img src="{{ url_for('static', filename='images/trakking4.jpeg') }}" alt="Trakking4">
+        <img src="{{ url_for('static', filename='images/trakking5.jpeg') }}" class="trek-photo-wide" alt="Trakking5">
+      </div>
+    </aside>
+  </div>
+
+</div>
 {% endblock %}

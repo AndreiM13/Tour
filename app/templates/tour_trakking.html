@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="trek-container">
+
+  <!-- Page Title -->
+  <h1 class="trek-title">Island Trekking: 8-Day Guided Trek with Camel Caravan</h1>
+  <p class="trek-subtitle">Immersive island crossing – wild camping, high peaks & Socotri hospitality</p>
+
+  <div class="trek-content">
+    <!-- Main Article -->
+    <article class="trek-article">
+      <h2 class="trek-section-title">🥾 Cross the Island the Old Way</h2>
+      <p>
+        This is not your average island getaway. Our 8-day trek cuts across Socotra from north to south, led by seasoned
+        local guides and accompanied by a camel caravan that carries your gear while you walk free beneath granite peaks
+        and starlit skies.
+      </p>
+      <p>
+        The journey includes a 4-day crossing through the island’s highest mountain range (3-day option available), and
+        the rest of the itinerary adapts to weather, movement of larger groups, and your pace — because the best
+        adventures aren’t always scripted.
+      </p>
+      <p><strong>Note:</strong> A solid level of fitness is essential. You won’t need to carry your load, but you will be walking far off the beaten path.</p>
+
+      <h3 class="trek-section-title">🌍 Highlights Along the Way</h3>
+      <ul class="trek-highlights">
+        <li><strong>Hajhir, Skand & Farah Mountains:</strong> Rugged cliffs, freshwater springs, ancient rocks.</li>
+        <li><strong>Fermhin Forest:</strong> Dense grove of Dragon’s Blood Trees — otherworldly scenery.</li>
+        <li><strong>Diksam Plateau:</strong> Dramatic canyons with sweeping island views.</li>
+        <li><strong>Amak Beach:</strong> Finish your trek at a remote Indian Ocean beach.</li>
+        <li><strong>Zahag Dunes & Dugub Cave:</strong> Golden sands and a cinematic cave adventure.</li>
+        <li><strong>Detwah Lagoon:</strong> The “Magic Eye” — a turquoise basin with white sands.</li>
+        <li><strong>Shoab Beach:</strong> Boat-access only, with dolphin encounters.</li>
+        <li><strong>Homhil Infinity Pool:</strong> A natural pool spilling off the mountaintop.</li>
+        <li><strong>Wadi Kalisan:</strong> Swim in a massive canyon-fed waterhole.</li>
+        <li><strong>Arher Beach:</strong> Where cliffs, dunes, rivers and sea meet.</li>
+        <li><strong>Ras Erissel:</strong> Eastern tip where two oceans collide.</li>
+        <li><strong>Dihamri Marine Reserve:</strong> Snorkeling with turtles, eels, and coral fish.</li>
+      </ul>
+
+      <h3 class="trek-section-title">✅ What’s Included</h3>
+      <ul class="trek-includes">
+        <li>8 days of fully supported wild camping</li>
+        <li>Local Socotri guides</li>
+        <li>Camel caravan to carry equipment</li>
+        <li>Toyota Land Cruiser 4x4s (3 guests per vehicle)</li>
+        <li>All meals included + unlimited water and snacks</li>
+        <li>Camping gear: tent, mattress, blanket, pillow</li>
+        <li>All permits and entrance fees</li>
+        <li>Boat trip to Shoab Beach (weather permitting)</li>
+      </ul>
+
+      <h3 class="trek-section-title">🗓️ More Options</h3>
+      <ul class="trek-options">
+        <li>5-Day / 4-Night condensed version</li>
+        <li>8-Day / 7-Night basic version</li>
+        <li>11-Day / 10-Night extended expedition</li>
+      </ul>
+    <a href="/tour" class="book-tour-button">Book This Tour</a>
+    </article>
+    
+  
+
+    <!-- Sidebar: Image Collage -->
+    <aside class="trek-sidebar">
+      <div class="trek-photo-grid">
+        <img src="{{ url_for('static', filename='images/trakking1.jpeg') }}" alt="Trakking1">
+        <img src="{{ url_for('static', filename='images/trakking2.jpeg') }}" alt="Trakking2">
+        <img src="{{ url_for('static', filename='images/trakking3.jpeg') }}" alt="Trakking3">
+        <img src="{{ url_for('static', filename='images/trakking4.jpeg') }}" alt="Trakking4">
+         <img src="{{ url_for('static', filename='images/trakking5.jpeg') }}"class="trek-photo-wide" alt="Trakking5">
+      </div>
+    </aside>
+  </div>
+
+</div>
+{% endblock %}

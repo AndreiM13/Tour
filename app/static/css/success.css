@@ -1,13 +1,14 @@
-.custom-small-btn {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.8rem;
-    display: inline-block;  /* Prevent full-width */
-    width: auto;
-}
+  .custom-small-btn {
+      font-size: 0.85rem;
+      padding: 0.3rem 0.8rem;
+      display: inline-block;
+      width: auto !important;
+      max-width: 150px;
+      white-space: nowrap;
+  }
 
-
-.email-note {
-    font-style: italic;
-    color: #555;
-    margin-top: 10px;
-}
+  .email-note {
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+  }

@@ -41,6 +41,7 @@ class Tour(db.Model):
     number_person = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     status = db.Column(SqlEnum(TourStatusEnum), nullable=False, default=TourStatusEnum.AVAILABLE)
+    tour_type = db.Column(db.String(50), nullable=False)
 
     admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'), nullable=False)
     bookings = db.relationship('Booking', backref='tour', lazy=True, cascade="all, delete-orphan")

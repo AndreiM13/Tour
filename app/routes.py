@@ -18,14 +18,17 @@ import json
 @app.route("/")
 @app.route("/home")
 def home():
-    # Fetch all departures with their related tours
-    departures = Departure.query.join(Tour).order_by(Departure.date).all()
+    page = request.args.get('page', 1, type=int)
+    per_page = 5
 
-    # Optionally, calculate spots left for each departure if not stored in the DB
-    for dep in departures:
-        dep.spots_left = dep.calculate_spots_left()  
+    pagination = Departure.query.join(Tour).order_by(Departure.date).paginate(page=page, per_page=per_page)
 
-    return render_template("home.html", departures=departures)
+    for dep in pagination.items:
+        dep.spots_left = dep.calculate_spots_left()
+
+    tour_title = request.args.get('tour_title', '')
+
+    return render_template("home.html", departures=pagination, tour_title=tour_title)
 
 
 
@@ -213,7 +216,6 @@ def contact():
 
     return render_template('contact.html', form=form)
 
-
 # Tour Booking
 @app.route('/tour', methods=['GET', 'POST'])
 def tour():
@@ -222,7 +224,8 @@ def tour():
     # Prepare available departure dates from the database (next 14 days or more)
     from datetime import date, timedelta
     upcoming_departures = Departure.query.filter(Departure.date >= date.today()).order_by(Departure.date).all()
-    form.departure_id.choices = [(dep.id, dep.date.strftime('%Y-%m-%d')) for dep in upcoming_departures]
+    
+    # ❌ Removed: form.departure_id.choices = ...
 
     # Optional: fallback for available_dates for front-end use (if still needed)
     available_dates = [
@@ -236,100 +239,98 @@ def tour():
         for dep in upcoming_departures
     ]
 
+    # Get the tour title from query params (to show on booking page)
+    tour_title = request.args.get("tour_title", default="", type=str)
+
     # Pre-fill the departure_id if coming from homepage with a departure link
     preselected_departure_id = request.args.get("departure_id")
-    if preselected_departure_id:
+    # ❌ Removed: form.departure_id.data = int(preselected_departure_id)
+
+    if request.method == "POST":
+        # ✅ Manually retrieve departure ID from hidden field
+        departure_id_raw = request.form.get("departure_id")
         try:
-            form.departure_id.data = int(preselected_departure_id)
-        except ValueError:
-            pass  # Invalid ID format, ignore
-
-    if form.validate_on_submit():
-        # Find all available tours
-        available_tours = Tour.query.filter_by(status="available").all()
-
-        if not available_tours:
-            flash('No available tours. Please add a tour first.', 'danger')
-            return redirect(url_for('home'))
-
-        # For simplicity, let's select the first available tour
-        available_tour = available_tours[0]
-
-        # Automatically select the first admin (assuming admin exists)
-        admin = Admin.query.first()
-
-        # If no admin is found, show an error
-        if not admin:
-            flash('No admin found. Please add an admin first.', 'danger')
-            return redirect(url_for('home'))
-
-        # Retrieve the selected departure date object from DB
-        selected_departure = Departure.query.get(form.departure_id.data)
-        if not selected_departure:
-            flash('Selected departure date is invalid.', 'danger')
+            departure_id = int(departure_id_raw)
+        except (TypeError, ValueError):
+            flash("Invalid or missing departure date.", "danger")
             return redirect(url_for('tour'))
 
-        # Create a new booking with the selected tour and automatically set admin_id
-        new_booking = Booking(
-            client_name=form.client_name.data,
-            client_email=form.client_email.data,
-            phone_number=form.phone_number.data,
-            country_code=form.country_code.data,
-            travel_date=selected_departure.date,  # Use departure date here
-            number_nights=form.number_nights.data,
-            number_people=form.number_people.data,
-            tour_type=form.tour_type.data,
-            admin_id=admin.id,  # Automatically setting admin_id
-            tour_id=available_tour.id  # Automatically setting tour_id
-        )
-
-        try:
-            db.session.add(new_booking)  # Add the new booking to the session
-            db.session.commit()  # Commit the changes to the database
-
-            # Send email to admin notifying about the new booking
-            # admin_email = "admin@example.com"  # Replace with actual admin email
-            # admin_msg = Message("New Booking Received", recipients=[admin_email])
-            # admin_msg.body = f"""New booking received!
-
-            # Client Name: {form.client_name.data}
-            # Client Email: {form.client_email.data}
-            # Tour Type: {form.tour_type.data}
-            # Phone: {form.phone_number.data}
-            # Travel Date: {selected_departure.date}
-            # Number of People: {form.number_people.data}
-            # """
-            # mail.send(admin_msg)
-
-            # Send personalized confirmation email to the client
-            # client_msg = Message("Your Booking Confirmation", recipients=[form.client_email.data])
-            # client_msg.body = f"""Dear {form.client_name.data},
-
-            # Thank you for booking with us!
-
-            # Here are your booking details:
-            # Tour Type: {form.tour_type.data}
-            # Number of Nights: {form.number_nights.data}
-            # Travel Date: {selected_departure.date}
-
-            # We will review your booking and confirm soon.
-
-            # Payment Methods: You can pay via PayPal, Credit Card, or Bank Transfer.
-
-            # Thank you!
-            # """
-            # mail.send(client_msg)
-
-            flash('Booking successful! A confirmation email has been sent to you.', 'success')
-            return redirect(url_for('success'))
-
-        except Exception as e:
-            db.session.rollback()  # Rollback the session in case of an error
-            flash('An error occurred while processing your booking. Please try again later.', 'danger')
+        selected_departure = Departure.query.get(departure_id)
+        # Fix: convert datetime.datetime to datetime.date for comparison
+        if not selected_departure or selected_departure.date.date() < date.today():
+            flash("Selected departure date is invalid or in the past.", "danger")
             return redirect(url_for('tour'))
 
-    # Pass available_dates and departures_json to template for calendar control and JS
-    return render_template('tour.html', form=form, available_dates=available_dates, departures_json=departures_json)
+        if form.validate_on_submit():
+            # Find all available tours
+            available_tours = Tour.query.filter_by(status="available").all()
+
+            if not available_tours:
+                flash('No available tours. Please add a tour first.', 'danger')
+                return redirect(url_for('home'))
+
+            # For simplicity, let's select the first available tour
+            available_tour = available_tours[0]
+
+            # Automatically select the first admin (assuming admin exists)
+            admin = Admin.query.first()
+
+            # If no admin is found, show an error
+            if not admin:
+                flash('No admin found. Please add an admin first.', 'danger')
+                return redirect(url_for('home'))
+
+            # ✅ Use manually validated `selected_departure`
+            new_booking = Booking(
+                client_name=form.client_name.data,
+                client_email=form.client_email.data,
+                phone_number=form.phone_number.data,
+                country_code=form.country_code.data,
+                travel_date=selected_departure.date,
+                number_nights=form.number_nights.data,
+                number_people=form.number_people.data,
+                tour_type=form.tour_type.data,
+                admin_id=admin.id,
+                tour_id=available_tour.id,
+                departure_id=selected_departure.id   # <---- add this line
+            )
+
+
+            try:
+                db.session.add(new_booking)  # Add the new booking to the session
+                db.session.commit()  # Commit the changes to the database
+
+                # Send email to admin notifying about the new booking
+                # admin_email = "admin@example.com"  # Replace with actual admin email
+                # admin_msg = Message("New Booking Received", recipients=[admin_email])
+                # admin_msg.body = f"""New booking received!
+                # ...
+                # """
+                # mail.send(admin_msg)
+
+                # Send personalized confirmation email to the client
+                # client_msg = Message("Your Booking Confirmation", recipients=[form.client_email.data])
+                # client_msg.body = f"""Dear {form.client_name.data},
+                # ...
+                # """
+                # mail.send(client_msg)
+
+                flash('Booking successful! A confirmation email has been sent to you.', 'success')
+                return redirect(url_for('success'))
+
+            except Exception as e:
+                db.session.rollback()  # Rollback the session in case of an error
+                # print("Booking error:", e) #delete this
+                flash('An error occurred while processing your booking. Please try again later.', 'danger')
+                return redirect(url_for('tour'))
+
+    # Pass available_dates, departures_json, and tour_title to template for calendar control and JS
+    return render_template('tour.html', 
+                           form=form, 
+                           available_dates=available_dates, 
+                           departures_json=departures_json,
+                           tour_title=tour_title)
+
 
 
 
@@ -389,7 +390,7 @@ def delete_all_bookings():
 
 @app.route('/tour/photographer')
 def photographer_tour():
-    return render_template('tour_photographer.html')
+    return render_template('tour_trakking.html')
 
 @app.route('/tour/explorer')
 def explorer_tour():
