@@ -28,12 +28,22 @@ CAROUSEL SECTION
   max-width: 90%;
 }
 
-.carousel-caption h1 {
+.carousel-caption h2 {
   white-space: nowrap;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   text-shadow: none;
   max-width: 100%;
+}
+
+/* Individual heading styles (optional for future use) */
+.carousel-caption h2.first-card,
+.carousel-caption h2.second-card,
+.carousel-caption h2.third-card,
+.carousel-caption h2.forth-card {
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .carousel-book-btn {
@@ -56,9 +66,12 @@ CAROUSEL SECTION
   color: white;
 }
 
-/* Responsive carousel */
+/* ========================
+Responsive carousel styles
+======================== */
+
 @media (max-width: 992px) {
-  .carousel-caption h1 {
+  .carousel-caption h2 {
     font-size: 2.5rem;
   }
 }
@@ -72,22 +85,23 @@ CAROUSEL SECTION
     padding: 15px 20px;
   }
 
-  .carousel-caption h1 {
+  .carousel-caption h2 {
     font-size: 2rem;
   }
 
-  .carousel-caption h2 {
-    font-size: 1.2rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .carousel-item img {
-    height: 300px;
-  }
-
-  .carousel-caption h1 {
-    font-size: 0.6rem;  /*vezi sa il faci pe doua randuri pe mobile*/
+  .carousel-caption h2.first-card,
+  .carousel-caption h2.second-card,
+  .carousel-caption h2.third-card,
+  .carousel-caption h2.forth-card {
+    font-size: clamp(0.6rem, 3.5vw, 1.2rem); /* auto-resize based on screen width */
+    white-space: nowrap;                     /* one line only */
+    max-width: 100vw;                        /* stay within screen */                       /* avoid spilling out */
+    text-overflow: clip;                     /* show full line, no ... */
+    margin: 0 auto;                          /* center it */
+    line-height: 1.2;
   }
 }
 
@@ -426,15 +440,14 @@ IMAGE BANNER SECTION (Full div image + overlay text no shadow)
   }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
-  .image-div-home {
-    height: 350px;
+  .div-home-img {
+    height: 450px;
   }
 
   .div-home-text {
-    top: 18%;
-    transform: translate(-50%, -18%);
+    top: 40%; /* moved lower */
+    transform: translate(-50%, -30%); /* match top offset */
     padding: 8px;
     max-width: 90%;
   }
@@ -448,6 +461,7 @@ IMAGE BANNER SECTION (Full div image + overlay text no shadow)
     line-height: 1;
   }
 }
+
 
 /* ============================================================
 RESPONSIVE TWEAKS

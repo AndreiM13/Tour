@@ -71,6 +71,12 @@
   margin-bottom: 0.5rem;
 }
 
+/* Small adjustment: Force “Arher Beach” item to start in 2nd column */
+.trek-highlights li:nth-child(10) {
+  break-before: column;
+  margin-top: 1.3rem;
+}
+
 /* Sidebar (Right) */
 .trek-sidebar {
   flex: 1;
@@ -87,6 +93,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
+  margin-top: 1.5rem; /* Added: push images down to align with list item */
 }
 
 .trek-photo-grid img {
@@ -100,7 +107,6 @@
   grid-column: span 2;
   height: 320px;
 }
-
 
 .book-tour-button {
   display: inline-block;
@@ -118,25 +124,57 @@
 .book-tour-button:hover {
   background-color: #a44c10;
 }
-
-
-/* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
+  /* Stack main layout vertically */
   .trek-content {
     flex-direction: column;
+    gap: 2rem;
   }
 
+  /* Article: full width, single column */
   .trek-article {
     column-count: 1;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .trek-photo-grid {
-    grid-template-columns: 1fr 1fr;
+  /* Sidebar: moves below, full width */
+  .trek-sidebar {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1rem;
   }
-}
 
-@media (max-width: 600px) {
+  /* Grid becomes vertical list of uniform-size images */
   .trek-photo-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* All images: uniform height, full width */
+  .trek-photo-grid img,
+  .trek-photo-wide {
+    width: 100% !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+    display: block;
+  }
+
+  /* Book button full width */
+  .book-tour-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  /* Remove forced column break on highlights */
+  .trek-highlights li:nth-child(10) {
+    break-before: auto;
+    margin-top: 0;
   }
 }

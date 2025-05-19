@@ -1,5 +1,73 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="trek-container trek-vip">
 
+  <!-- Page Title -->
+  <h1 class="trek-title">VIP Tour</h1>
+  <p class="trek-subtitle">🌟 Socotra in Comfort: 8-Day Hotel-Based Island Tour</p>
+
+  <div class="trek-content">
+    <!-- Main Article -->
+    <article class="trek-article">
+      <h2 class="trek-section-title">🏝️ What You’ll Experience</h2>
+      <p>
+        For travelers who want to explore the island’s wild beauty by day — and relax in hotel comfort by night.
+        This all-inclusive journey blends daily adventures with air-conditioned rooms and delicious restaurant meals,
+        ideal for those who want it all: nature, discovery, and ease.
+      </p>
+      <p>
+        We follow a carefully designed itinerary based on years of local insight, but we stay flexible —
+        adjusting for weather and avoiding crowds to give you the best experience possible.
+      </p>
+     <h3 class="trek-section-title">🌍 Tour Highlights</h3>
+      <ul class="trek-highlights">
+        <li><strong>Fermhin Forest:</strong> Dragon’s Blood tree grove</li>
+        <li><strong>Detwah Lagoon:</strong> “Magic Eye” turquoise bay</li>
+        <li><strong>Shoab Beach:</strong> Remote beach, dolphin sightings*</li>
+        <li><strong>Diksam Plateau:</strong> Highland canyon views</li>
+        <li><strong>Homhil Infinity Pool:</strong> Cliffside natural spring</li>
+        <li><strong>Wadi Kalisan:</strong> Socotra’s largest freshwater pool</li>
+        <li><strong>Arher Beach:</strong> Cliffs, dunes, and rivers meet</li>
+        <li><strong>Ras Erissel:</strong> Ocean and sea convergence</li>
+        <li><strong>Zahag Dunes:</strong> Towering golden dunes</li>
+        <li><strong>Hoq & Dugub Caves:</strong> Limestone caverns</li>
+        <li><strong>Amak Beach:</strong> Hidden Indian Ocean gem + campsite option</li>
+        <li><strong>Dihamri Marine Reserve:</strong> Snorkel with coral reef life</li>
+      </ul>
+
+      <h3 class="trek-section-title">✅ What’s Included</h3>
+      <ul class="trek-includes">
+        <li>Round-trip flight from Abu Dhabi + visa</li>
+        <li>8-day guided tour / 7 nights hotel (AC, private room)</li>
+        <li>New 4x4 Toyota Land Cruiser (3 guests max)</li>
+        <li>English-speaking local guide</li>
+        <li>All meals in restaurants + snacks, water, fruit</li>
+        <li>Camping gear for nature lunches</li>
+        <li>Permits and protected area fees</li>
+        <li>Boat trip to Shoab Beach (weather permitting)</li>
+        <li>*Also available in 5-day or 11-day versions</li>
+      </ul>
+
+      <h3 class="trek-section-title">🗓️ More Options</h3>
+      <ul class="trek-options">
+        <li>5-Day / 4-Night condensed version</li>
+        <li>8-Day / 7-Night basic version</li>
+        <li>11-Day / 10-Night extended expedition</li>
+      </ul>
+      <a href="/tour" class="book-tour-button">Book This Tour</a>
+    </article>
+
+    <!-- Sidebar: Image Collage -->
+    <aside class="trek-sidebar">
+      <div class="trek-photo-grid">
+        <img src="{{ url_for('static', filename='images/vip1.jpeg') }}" alt="Socotra Beach">
+        <img src="{{ url_for('static', filename='images/vip2.jpeg') }}" alt="Dragon's Blood Tree">
+        <img src="{{ url_for('static', filename='images/vip3.jpeg') }}" class="trek-photo-wide" alt="Homhil Pool">
+        <img src="{{ url_for('static', filename='images/vip5.jpeg') }}"class="trek-photo-wide" alt="Trakking5">
+      </div>
+    </aside>
+  </div>
+
+</div>
 {% endblock %}

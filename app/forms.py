@@ -73,7 +73,7 @@ class BookingForm(FlaskForm):
 
     number_nights = RadioField(
         'Number of Nights',
-        choices=[('6', '6 Nights'), ('8', '8 Nights'), ('11', '11 Nights')],
+        choices=[('4', '4 Nights'), ('7', '7 Nights'), ('10', '10 Nights')],
         validators=[DataRequired()]
     )
     number_people = IntegerField('Number of People', validators=[DataRequired()])
