@@ -1,5 +1,5 @@
-🧭 Tour
-Tour is a web-based application designed to manage and display virtual tours. Built with Python for the backend and HTML/CSS and JavaScript for the frontend, it offers functionalities to add new tours,
+
+AllThingsSocotra is a web-based application designed to manage and display virtual tours. Built with Python for the backend and HTML/CSS and JavaScript for the frontend, it offers functionalities to add new tours,
 rebuild the tour database, and run the application server.
 
 📂 Project Structure
