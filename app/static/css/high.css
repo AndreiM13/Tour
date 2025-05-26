@@ -1,78 +1,194 @@
+/* =============================
+   Highlight Section: Carousel Feature Blocks
+============================= */
+
 /* Center the title */
 .high-title {
-    margin-top: 23px;
+  margin-top: 7rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8C3B00;
+}
+
+/* Carousel Container */
+.high-carousel-container {
+  position: relative;
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+  min-height: 750px;
+}
+
+/* Carousel Section Padding */
+.high-feature-block {
+  padding: 3rem 0;
+}
+
+/* Slide Wrapper */
+.high-carousel-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+}
+
+.high-carousel-content.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Image Container */
+.high-feature-image {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Image Style */
+.high-feature-image img {
+  width: 650px;
+  height: 650px;
+  border-radius: 0;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Container */
+.high-feature-text {
+  flex: 1 1 300px;
+  font-size: 1.3rem;
+  padding: 4rem 2rem; /* reduced horizontal padding */
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* Headings */
+.high-feature-text h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  color: #8C3B00;
+}
+
+/* Carousel Slide Fade Effect */
+.high-carousel-slide {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.high-carousel-slide.high-active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+/* Carousel Arrow Buttons */
+.high-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+  color: #8C3B00;
+  box-shadow: none;
+}
+
+.high-carousel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.high-prev {
+  left: -0.7rem;
+}
+
+.high-next {
+  right: -0.7rem;
+}
+
+/* ==============================
+   Responsive: Tablets and Below
+=============================== */
+@media (max-width: 1024px) {
+  .high-feature-image img {
+    width: 500px;
+    height: 500px;
+  }
+
+  .high-feature-text {
+    font-size: 1.15rem;
+    padding: 3rem 2rem;
+    max-width: 550px;
+  }
+}
+
+/* ==============================
+   Responsive: Super Mobile-Friendly
+=============================== */
+@media (max-width: 768px) {
+  .high-carousel-content,
+  .high-carousel-content.reverse {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .high-feature-image {
+    order: -1;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .high-feature-image img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 0;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+
+  .high-feature-text {
+    font-size: 1rem;
+    padding: 1.5rem 1.5rem;
+    max-width: 100%;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .high-feature-text h2 {
+    font-size: 1.5rem;
     text-align: center;
-    margin-bottom: 0.2rem;
+    margin-bottom: 1rem;
   }
-  
-  .feature-block {
-    padding: 3rem 0;
+
+  .high-carousel-container {
+    min-height: auto;
+    width: 95%;
   }
-  
-  .feature-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.1rem; /* Reduced gap between image and text */
-  }
-  
-  .feature-content.reverse {
-    flex-direction: row-reverse; /* Alternate the order of image and text */
-  }
-  
-  .feature-image {
-    flex: 1 1 300px;
-    display: flex;
-    justify-content: center; /* Center the image */
-  }
-  
-  .feature-image img {
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    display: block;
-    object-fit: cover;
-  }
-  
-  .feature-text {
-    flex: 1 1 300px;
-    font-size: 1.3rem;
-    padding: 8rem; /* Added padding around the text */
-  }
-  
-  .feature-text h2 {
-    margin-top: 0;
+
+  .high-prev {
+    left: 0;
     font-size: 2rem;
-    margin-bottom: 0.3rem; /* Space between heading and paragraph */
-    text-align: center; /* Center the heading */
+    padding: 0.3rem 0.6rem;
   }
-  
-  /* Responsive styles for smaller screens */
-  @media (max-width: 768px) {
-    .feature-content,
-    .feature-content.reverse {
-      flex-direction: column;
-      gap: 0.25rem; /* Tighter spacing on mobile */
-    }
-  
-    /* Always show image before text on small screens */
-    .feature-image {
-      order: -1;
-    }
-  
-    .feature-image img {
-      width: 300px;
-      height: 300px;
-    }
-  
-    .feature-text {
-      font-size: 1rem;
-      padding: 1rem; /* Maintain padding on smaller screens */
-    }
-  
-    .feature-text h2 {
-      font-size: 1.5rem;
-    }
+
+  .high-next {
+    right: 0;
+    font-size: 2rem;
+    padding: 0.3rem 0.6rem;
   }
-  
+}

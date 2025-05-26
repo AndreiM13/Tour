@@ -1,31 +1,368 @@
-/* Circle container */
-.here-circle {
-    background-color: #8C3B00;
-    color: white;
-    width: 300px;               /* Even larger circle */
-    height: 300px;              /* Even larger circle */
-    border-radius: 50%;
-    padding: 50px;              /* Increased padding for better text fit */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-    display: flex;
-    align-items: center;
+/* ====================================================
+   HERO / BANNER (smaller height – about 120px)
+   ==================================================== */
+.getting-banner {
+  width: 100%;
+  position: relative;
+  margin: 0 0 30px 0;
+}
+
+.getting-banner-img-wrapper {
+  position: relative;
+  width: 600px;
+  height: 420px;
+  overflow: hidden;
+}
+
+.getting-banner-img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+.getting-banner-text-overlay {
+  position: absolute;
+  top: 320px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  padding: 12px 16px;
+  border-radius: 8px;
+  max-width: 90%;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.getting-banner-text-overlay h1 {
+  font-size: 48px;
+  margin-bottom: 14px;
+}
+
+.getting-banner-text-overlay p {
+  font-size: 32px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* ====================================================
+   ROUTE BANNER (full width)
+   ==================================================== */
+.route-banner {
+  width: 100%;
+}
+
+.route-banner__img {
+  margin: 0;
+  width: 100%;
+  height: 850px;
+  object-fit: cover;
+  display: block;
+}
+/* ====================================================
+   "GETTING" TABLE STYLES
+   ==================================================== */
+.getting-table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 1rem 4rem 3rem 19rem;  /* 2rem top, 4rem right, 3rem bottom, 4rem left */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: none;
+}
+
+.getting-table tr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  gap: 1rem;   /* base gap, overridden in info rows */
+}
+
+/* Bring headers closer to their info rows */
+.getting-table tr.row-fly-header,
+.getting-table tr.row-weekly-header,
+.getting-table tr.row-airport-header {
+  padding-bottom: 0.5rem;
+}
+
+/* Info rows: larger gap between icon and description */
+.getting-table tr.row-fly-info,
+.getting-table tr.row-weekly-info,
+.getting-table tr.row-airport-info {
+  gap: 2.5rem;
+}
+
+.getting-table td {
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  vertical-align: top;
+  font-size: 1.75rem;
+}
+
+/* Headings */
+.getting-table h2,
+.getting-table h3 {
+  color: #5c2e00;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+  font-size: 2.2rem;
+}
+
+/* Tighten title bottom margin */
+.cell-fly-title h2,
+.cell-weekly-title h3,
+.cell-airport-title h3 {
+  margin-bottom: 0.25rem;
+}
+
+.getting-table p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+.getting-table .emoji {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  font-weight: normal;
+}
+
+/* TABLE CELL STRUCTURE FOR ICON + GAP + DESCRIPTION */
+.cell-fly-description,
+.cell-weekly-description,
+.cell-airport-description {
+  flex: 1 1 auto;
+  max-width: 900px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.cell-fly-calls,
+.cell-weekly-calls {
+  width: 30px;
+  min-width: 30px;
+  flex-shrink: 0;
+}
+
+/* Increased spacer for airport row */
+.cell-airport-calls {
+  width: 60px;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.cell-fly-icon,
+.cell-weekly-icon,
+.cell-airport-icon {
+  min-width: 120px;
+  max-width: 120px;
+  flex: 0 0 120px;
+  white-space: nowrap;
+  text-align: right;
+  font-weight: bold;
+  color: #5c2e00;
+}
+
+/* ====================================================
+   VISA / TIPS CARDS
+   ==================================================== */
+.getting-main__visa-travel-tips-wrapper {
+  max-width: 950px;
+  margin: 0 auto 3rem auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 0 1rem;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Visa card wider on desktop */
+.getting-main__visa {
+  flex: 0 0 400px;    /* increased from 280px */
+  background-color: #fff8f2;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(224, 122, 95, 0.15);
+  font-size: 1.6rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Travel cards unchanged */
+.travel-card {
+  flex: 0 0 280px;
+  background-color: #fff8f2;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(224, 122, 95, 0.15);
+  font-size: 1.6rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Container for the two travel cards */
+.getting-main__travel-tips {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+}
+
+/* Headings */
+.getting-main__visa h4,
+.travel-card h4 {
+  color: #5c2e00;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Smaller card images */
+.travel-card__img {
+  width: 60px;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem auto;
+  display: block;
+}
+
+/* Responsive fallback */
+@media (max-width: 768px) {
+  .getting-main__visa-travel-tips-wrapper {
+    flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .getting-main__visa,
+  .travel-card {
+    flex: 1 1 100%;
+  }
+
+  .getting-main__travel-tips {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+
+/* ====================================================
+   HOW TO GET HERE SECTION
+   ==================================================== */
+.getting-howto {
+  max-width: 950px;
+  margin: 0 auto 4rem auto;
+  padding: 0 1rem;
+}
+
+.getting-howto h2 {
+  font-size: 2.5rem;
+  color: #5c2e00;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.getting-howto__list {
+  list-style: none;
+  padding: 0;
+}
+
+.getting-howto__list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+}
+
+.getting-howto__icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 1.5rem;
+}
+
+/* ====================================================
+   MOBILE RESPONSIVE STYLES
+   ==================================================== */
+@media (max-width: 768px) {
+  /* Table */
+  .getting-table {
+    font-size: 1.2rem;  /* decreased from 1.5rem */
+    margin: 1rem 0 2rem 0;
+    border-radius: 8px;
+    width: 100%;
+    gap: 1.5rem;
+  }
+
+  .getting-table tr {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .getting-table .emoji {
+    font-size: 1.2rem;  /* decreased from 1.5rem */
+  }
+
+  /* Icon & spacer hidden or reset */
+  .cell-fly-icon,
+  .cell-weekly-icon,
+  .cell-airport-icon {
+    text-align: left;
+    margin-top: 0.5rem;
+    flex: none;
+    font-size: 1.2rem;  /* ensure icon text matches */
+  }
+
+  .cell-fly-calls,
+  .cell-weekly-calls,
+  .cell-airport-calls {
+    display: none;
+  }
+
+  /* Description full width */
+  .cell-fly-description,
+  .cell-weekly-description,
+  .cell-airport-description {
+    max-width: 100%;
+  }
+
+  /* Visa & Tips stack vertically */
+  .getting-main__visa-travel-tips-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .getting-main__visa,
+  .travel-card {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.2rem;  /* decreased from 1.6rem */
+  }
+
+  .getting-main__travel-tips {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* How-to list stacks */
+  .getting-howto__list li {
+    flex-direction: column;
     text-align: center;
-    box-sizing: border-box;
-    overflow: hidden;           /* Prevents spill */
-    position: relative;
+    gap: 0.5rem;
+    font-size: 1.2rem;  /* decreased from 1.6rem */
+  }
+
+  .getting-howto__icon {
+    margin: 0 0 1rem 0;
+    width: 48px;        /* slightly smaller icon */
+    height: 48px;
+  }
 }
 
-/* Inner text styling */
-.here-circle p {
-    font-size: 1.2em;           /* Larger font size for better readability */
-    line-height: 1.4em;         /* Better line spacing */
-    max-height: 80%;            /* Ensures vertical fit */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-}
-.title-here{
-
-    color: #8C3B00;
-}

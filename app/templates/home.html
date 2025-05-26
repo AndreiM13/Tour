@@ -8,29 +8,31 @@
             <div class="carousel-item active">
                 <img src="{{ url_for('static', filename='images/carusel1.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <h2 class="first-card">Socotra doesn’t pretend to be wild—it just is.</h2>
+                    <p class="first-card">Socotra doesn’t pretend to be wild—it just is.</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{ url_for('static', filename='images/carusel2.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <h2 class="second-card">This island doesn’t care who you are. 
-                        But it might change who you become</h2>
+                    <p class="second-card">This island doesn’t care who you are. </p>
+                        <p class="second-card2">But it might change who you become</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{ url_for('static', filename='images/carusel3.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <h2 class="third-card">Travel with a team that respects the island and the people who call it home.</h2>
+                    <p class="third-card">Travel with a team that respects the island </p>
+                        <p class="third-card2">and the people who call it home.</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{ url_for('static', filename='images/carusel4.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <h2 class="forth-card">Book your tour now and join us for the adventure of a lifetime</h2>
+                    <p class="forth-card">Book your tour now and join us </p>
+                    <p class="forth-card2">for the adventure of a lifetime</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
@@ -175,11 +177,11 @@
     </div>
 
     <!-- Pagination Controls -->
-    <nav aria-label="Page navigation" style="margin-top: 1em;">
+        <nav aria-label="Page navigation" style="margin-top: 1em;">
         <ul class="pagination justify-content-center">
             {% if departures.has_prev %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('home', page=departures.prev_num) }}" aria-label="Previous">
+                <a class="page-link" href="{{ url_for('home', page=departures.prev_num) }}#exp-table" aria-label="Previous">
                     &laquo; Prev
                 </a>
             </li>
@@ -195,7 +197,7 @@
 
             {% if departures.has_next %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('home', page=departures.next_num) }}" aria-label="Next">
+                <a class="page-link" href="{{ url_for('home', page=departures.next_num) }}#exp-table" aria-label="Next">
                     Next &raquo;
                 </a>
             </li>
@@ -206,6 +208,8 @@
             {% endif %}
         </ul>
     </nav>
+
+
 </section>
 
 
@@ -229,6 +233,38 @@ rich traditions, and the soul of the island. Their deep respect for this land en
 </div>
 
   </section>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.querySelector('.exp-table-section');
+
+  function interceptPagination() {
+    document.querySelectorAll('.page-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const url = this.getAttribute('href');
+
+        fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newSection = doc.querySelector('.exp-table-section');
+
+            if (newSection) {
+              container.innerHTML = newSection.innerHTML;
+              interceptPagination(); // Re-bind events after DOM update
+            }
+          });
+      });
+    });
+  }
+
+  interceptPagination();
+});
+</script>
 
 
 

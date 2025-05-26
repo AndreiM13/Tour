@@ -1,5 +1,69 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="aqua-container">
 
+  <!-- Page Title -->
+  <h1 class="aqua-title">Beach Lover</h1>
+  <p class="aqua-subtitle">For ocean lovers: wild beaches, snorkeling, and coastal charm</p>
+
+  <div class="aqua-content">
+    <!-- Main Article -->
+    <article class="aqua-article">
+      <h2 class="aqua-section-title">🌊 Coastal Wonders Await</h2>
+      <p>
+        This 8-day program is tailored for water and beach enthusiasts who prefer the rhythm of the waves over hiking trails. Discover Socotra’s breathtaking coastline, explore ancient fishing villages, and relax under the open sky in remote campsites.
+      </p>
+      <p>
+        From snorkeling with vibrant marine life to walking barefoot on untouched beaches, this adventure blends relaxation with exploration in a truly unique setting.
+      </p>
+      <p><strong>Note:</strong> This tour is designed for those who love the sea. Minimal hiking involved, maximum immersion in turquoise waters.</p>
+
+      <h3 class="aqua-section-title">🏝️ Coastal Highlights</h3>
+      <ul class="aqua-highlights">
+        <li><strong>Detwah Lagoon:</strong> “Magic Eye” — white sand and turquoise water.</li>
+        <li><strong>Qalansyia:</strong> Fishing town, bottle trees, and stunning sunsets.</li>
+        <li><strong>Shoab Beach:</strong> Snorkeling or fishing by boat.</li>
+        <li><strong>Dirhour Canyon:</strong> <em>Lorem ipsum dolor sit amet.</em></li>
+        <li><strong>Varmhan Reserve:</strong> Home to the iconic Dragon’s Blood Trees.</li>
+        <li><strong>Arher Beach:</strong> Climb the 300m dune and swim in natural pools.</li>
+        <li><strong>Kleesen Pool:</strong> The best natural swimming spot on the island.</li>
+        <li><strong>Dihamri Marine Reserve:</strong> Snorkel and relax by the sea.</li>
+        <li><strong>Delisha Beach:</strong> Overnight under the stars after a marine day.</li>
+      </ul>
+
+      <h3 class="aqua-section-title">✅ What’s Included</h3>
+      <ul class="aqua-includes">
+        <li>8 days of guided marine-focused exploration</li>
+        <li>Local guides and boat crew</li>
+        <li>Snorkeling and basic fishing gear</li>
+        <li>4x4 vehicles for inland access</li>
+        <li>All meals, water, and snacks included</li>
+        <li>Camping equipment provided</li>
+        <li>Permits and entry fees</li>
+        <li>Boat trip to Shoab Beach</li>
+      </ul>
+
+      <h3 class="aqua-section-title">🗓️ More Options</h3>
+      <ul class="aqua-options">
+        <li>5-Day / 4-Night compact beach retreat</li>
+        <li>8-Day / 7-Night standard tour</li>
+        <li>11-Day / 10-Night coastal expedition</li>
+      </ul>
+      <a href="/tour#booking-form-tour" class="reserve-tour-button">Book This Tour</a>
+    </article>
+
+    <!-- Sidebar: Image Collage -->
+    <aside class="aqua-sidebar">
+      <div class="aqua-photo-grid">
+        <img src="{{ url_for('static', filename='images/beach1.jpeg') }}" alt="Beach1">
+        <img src="{{ url_for('static', filename='images/beach2 (2).jpeg') }}" alt="Beach2">
+        <img src="{{ url_for('static', filename='images/beach3 (2).jpeg') }}" alt="Beach3">
+        <img src="{{ url_for('static', filename='images/beach4 (2).jpeg') }}" alt="Beach4">
+        <img src="{{ url_for('static', filename='images/beach5.jpeg') }}" class="aqua-photo-wide" alt="Beach5">
+      </div>
+    </aside>
+  </div>
+
+</div>
 {% endblock %}

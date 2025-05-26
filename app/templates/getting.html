@@ -1,43 +1,133 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="here">
-    <h1 class="title-here">How to get here?</h1>
 
-    <div class="here-content">
-        <!-- First circle with original content -->
-        <div class="here-circle">
-            <p>Get in touch to arrange the tour by selection one of our packages
-            </p>
-        </div>
-
-        <!-- Second circle with original content -->
-        <div class="here-circle">
-            <p>You will begin the process of getting here by sending us a small down payment and a picture of your passport.
-                These necessities will be used to secure your tourist visa and flight from Abu Dhabi to Socotra.
-                
-         </p>
-        </div>
-
-        <!-- Third and fourth circles (empty for now) -->
-        <div class="here-circle">
-
-            <p>   A few weeks before your departure time, we will start processing the visa. 
-                *Your visa will arrive via email 2 weeks before departure to Abu Dhabi.
-                 You will need to have this printed and bring it along with your passport on the island 
-                </p>
-        </div>
-
-        <div class="here-circle">
-
-            <p>
-                Pack your bags and fly to Abu Dhabi (the flight from your home to Abu Dhabi is not included). 
-                We advise you to arrive a day before flying to Socotra and leave enough time between your flight to 
-                Abu Dhabi and the one to Socotra in case of any delays,etc.
-    
-            </p>
-        </div>
-
-    </div>
+<!-- Banner with overlay text -->
+<div class="getting-banner">
+  <img src="{{ url_for('static', filename='images/airplane_wing.png') }}" alt="Airplane Wing" class="getting-banner-img" />
+  <div class="getting-banner-text-overlay">
+    <h1>Getting to Socotra</h1>
+    <p>Flights, visas, and insider tips for a smooth arrival</p>
+  </div>
 </div>
+
+<div class="getting-main">
+
+
+  <table class="getting-table">
+
+    <tr class="row-fly-header">
+      <td colspan="3" class="cell-fly-title"><h2>Fly via Abu Dhabi</h2></td>
+    </tr>
+
+    <tr class="row-fly-info">
+     
+      <td class="cell-fly-description"><p>We support you to purchase your flight from Abu Dhabi to Socotra.</p></td>
+      <td class="cell-fly-calls"></td>
+       <td class="cell-fly-icon"><span class="emoji" aria-label="Airplane">✈️</span> <strong>AUH → SCT</strong></td> 
+    </tr>
+
+    <tr class="row-weekly-header">
+      <td colspan="3" class="cell-weekly-title"><h3>Weekly Charter Flight</h3></td>
+    </tr>
+
+    <tr class="row-weekly-info">
+       <td class="cell-weekly-description"><p>Two flights per week operate to Socotra (Tuesdays and Fridays).</p></td>
+       <td class="cell-weekly-calls"></td>
+      <td class="cell-weekly-icon"><span class="emoji" aria-label="Calendar">📅</span> Tuesdays & Fridays</td> 
+      
+     
+    </tr>
+
+    <tr class="row-airport-header">
+      <td colspan="3" class="cell-airport-title"><h3>Airport Code</h3></td>
+    </tr>
+
+    <tr class="row-airport-info">
+      <td class="cell-airport-description"><p>Arrival: Socotra Airport (SCT), Departure: Abu Dhabi (AUH)</p></td>
+       <td class="cell-airport-calls"></td>
+      <td class="cell-airport-icon"><span class="emoji" aria-label="Clock">⏰</span> Flight duration ~2.5 hours</td> 
+     
+
+    </tr>
+
+  </table>
+
+
+
+      <!-- Visa & Travel Tips Cards -->
+      <div class="getting-main__visa-travel-tips-wrapper">
+        <div class="getting-main__visa card">
+          <h4>Visa & Documentation</h4>
+          <p>Visa (150 USD) required with all tours</p>
+          <p>Passport must be valid for 6+ months</p>
+          <p>We handle all visa related formalities. You just sit and enjoy!</p>
+        </div>
+
+        <div class="getting-main__travel-tips">
+          <div class="travel-card">
+            <h4>Pack light but smart</h4>
+            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Backpack" class="travel-card__img" />
+            <p>Desert sun, ocean spray,<br>mountain chill—we’ll send a list.</p>
+          </div>
+
+          <div class="travel-card">
+            <h4>Local SIM & Cash</h4>
+            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="SIM and Cash" class="travel-card__img" />
+            <p>No roaming. Cash is king—we’ll guide you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ROUTE BANNER -->
+<div class="route-banner">
+  <img src="{{ url_for('static', filename='images/socotra_pin.png') }}" alt="Way to Socotra" class="route-banner__img" />
+</div>
+
+<!-- HOW TO GET HERE STEPS -->
+<div class="getting-howto">
+  <h2>How to Get Here</h2>
+  <ul class="getting-howto__list">
+    <li>
+      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 1" class="getting-howto__icon" />
+      <p>Choose a tour package and get in touch.</p>
+    </li>
+    <li>
+      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 2" class="getting-howto__icon" />
+      <p>Send a down payment and passport scan to reserve your spot.</p>
+    </li>
+    <li>
+      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 3" class="getting-howto__icon" />
+      <p>We’ll process your visa and send it to your email.</p>
+    </li>
+    <li>
+      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 4" class="getting-howto__icon" />
+      <p>Fly to Abu Dhabi a day or two before your Socotra flight.</p>
+    </li>
+  </ul>
+</div>
+
+<!-- Mobile card carousel script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.innerWidth > 768) return; // Only run on mobile
+
+  const cards = document.querySelectorAll('.getting-main__visa, .travel-card');
+  if (!cards.length) return;
+
+  let index = 0;
+  const scrollDelay = 4000;
+
+  cards.forEach(card => card.style.display = 'none');
+  cards[index].style.display = 'block';
+
+  setInterval(() => {
+    cards[index].style.display = 'none';
+    index = (index + 1) % cards.length;
+    cards[index].style.display = 'block';
+  }, scrollDelay);
+});
+</script>
+
 {% endblock %}

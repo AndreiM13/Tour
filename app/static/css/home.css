@@ -26,26 +26,40 @@ CAROUSEL SECTION
   border-radius: 10px;
   width: fit-content;
   max-width: 90%;
+
+  display: flex;
+  flex-direction: column; /* stack text and button vertically */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
-.carousel-caption h2 {
-  white-space: nowrap;
-  font-size: 2rem;
+/* Make paragraphs inline and centered on desktop */
+.carousel-caption p.first-card,
+.carousel-caption p.second-card,
+.carousel-caption p.second-card2,
+.carousel-caption p.third-card,
+.carousel-caption p.third-card2,
+.carousel-caption p.forth-card,
+.carousel-caption p.forth-card2 {
+  font-size: 2.5rem;
   font-weight: bold;
-  text-shadow: none;
-  max-width: 100%;
-}
-
-/* Individual heading styles (optional for future use) */
-.carousel-caption h2.first-card,
-.carousel-caption h2.second-card,
-.carousel-caption h2.third-card,
-.carousel-caption h2.forth-card {
+  margin: 0;
   white-space: nowrap;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  text-align: center;
 }
 
+/* Wrap pairs of paragraphs in a flex container using CSS only */
+/* Use a trick: select pairs of paragraphs inside .carousel-caption and set them inline and aligned */
+
+.carousel-caption p + p {
+  margin-left: 20px; /* spacing between two paragraphs */
+}
+
+/* The button stays below text */
 .carousel-book-btn {
   background-color: #2C6A84;
   color: white;
@@ -57,6 +71,8 @@ CAROUSEL SECTION
   text-decoration: none;
   display: inline-block;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  margin-top: 0; /* no extra top margin, spacing handled by gap */
 }
 
 .carousel-book-btn:hover {
@@ -66,16 +82,7 @@ CAROUSEL SECTION
   color: white;
 }
 
-/* ========================
-Responsive carousel styles
-======================== */
-
-@media (max-width: 992px) {
-  .carousel-caption h2 {
-    font-size: 2.5rem;
-  }
-}
-
+/* Responsive carousel styles */
 @media (max-width: 768px) {
   .carousel-item img {
     height: 400px;
@@ -83,27 +90,53 @@ Responsive carousel styles
 
   .carousel-caption {
     padding: 15px 20px;
+    flex-direction: column !important; /* stack all vertically on smaller screens */
   }
 
-  .carousel-caption h2 {
-    font-size: 2rem;
+  .carousel-caption p.first-card,
+  .carousel-caption p.second-card,
+  .carousel-caption p.second-card2,
+  .carousel-caption p.third-card,
+  .carousel-caption p.third-card2,
+  .carousel-caption p.forth-card,
+  .carousel-caption p.forth-card2 {
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+    white-space: normal; /* allow wrap */
+    margin: 3px 0;        /* less vertical margin */
+    display: block;       /* stack paragraphs vertically */
+    text-align: center;
+    line-height: 1.2em;   /* tighter line height */
+    max-lines: 2;         /* limit to 2 lines max (supported in some browsers) */
+    overflow-wrap: break-word;
   }
 
+  .carousel-caption p + p {
+    margin-left: 0; /* remove side margin */
+  }
+
+  .carousel-book-btn {
+    margin-top: 8px;
+    white-space: normal;
+  }
 }
 
 @media (max-width: 480px) {
-  .carousel-caption h2.first-card,
-  .carousel-caption h2.second-card,
-  .carousel-caption h2.third-card,
-  .carousel-caption h2.forth-card {
-    font-size: clamp(0.6rem, 3.5vw, 1.2rem); /* auto-resize based on screen width */
-    white-space: nowrap;                     /* one line only */
-    max-width: 100vw;                        /* stay within screen */                       /* avoid spilling out */
-    text-overflow: clip;                     /* show full line, no ... */
-    margin: 0 auto;                          /* center it */
-    line-height: 1.2;
+  .carousel-caption p.first-card,
+  .carousel-caption p.second-card,
+  .carousel-caption p.second-card2,
+  .carousel-caption p.third-card,
+  .carousel-caption p.third-card2,
+  .carousel-caption p.forth-card,
+  .carousel-caption p.forth-card2 {
+    font-size: clamp(0.7rem, 3.5vw, 1rem);
+    white-space: nowrap; /* try to keep text in one line */
+    overflow-wrap: normal;
+    line-height: 1.2em;
+    margin: 2px 0;
   }
 }
+
+
 
 /* ============================================================
 TOURS SECTION
@@ -580,4 +613,5 @@ MINOR IMPROVEMENTS / CONSISTENCY
     font-size: 0.85rem;
   }
 }
+
 
