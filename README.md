@@ -69,5 +69,5 @@ LinkedIn
 
 📄 License
 All rights reserved to AllThingsSocotra.
-This project does not currently specify an open-source license. Please get in touch with the repository owner for more information regarding usage and distribution.
+This project does not currently specify an open-source license. Please contact the repository owner for more information regarding usage and distribution.
 
