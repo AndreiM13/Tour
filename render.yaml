@@ -6,5 +6,5 @@ services:
     startCommand: gunicorn app:app
     disk:
       name: data-disk
-      mountPath: /data
+      mountPath: /new_data
       sizeGB: 1
