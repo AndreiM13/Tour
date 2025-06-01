@@ -15,7 +15,7 @@ load_dotenv()
 # Configure app
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tours.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////data/tours.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////new_data/tours.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
