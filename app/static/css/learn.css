@@ -86,7 +86,13 @@
   margin-bottom: 0.5rem;
 }
 
-/* Small adjustment: Force a specific item to break columns */
+/* ✅ FIX: Move 'Dirhour Canyon' item lower to align with section heading */
+.aqua-highlights li:nth-child(4) {
+  break-before: column;
+  margin-top: 2.2rem; /* Adjust to fine-tune vertical alignment */
+}
+
+/* Force 10th item to new column */
 .trek-highlights li:nth-child(10),
 .aqua-highlights li:nth-child(10) {
   break-before: column;
@@ -201,6 +207,12 @@
 
   .trek-highlights li:nth-child(10),
   .aqua-highlights li:nth-child(10) {
+    break-before: auto;
+    margin-top: 0;
+  }
+
+  /* Reset extra margin in mobile for Dirhour Canyon */
+  .aqua-highlights li:nth-child(4) {
     break-before: auto;
     margin-top: 0;
   }

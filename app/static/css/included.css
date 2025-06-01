@@ -47,6 +47,10 @@
   color: #444;
   line-height: 1.5;
   min-height: 100px;
+
+  width: 200px;     /* or max-width */
+  text-align: left;
+  margin-left: auto;
 }
 
 .tour-btn {

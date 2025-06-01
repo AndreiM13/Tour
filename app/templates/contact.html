@@ -1,32 +1,39 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="contact-page">
-  <h1 class="contact-title">Our Contact</h1>
+<section class="bg-imgae-contact">
 
-  <div class="contact-form-container">
-    <div class="contact-form-box">
-      <h3 class="contact-subtitle">Ask Us a Question</h3>
-      <form action="https://formsubmit.co/info@allthings-socotra.com" method="POST" class="contact-form">
-        <label for="name">Your Name</label>
-        <input type="text" name="name" required>
+  <!-- Image container with banner background -->
+  <div class="image-div-contact">
+    <img src="{{ url_for('static', filename='images/hawk.png') }}" alt="Hawk with scroll" class="div-contact-img">
 
-        <label for="email">Your Email</label>
-        <input type="email" name="email" required>
+    <!-- Text and form overlay -->
+    <div class="div-text-contact">
 
-        <label for="message">Your Message</label>
-        <textarea name="message" required></textarea>
+      <div class="text-box">
+        <h1 class="contact-title"><strong>Get in Touch</strong></h1>
+        <p class="contact-description">
+          Have questions about visiting Socotra or booking a custom tour? 
+        </p>   
+        <p>Fill out the form and we’ll get back to you soon.</p>
+      </div>
 
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
+      <div class="contact-form-wrapper">
+        <form action="https://formsubmit.co/info@allthings-socotra.com" method="POST" class="contact-form">
+          <label for="name">Full Name</label>
+          <input type="text" name="name" required>
 
-    <div class="contact-info-box">
-      <p><strong>Email:</strong> info@allthings-socotra.com</p>
-      <p><strong>Phone:</strong> +447353862943</p>
-      <p><strong>Location:</strong> Example Location, City</p>
+          <label for="email">Email</label>
+          <input type="email" name="email" required>
+
+          <label for="message">Your Message</label>
+          <textarea name="message" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
     </div>
   </div>
-</div>
-
+</section>
 {% endblock %}

@@ -10,8 +10,16 @@ import matplotlib.pyplot as plt
 import io
 import base64
 import json
-# from flask_mail import Message
-# from app import mail  # Assuming 'mail' is imported from your app
+from math import ceil
+from flask_mail import Message
+from app import mail  # Assuming 'mail' is imported from your app
+from threading import Thread
+
+
+def send_async_email(app, msg):
+    with app.app_context():
+        mail.send(msg)
+
 
 
 #Home Route
@@ -19,16 +27,32 @@ import json
 @app.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
-    per_page = 5
+    per_page = 5  # Number of unique dates per page
 
-    pagination = Departure.query.join(Tour).order_by(Departure.date).paginate(page=page, per_page=per_page)
+    # Fetch and group departures by date
+    all_departures = Departure.query.join(Tour).order_by(Departure.date).all()
 
-    for dep in pagination.items:
+    grouped = defaultdict(list)
+    for dep in all_departures:
         dep.spots_left = dep.calculate_spots_left()
+        grouped[dep.date].append(dep)
 
-    tour_title = request.args.get('tour_title', '')
+    # Sorted list of tuples: (date, [departures_on_date])
+    grouped_departures = sorted(grouped.items(), key=lambda x: x[0])
 
-    return render_template("home.html", departures=pagination, tour_title=tour_title)
+    # Paginate the grouped list
+    total_dates = len(grouped_departures)
+    total_pages = ceil(total_dates / per_page)
+    start = (page - 1) * per_page
+    end = start + per_page
+    current_page_items = grouped_departures[start:end]
+
+    return render_template(
+        "home.html",
+        grouped_departures=current_page_items,
+        current_page=page,
+        total_pages=total_pages
+    )
 
 
 
@@ -224,8 +248,6 @@ def tour():
     # Prepare available departure dates from the database (next 14 days or more)
     from datetime import date, timedelta
     upcoming_departures = Departure.query.filter(Departure.date >= date.today()).order_by(Departure.date).all()
-    
-    # ❌ Removed: form.departure_id.choices = ...
 
     # Optional: fallback for available_dates for front-end use (if still needed)
     available_dates = [
@@ -244,7 +266,6 @@ def tour():
 
     # Pre-fill the departure_id if coming from homepage with a departure link
     preselected_departure_id = request.args.get("departure_id")
-    # ❌ Removed: form.departure_id.data = int(preselected_departure_id)
 
     if request.method == "POST":
         # ✅ Manually retrieve departure ID from hidden field
@@ -256,31 +277,23 @@ def tour():
             return redirect(url_for('tour'))
 
         selected_departure = Departure.query.get(departure_id)
-        # Fix: convert datetime.datetime to datetime.date for comparison
         if not selected_departure or selected_departure.date.date() < date.today():
             flash("Selected departure date is invalid or in the past.", "danger")
             return redirect(url_for('tour'))
 
         if form.validate_on_submit():
-            # Find all available tours
             available_tours = Tour.query.filter_by(status="available").all()
-
             if not available_tours:
                 flash('No available tours. Please add a tour first.', 'danger')
                 return redirect(url_for('home'))
 
-            # For simplicity, let's select the first available tour
             available_tour = available_tours[0]
-
-            # Automatically select the first admin (assuming admin exists)
             admin = Admin.query.first()
 
-            # If no admin is found, show an error
             if not admin:
                 flash('No admin found. Please add an admin first.', 'danger')
                 return redirect(url_for('home'))
 
-            # ✅ Use manually validated `selected_departure`
             new_booking = Booking(
                 client_name=form.client_name.data,
                 client_email=form.client_email.data,
@@ -292,45 +305,87 @@ def tour():
                 tour_type=form.tour_type.data,
                 admin_id=admin.id,
                 tour_id=available_tour.id,
-                departure_id=selected_departure.id   # <---- add this line
+                departure_id=selected_departure.id
             )
 
-
             try:
-                db.session.add(new_booking)  # Add the new booking to the session
-                db.session.commit()  # Commit the changes to the database
+                db.session.add(new_booking)
+                db.session.commit()
 
-                # Send email to admin notifying about the new booking
-                # admin_email = "admin@example.com"  # Replace with actual admin email
-                # admin_msg = Message("New Booking Received", recipients=[admin_email])
-                # admin_msg.body = f"""New booking received!
-                # ...
-                # """
-                # mail.send(admin_msg)
+                # Tour type name mapping
+                tour_type_names = {
+                    "trekking": "Trekking Tour",
+                    "full_island": "Full Island Tour",
+                    "beach": "Beach Lover Tour",
+                    "vip": "The VIP Tour"
+                }
+                tour_type_display = tour_type_names.get(form.tour_type.data, "Your Selected Tour")
 
-                # Send personalized confirmation email to the client
-                # client_msg = Message("Your Booking Confirmation", recipients=[form.client_email.data])
-                # client_msg.body = f"""Dear {form.client_name.data},
-                # ...
-                # """
-                # mail.send(client_msg)
+                # Admin email
+                admin_email = "info@allthings-socotra.com"
+                admin_msg = Message(
+                    "New Booking Received",
+                    sender=app.config['MAIL_USERNAME'],
+                    recipients=[admin_email]
+                )
+                admin_msg.body = f"""New booking received!
+
+Client Name: {form.client_name.data}
+Email: {form.client_email.data}
+Phone: {form.phone_number.data}
+Country Code: {form.country_code.data}
+Tour Type: {form.tour_type.data}
+Number of People: {form.number_people.data}
+Number of Nights: {form.number_nights.data}
+Departure Date: {selected_departure.date.strftime('%Y-%m-%d')}
+
+Please log into the admin panel to view more details.
+"""
+
+                # Client email (with formatted tour type name)
+                client_msg = Message(
+                    "Your Booking Confirmation",
+                    sender=app.config['MAIL_USERNAME'],
+                    recipients=[form.client_email.data]
+                )
+                client_msg.html = f"""
+                                <html>
+                                <body style="font-family: Arial, sans-serif; color: #333;">
+                                    <h2 style="color: #2a7ae2;">Thank you for booking your tour with us!</h2>
+                                    <p>Dear {form.client_name.data},</p>
+                                    <p>Here are your booking details:</p>
+                                    <ul>
+                                        <li><strong>Tour Type:</strong> {tour_type_display}</li>
+                                        <li><strong>Number of People:</strong> {form.number_people.data}</li>
+                                        <li><strong>Departure Date:</strong> {selected_departure.date.strftime('%Y-%m-%d')}</li>
+                                    </ul>
+                                    <p>Please keep an eye on your inbox (and check your spam/junk folder just in case).</p>
+                                    <p>You will soon receive a detailed itinerary, pricing information, and any special offers we may have for your tour. 😉</p>
+                                    <br>
+                                    <p>Best regards,<br><strong>All Things Socotra Team</strong></p>
+                                    <img src="https://raw.githubusercontent.com/AndreiM13/Tour/main/app/static/images/logo.png" alt="All Things Socotra Logo" style="margin-top: 10px; height: 40px; width:40px;">
+                                </body>
+                                </html>
+                                """
+
+
+                # Sending emails asynchronously
+                Thread(target=send_async_email, args=(app, admin_msg)).start()
+                Thread(target=send_async_email, args=(app, client_msg)).start()
 
                 flash('Booking successful! A confirmation email has been sent to you.', 'success')
                 return redirect(url_for('success'))
 
             except Exception as e:
-                db.session.rollback()  # Rollback the session in case of an error
-                # print("Booking error:", e) #delete this
+                db.session.rollback()
                 flash('An error occurred while processing your booking. Please try again later.', 'danger')
                 return redirect(url_for('tour'))
 
-    # Pass available_dates, departures_json, and tour_title to template for calendar control and JS
-    return render_template('tour.html', 
-                           form=form, 
-                           available_dates=available_dates, 
+    return render_template('tour.html',
+                           form=form,
+                           available_dates=available_dates,
                            departures_json=departures_json,
                            tour_title=tour_title)
-
 
 
 
@@ -386,19 +441,21 @@ def delete_all_bookings():
     return redirect(url_for('account'))
 
 
+@app.route('/tour/trekking')
+def trekking_tour():
+    return render_template('tour_trekking.html')
 
 
-@app.route('/tour/photographer')
-def photographer_tour():
-    return render_template('tour_trakking.html')
 
-@app.route('/tour/explorer')
-def explorer_tour():
-    return render_template('tour_explorer.html')
 
-@app.route('/tour/beach-potato')
-def beach_potato_tour():
-    return render_template('tour_beach_potato.html')
+@app.route('/tour/full-island-tour')
+def full_island_tour():
+    return render_template('island_tour.html')
+
+
+@app.route('/tour/beach-lover')
+def beach_lover():
+    return render_template('beach_lover.html')
 
 @app.route('/tour/vip')
 def vip_tour():

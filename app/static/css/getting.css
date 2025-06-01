@@ -50,6 +50,7 @@
 /* ====================================================
    ROUTE BANNER (full width)
    ==================================================== */
+/* ROUTE BANNER (full width) */
 .route-banner {
   width: 100%;
 }
@@ -57,17 +58,32 @@
 .route-banner__img {
   margin: 0;
   width: 100%;
-  height: 850px;
+  height: 700px;   /* large on desktop */
   object-fit: cover;
   display: block;
 }
+
+/* Responsive adjustments for route banner on mobile */
+@media (max-width: 768px) {
+  .route-banner__img {
+    height: 300px;    /* smaller height for mobile */
+  }
+}
+
+/* Optional: even smaller on very small devices */
+@media (max-width: 480px) {
+  .route-banner__img {
+    height: 220px;
+  }
+}
+
 /* ====================================================
    "GETTING" TABLE STYLES
    ==================================================== */
 .getting-table {
   width: 100%;
   max-width: 1000px;
-  margin: 1rem 4rem 3rem 19rem;  /* 2rem top, 4rem right, 3rem bottom, 4rem left */
+  margin: 1rem 7rem 3rem 25rem;  /* left margin moved more right */
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -175,7 +191,7 @@
   max-width: 950px;
   margin: 0 auto 3rem auto;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap;      /* Keep cards on one line */
   gap: 2rem;
   padding: 0 1rem;
   justify-content: center;
@@ -184,7 +200,7 @@
 
 /* Visa card wider on desktop */
 .getting-main__visa {
-  flex: 0 0 400px;    /* increased from 280px */
+  flex: 0 0 400px;    /* fixed width so cards don't shrink */
   background-color: #fff8f2;
   padding: 2rem;
   border-radius: 10px;
@@ -192,6 +208,29 @@
   font-size: 1.6rem;
   color: #333;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container for visa paragraphs as flex row */
+.getting-main__visa-p-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;         /* Allow paragraphs to wrap inside */
+  width: 100%;
+  max-width: 380px;
+  overflow-x: visible;     /* No horizontal scroll */
+}
+
+.getting-main__visa-p-wrapper p {
+  text-align: left;
+  margin: 0;
+  flex-shrink: 1;          /* allow shrinking */
+  white-space: normal;     /* allow line breaks */
+  word-break: break-word;  /* break long words */
+  flex-basis: 100%;        /* stack paragraphs vertically */
 }
 
 /* Travel cards unchanged */
@@ -204,6 +243,9 @@
   font-size: 1.6rem;
   color: #333;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Container for the two travel cards */
@@ -212,6 +254,7 @@
   gap: 2rem;
   flex-wrap: nowrap;
   flex: 0 0 auto;
+  justify-content: center;
 }
 
 /* Headings */
@@ -231,23 +274,41 @@
   display: block;
 }
 
-/* Responsive fallback */
+/* Responsive tweaks for smaller screens */
 @media (max-width: 768px) {
   .getting-main__visa-travel-tips-wrapper {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap;   /* allow wrapping on small screens */
+    padding: 0 0.5rem;
   }
 
   .getting-main__visa,
   .travel-card {
     flex: 1 1 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .getting-main__visa-p-wrapper {
+    max-width: 100%;
+    overflow-x: visible;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .getting-main__visa-p-wrapper p {
+    white-space: normal;
+    flex-shrink: 1;
+    flex-basis: auto;
   }
 
   .getting-main__travel-tips {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 }
+
+
 
 
 /* ====================================================
@@ -351,6 +412,18 @@
     gap: 1rem;
   }
 
+  /* Visa paragraphs stacked vertically on mobile */
+  .getting-main__visa-p-wrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .getting-main__visa-p-wrapper p {
+    flex: 1 1 100%;
+    text-align: center;  /* center text on small screens */
+    white-space: normal;
+  }
+
   /* How-to list stacks */
   .getting-howto__list li {
     flex-direction: column;
@@ -365,4 +438,3 @@
     height: 48px;
   }
 }
-

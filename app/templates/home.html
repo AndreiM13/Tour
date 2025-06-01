@@ -8,14 +8,14 @@
             <div class="carousel-item active">
                 <img src="{{ url_for('static', filename='images/carusel1.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <p class="first-card">Socotra doesn’t pretend to be wild—it just is.</p>
+                    <p class="first-card">Socotra doesn’t pretend to be wild—it just is</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{ url_for('static', filename='images/carusel2.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
-                    <p class="second-card">This island doesn’t care who you are. </p>
+                    <p class="second-card">This island doesn’t care who you are </p>
                         <p class="second-card2">But it might change who you become</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
@@ -24,12 +24,12 @@
                 <img src="{{ url_for('static', filename='images/carusel3.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
                     <p class="third-card">Travel with a team that respects the island </p>
-                        <p class="third-card2">and the people who call it home.</p>
+                        <p class="third-card2">and the people who call it home</p>
                     <a href="/tour" class="carousel-book-btn mt-3">Book Now</a>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ url_for('static', filename='images/carusel4.jpeg') }}" class="d-block w-100" alt="carousel image">
+                <img src="{{ url_for('static', filename='images/carusel6.jpeg') }}" class="d-block w-100" alt="carousel image">
                 <div class="carousel-caption">
                     <p class="forth-card">Book your tour now and join us </p>
                     <p class="forth-card2">for the adventure of a lifetime</p>
@@ -56,20 +56,24 @@
             <h5>Full Island Tour</h5>
             <p>For those wanting to explore everything Socotra has to offer.</p>
             <br>
-            <a href="/tour/explorer" class="tour-card-btn">Learn More</a>
+            <a href="{{ url_for('full_island_tour') }}" class="tour-card-btn"">Learn More</a>
         </div>
         <div class="tour-square-card">
             <h5>Trekking Tour</h5>
             <p>For the mountain lovers and adrenaline seekers.</p>
             <br>
             <br>
-            <a href="/tour/photographer" class="tour-card-btn">Learn More</a>
+           <a href="{{ url_for('trekking_tour') }}" class="tour-card-btn"">Learn More</a>
+
         </div>
 
         <div class="tour-square-card">
             <h5>Beach Lover</h5>
             <p>For those seeking the calm and tranquility of pristine beaches and magical lagoons.</p>
-            <a href="/tour/beach-potato" class="tour-card-btn">Learn More</a>
+            <br>
+        
+         <a href="{{ url_for('beach_lover') }}" class="tour-card-btn"">Learn More</a>
+
         </div>
         <div class="tour-square-card">
             <h5>The VIP</h5>
@@ -92,8 +96,7 @@
                 <h5>UNMATCHED ISOLATION</h5>
                 <p class="caption">Socotra: Where Earth Still Breathes</p>
                 <div class="hover-reveal">
-
-                    Step off the map and into a world unlike anywhere else. 
+                   Step off the map and into a world unlike anywhere else. 
                     Socotra Island travel is not about luxury in things — it's about the luxury of silence, space, and solitude.
                     No crowds. No chaos. Just you, the wind, and a world untouched by time
                     <br>
@@ -132,8 +135,8 @@
 </section>
 
 
-<!-- Upcoming Departures Section (Dynamic Table with Unique Classes) -->
-<section class="exp-table-section">
+<!-- Upcoming Departures Section (Updated for Grouped Departures with Single Action Button) -->
+<section class="exp-table-section" id="exp-table">
     <div class="exp-table-header">
         <h2 class="exp-table-title">Upcoming Group Tour Departures</h2>
         <p class="exp-table-subtitle">
@@ -147,24 +150,36 @@
         <table class="exp-table">
             <thead>
                 <tr>
-                    <th>Tour</th>
-                    <th>Date</th>
+                    <th>Tours</th>
+                    <th>Date</th>     
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {% for dep in departures.items %}
+                {% for date, departures_on_date in grouped_departures %}
                 <tr>
-                    <td>{{ dep.tour.title }}</td>
+                    <!-- Tours -->
                     <td>
-                        <a href="{{ url_for('tour') }}?departure_id={{ dep.id }}&tour_title={{ dep.tour.title | urlencode }}#booking-form-tour">
-                            {{ dep.date.strftime('%B %d, %Y') }}
-                        </a>
+                        {% for dep in departures_on_date %}
+                            {{ dep.tour.title }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
                     </td>
+
+                    <!-- Date -->
+                    <td>{{ date.strftime('%B %d, %Y') }}</td>
+
+                    <!-- Single Action Button -->
                     <td>
-                        {% if dep.spots_left > 0 %}
-                            <a href="{{ url_for('tour') }}?departure_id={{ dep.id }}&tour_title={{ dep.tour.title | urlencode }}#booking-form-tour">
-                                <button class="exp-book-btn">Book</button>
+                        {% set ns = namespace(available_dep=None) %}
+                        {% for dep in departures_on_date %}
+                            {% if dep.spots_left > 0 and ns.available_dep is none %}
+                                {% set ns.available_dep = dep %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if ns.available_dep %}
+                            <a href="{{ url_for('tour') }}?departure_id={{ ns.available_dep.id }}&tour_title={{ ns.available_dep.tour.title | urlencode }}#booking-form-tour">
+                                <button class="exp-book-btn">Book Now</button>
                             </a>
                         {% else %}
                             <button class="exp-book-btn" disabled>Fully Booked</button>
@@ -177,11 +192,11 @@
     </div>
 
     <!-- Pagination Controls -->
-        <nav aria-label="Page navigation" style="margin-top: 1em;">
+    <nav aria-label="Page navigation" style="margin-top: 1em;">
         <ul class="pagination justify-content-center">
-            {% if departures.has_prev %}
+            {% if current_page > 1 %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('home', page=departures.prev_num) }}#exp-table" aria-label="Previous">
+                <a class="page-link" href="{{ url_for('home', page=current_page - 1) }}#exp-table" aria-label="Previous">
                     &laquo; Prev
                 </a>
             </li>
@@ -192,12 +207,12 @@
             {% endif %}
 
             <li class="page-item disabled">
-                <span class="page-link">Page {{ departures.page }} of {{ departures.pages }}</span>
+                <span class="page-link">Page {{ current_page }} of {{ total_pages }}</span>
             </li>
 
-            {% if departures.has_next %}
+            {% if current_page < total_pages %}
             <li class="page-item">
-                <a class="page-link" href="{{ url_for('home', page=departures.next_num) }}#exp-table" aria-label="Next">
+                <a class="page-link" href="{{ url_for('home', page=current_page + 1) }}#exp-table" aria-label="Next">
                     Next &raquo;
                 </a>
             </li>
@@ -208,9 +223,8 @@
             {% endif %}
         </ul>
     </nav>
-
-
 </section>
+
 
 
 
@@ -221,12 +235,12 @@
   <div class="div-home-text">
     <h2>🌿 Why Travel With Us</h2>
     <p>We are a locally registered and officially approved tour operator based in Socotra — not a reseller. When you book with us,
-         you’re booking directly with the people who live here. No third parties. No intermediaries. Just honest, transparent service.</p>
-<p>With over a decade of hands-on experience organizing tours across the island, we know what travelers value most — and what makes Socotra
+         you’re booking directly with the people who live here. No third parties. <strong> No intermediaries. Just honest, transparent service.</strong></p>
+<p>With over  <strong>a decade of hands-on experience</strong> organizing tours across the island, we know what travelers value most — and what makes Socotra
  unforgettable.</p>
 <p>From your very first message to your safe arrival on the island, our dedicated team is by your side. We’re more than a travel service — we’re 
 your local hosts, ready to offer support, insight, and genuine hospitality every step of the way.</p>
-<p>Your safety is always our top priority. Our experienced guides — all born and raised in Socotra — will introduce you to hidden landscapes, 
+<p> <strong>Your safety is always our top priority.</strong> Our experienced guides — all born and raised in Socotra — will introduce you to hidden landscapes, 
 rich traditions, and the soul of the island. Their deep respect for this land ensures that you won’t just see Socotra — you’ll feel at home in it.
 </p>
   </div>

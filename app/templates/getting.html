@@ -58,23 +58,35 @@
       <!-- Visa & Travel Tips Cards -->
       <div class="getting-main__visa-travel-tips-wrapper">
         <div class="getting-main__visa card">
-          <h4>Visa & Documentation</h4>
-          <p>Visa (150 USD) required with all tours</p>
-          <p>Passport must be valid for 6+ months</p>
-          <p>We handle all visa related formalities. You just sit and enjoy!</p>
-        </div>
+            <h4>Visa & Documentation</h4>
+            <div class="getting-main__visa-p-wrapper">
+              <img src="{{ url_for('static', filename='images/pasport-removebg-preview.png') }}" alt="Passport" class="travel-card__img" />
+              <p>Visa (150 USD) required with all tours</p>
+              <p>Passport must be valid for 6+ months</p>
+              <p>We handle all visa related formalities. You just sit and enjoy!</p>
+            </div>
+          </div>
+
+
+
 
         <div class="getting-main__travel-tips">
           <div class="travel-card">
             <h4>Pack light but smart</h4>
-            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Backpack" class="travel-card__img" />
+            <img src="{{ url_for('static', filename='images/backpack_1.png') }}" alt="Backpack" class="travel-card__img" />
             <p>Desert sun, ocean spray,<br>mountain chill—we’ll send a list.</p>
           </div>
 
           <div class="travel-card">
-            <h4>Local SIM & Cash</h4>
-            <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="SIM and Cash" class="travel-card__img" />
-            <p>No roaming. Cash is king—we’ll guide you.</p>
+            <h4>Local SIM </h4>
+            <img src="{{ url_for('static', filename='images/sim-removebg-preview.png') }}" alt="SIM and Cash" class="travel-card__img" />
+            <p>No roaming will work here. Etisalat sim card works in some places in Socotra (purchased from Abu Dhabi).</p>
+          </div>
+
+                    <div class="travel-card">
+            <h4>Cash</h4>
+            <img src="{{ url_for('static', filename='images/money.png') }}" alt="SIM and Cash" class="travel-card__img" />
+            <p>Cash is king on the island. Please ensure you only bring new USD notes with you</p>
           </div>
         </div>
       </div>
@@ -82,7 +94,7 @@
 
 <!-- ROUTE BANNER -->
 <div class="route-banner">
-  <img src="{{ url_for('static', filename='images/socotra_pin.png') }}" alt="Way to Socotra" class="route-banner__img" />
+  <img src="{{ url_for('static', filename='images/newewst_map.jpeg') }}" alt="Way to Socotra" class="route-banner__img" />
 </div>
 
 <!-- HOW TO GET HERE STEPS -->
@@ -90,19 +102,19 @@
   <h2>How to Get Here</h2>
   <ul class="getting-howto__list">
     <li>
-      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 1" class="getting-howto__icon" />
+      <img src="{{ url_for('static', filename='images/one-removebg-preview.png') }}" alt="Step 1" class="getting-howto__icon" />
       <p>Choose a tour package and get in touch.</p>
     </li>
     <li>
-      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 2" class="getting-howto__icon" />
+      <img src="{{ url_for('static', filename='images/two-removebg-preview.png') }}" alt="Step 2" class="getting-howto__icon" />
       <p>Send a down payment and passport scan to reserve your spot.</p>
     </li>
     <li>
-      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 3" class="getting-howto__icon" />
+      <img src="{{ url_for('static', filename='images/three-removebg-preview.png') }}" alt="Step 3" class="getting-howto__icon" />
       <p>We’ll process your visa and send it to your email.</p>
     </li>
     <li>
-      <img src="{{ url_for('static', filename='images/newmap.png') }}" alt="Step 4" class="getting-howto__icon" />
+      <img src="{{ url_for('static', filename='images/four-removebg-preview.png') }}" alt="Step 4" class="getting-howto__icon" />
       <p>Fly to Abu Dhabi a day or two before your Socotra flight.</p>
     </li>
   </ul>

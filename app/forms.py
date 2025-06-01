@@ -24,7 +24,7 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        allowed_domain = 'blog.com'
+        allowed_domain = 'allthings-socotra.com'
         domain_regex = r'^[a-zA-Z0-9_.+-]+@' + re.escape(allowed_domain) + r'$'
         if not re.match(domain_regex, email.data):
             raise ValidationError(f"Email must end with @{allowed_domain}")
@@ -51,7 +51,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
     def validate_email(self, email):
-        allowed_domain = 'blog.com'  # Replace with the domain you want to allow
+        allowed_domain = 'allthings-socotra.com'  # Replace with the domain you want to allow
         domain_regex = r'^[a-zA-Z0-9_.+-]+@' + re.escape(allowed_domain) + r'$'
         if not re.match(domain_regex, email.data):
             raise ValidationError(f"Email must end with @{allowed_domain}")

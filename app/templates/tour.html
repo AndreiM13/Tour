@@ -12,40 +12,48 @@
       <div class="tour-card">
         <h5 class="tour-card-title">Full Island Tour</h5>
         <p class="tour-card-text">
-         This full island tour is for bold souls who chase the raw, the real, and the untouched.
+         This full island tour is for bold souls who chase the <strong>raw,</strong> the <strong>real</strong>, and the <strong>untouched</strong>.
           If you’d rather blaze trails than follow them, sleep under stars, and earn every view — this journey was made for you.
         </p>
+        <br>
+        <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        <a href="/tour/explorer" class="learn-more-text">Learn More</a>
+        <a href="{{ url_for('full_island_tour') }}" class="learn-more-text">Learn More</a>
       </div>
       
       <div class="tour-card">
         <h5 class="tour-card-title">Trekking Tour</h5>
         <p class="tour-card-text">
-          Trek across Socotra island with local guides and a camel caravan, sleep under stars, and wake to landscapes that feel otherworldly.
+          Trek across Socotra island with local guides and a <strong>camel caravan</strong>, <strong>sleep under stars</strong>, and wake to landscapes that feel otherworldly.
           For the true adventurer who craves the wild, the unknown, and the unforgettable.
         </p>
+        <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        <a href="/tour/photographer" class="learn-more-text">Learn More</a>
+        <a href="{{ url_for('trekking_tour') }}" class="learn-more-text">Learn More</a>
+
       </div>
 
       <div class="tour-card">
         <h5 class="tour-card-title">Beach Lover</h5>
         <p class="tour-card-text">
-          So you probably heard of the pristine beaches and the turquoise waters of Socotra. 
-          If the beach is calling you, you can never refuse. Enjoy unforgettable views and activities!
+          For those who crave more than just a beach—think boat rides, snorkeling in  <strong>crystal waters, and untouched beauty</strong>. 
+          This Socotra escape blends adventure and serenity for  <strong>true wanderers</strong> seeking the extraordinary.
+
         </p>
         <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
-        <a href="/tour/beach-potato" class="learn-more-text">Learn More</a>
+        <a href="{{ url_for('beach_lover') }}" class="learn-more-text">Learn More</a>
+
       </div>
 
       <div class="tour-card">
         <h5 class="tour-card-title">The VIP</h5>
         <p class="tour-card-text">
-         This tour is for explorers who want wild beauty by day and hotel comfort by night. No tents, no hassle —
+         This tour is for explorers who want <strong>wild beauty</strong> by day and <strong>hotel comfort</strong> by night. No tents, no hassle —
           just epic views, fresh food, and the island’s best kept secrets made easy.
         </p>
+        <br>
+        <br>
         <br>
         <a href="#booking-form-tour" class="tour-btn">Book the Tour</a>
         <a href="/tour/vip" class="learn-more-text">Learn More</a>
@@ -66,7 +74,7 @@
     <div class="included-card">
       <img src="{{ url_for('static', filename='images/newfood.png') }}" alt="Food" class="included-card-img" />
       <h5 class="included-title-inside">Food</h5>
-      <p class="included-text">3 meals a day consisting of delicious, locally sourced foods and snacks
+      <p class="included-text">3 meals a day consisting of delicious, locally sourced foods and snacks.
         Plenty of teas, coffees, and soft drinks
         </p>
     </div>
