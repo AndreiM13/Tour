@@ -50,9 +50,9 @@ Add information to the database:
 python add_tour.py
 ```
 Activate the admin account
-'''
+```
 python activate_account.py
-'''
+```
 Start the application server:
 
 ```
