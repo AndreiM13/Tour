@@ -48,9 +48,10 @@
   line-height: 1.5;
   min-height: 100px;
 
-  width: 200px;     /* or max-width */
+  width: 180px;     /* or max-width */
   text-align: left;
-  margin-left: auto;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .tour-btn {
@@ -145,4 +146,15 @@
     width: 90%;
     max-width: 320px;
   }
+
+
 }
+@media (max-width: 600px) {
+  .tour-card-text {
+    font-size: 0.9rem;
+    width: 100%;
+    margin-left: -2px;
+    text-align: justify; /* optional for better mobile readability */
+  }
+}
+

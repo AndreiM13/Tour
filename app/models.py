@@ -1,8 +1,9 @@
 from datetime import datetime
-from app import db
+from app import db,app
 from flask_login import UserMixin
 from sqlalchemy import Enum as SqlEnum
 from enum import Enum
+from itsdangerous import URLSafeTimedSerializer as Serializer
 
 # Import login_manager from the app package
 from app import login_manager
@@ -28,9 +29,25 @@ class Admin(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)  # Index added for faster lookups
     password = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_active = db.Column(db.Boolean, default=False)  # <-- new field
     tours = db.relationship('Tour', backref='admin', lazy=True, cascade="all, delete-orphan")
     bookings = db.relationship('Booking', backref='admin', lazy=True, cascade="all, delete-orphan")
     contacts = db.relationship('Contact', backref='admin', lazy=True, cascade="all, delete-orphan")
+
+    def get_reset_token(self, expires_sec=3600):
+        s = Serializer(app.config['SECRET_KEY'])
+        return s.dumps({'admin_id': self.id})
+
+    @staticmethod
+    def verify_reset_token(token, expires_sec=3600):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            admin_id = s.loads(token, max_age=expires_sec)['admin_id']
+        except Exception:
+            return None
+        return Admin.query.get(admin_id)
+
+
 
 class Tour(db.Model):
     __tablename__ = 'tours'

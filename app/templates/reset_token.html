@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="reset-token-section main-section">
+  <div class="reset-token-container">
+    <h2 class="reset-token-title">Reset Your Password</h2>
+    <form method="POST" class="reset-token-form" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="reset-form-group">
+        {{ form.password.label(class="reset-label") }}
+        {{ form.password(class="reset-input") }}
+        {% for error in form.password.errors %}
+          <div class="reset-error">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="reset-form-group">
+        {{ form.confirm_password.label(class="reset-label") }}
+        {{ form.confirm_password(class="reset-input") }}
+        {% for error in form.confirm_password.errors %}
+          <div class="reset-error">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="reset-submit-btn">Reset Password</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

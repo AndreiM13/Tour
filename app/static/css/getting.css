@@ -83,7 +83,7 @@
 .getting-table {
   width: 100%;
   max-width: 1000px;
-  margin: 1rem 7rem 3rem 25rem;  /* left margin moved more right */
+  margin: 1rem 7rem 3rem 16.5rem;  /* left margin moved more right */
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -340,8 +340,8 @@
 }
 
 .getting-howto__icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   margin-right: 1.5rem;
 }
@@ -352,7 +352,7 @@
 @media (max-width: 768px) {
   /* Table */
   .getting-table {
-    font-size: 1.2rem;  /* decreased from 1.5rem */
+    font-size: 1.1rem;  /* decreased from 1.5rem */
     margin: 1rem 0 2rem 0;
     border-radius: 8px;
     width: 100%;
@@ -367,7 +367,7 @@
   }
 
   .getting-table .emoji {
-    font-size: 1.2rem;  /* decreased from 1.5rem */
+    font-size: 1.1rem;  /* decreased from 1.5rem */
   }
 
   /* Icon & spacer hidden or reset */
@@ -377,7 +377,7 @@
     text-align: left;
     margin-top: 0.5rem;
     flex: none;
-    font-size: 1.2rem;  /* ensure icon text matches */
+    font-size: 1.1rem;  /* ensure icon text matches */
   }
 
   .cell-fly-calls,
@@ -404,7 +404,7 @@
   .travel-card {
     width: 100%;
     padding: 1.5rem;
-    font-size: 1.2rem;  /* decreased from 1.6rem */
+    font-size: 1.1rem;  /* decreased from 1.6rem */
   }
 
   .getting-main__travel-tips {
@@ -429,12 +429,30 @@
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
-    font-size: 1.2rem;  /* decreased from 1.6rem */
+    font-size: 1.1rem;  /* decreased from 1.6rem */
   }
 
   .getting-howto__icon {
     margin: 0 0 1rem 0;
-    width: 48px;        /* slightly smaller icon */
-    height: 48px;
+    width: 40px;        /* slightly smaller icon */
+    height: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .getting-banner-text-overlay h1 {
+    font-size: 1.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .getting-banner-text-overlay p {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+ 
+  }
+
+  .getting-banner-text-overlay {
+    padding: 10px;
   }
 }

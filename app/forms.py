@@ -108,3 +108,18 @@ class TourUpdateForm(FlaskForm):
     price = StringField('Price', validators=[DataRequired()])
     image_filename = StringField('Image Filename (URL)', validators=[DataRequired()])
     submit = SubmitField('Update Tour')
+
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+class ValidateAccountForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Resend Verification')

@@ -138,3 +138,25 @@ tbody tr {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+/* Style the Delete All Bookings button same as Download CSV button */
+.delete-form {
+    max-width: 200px;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.delete-form button {
+    width: 100%;
+    background-color: #ec971f;
+    border: none;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.delete-form button:hover {
+    background-color: #ec971f;
+}

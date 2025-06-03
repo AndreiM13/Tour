@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, session
 from app import app, db, bcrypt
-from app.forms import RegistrationForm, LoginForm, ContactForm, BookingForm
+from app.forms import RegistrationForm, LoginForm, ContactForm, BookingForm, RequestResetForm, ResetPasswordForm, ValidateAccountForm
 from app.models import Admin, Tour, Contact, Booking, BookingStatusEnum, UniqueView,  Departure 
 from flask_login import login_user, current_user, logout_user, login_required
 from collections import defaultdict
@@ -16,9 +16,86 @@ from app import mail  # Assuming 'mail' is imported from your app
 from threading import Thread
 
 
+from functools import wraps
+from flask import flash, redirect, url_for
+from flask_login import current_user
+
+
+def activation_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated:
+            return redirect(url_for('adminlogin'))
+        if not current_user.is_active:
+            flash("Your account is not activated. Contact admin.", "warning")
+            return redirect(url_for('adminlogin'))  # Or send to 'pending_activation'
+        return f(*args, **kwargs)
+    return decorated_function
+
+#Sending emails async
 def send_async_email(app, msg):
     with app.app_context():
         mail.send(msg)
+
+
+
+def send_reset_email(admin):
+    token = admin.get_reset_token()
+    msg = Message(
+        'Password Reset Request',
+        sender=app.config['MAIL_USERNAME'],
+        recipients=[admin.email]
+    )
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+
+If you did not make this request, please ignore this email.
+'''
+    mail.send(msg)
+
+
+@app.route("/reset_password", methods=['GET', 'POST'])
+def reset_request():
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        admin = Admin.query.filter_by(email=form.email.data).first()
+        if admin:
+            send_reset_email(admin)
+        flash('If your email exists, instructions have been sent.', 'info')
+        return redirect(url_for('adminlogin'))
+    return render_template('reset_request.html', form=form)
+
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    admin = Admin.verify_reset_token(token)
+    if not admin:
+        flash('Token is invalid or expired.', 'warning')
+        return redirect(url_for('reset_request'))
+    
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        # ✅ Hash the new password securely
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        admin.password = hashed_password
+        db.session.commit()
+        flash('Your password has been updated!', 'success')
+        return redirect(url_for('adminlogin'))  # Changed from 'login' to 'adminlogin' if applicable
+    return render_template('reset_token.html', form=form)
+
+@app.route("/validate_admin/<token>")
+def validate_admin(token):
+    admin = Admin.verify_activation_token(token)
+    if admin:
+        if not admin.is_active:
+            admin.is_active = True
+            db.session.commit()
+            flash('Admin account validated successfully. You can now log in.', 'success')
+        else:
+            flash('Account is already activated.', 'info')
+    else:
+        flash('Invalid or expired token.', 'danger')
+    return redirect(url_for('adminlogin'))
+
 
 
 
@@ -108,7 +185,9 @@ def adminregistration():
         admin = Admin(email=form.email.data, password=hashed_password)
         db.session.add(admin)
         db.session.commit()
-        flash(f'Account created for {form.email.data}!', 'success')
+
+
+        flash(f'Account created for {form.email.data}! Please check your email to activate your account.', 'success')
         return redirect(url_for('home'))
 
     return render_template('registration.html', title='Registration', form=form)
@@ -143,7 +222,9 @@ def adminlogout():
 #account
 @app.route("/account", methods=['GET'])
 @login_required
+@activation_required
 def account():
+
     # Load the country data from the JSON file 
     with open('countries.json') as f:
         countries_data = json.load(f)
@@ -399,6 +480,7 @@ def success():
 #Confirm Booking
 @app.route('/confirm_booking/<int:booking_id>', methods=['GET'])
 @login_required
+@activation_required
 def confirm_booking(booking_id):
     booking = Booking.query.get_or_404(booking_id)
     print(f"Booking status: {booking.status}")  # This will log to your console
@@ -413,6 +495,7 @@ def confirm_booking(booking_id):
 #Cancel Booking
 @app.route("/cancel_booking/<int:booking_id>")
 @login_required
+@activation_required
 def cancel_booking(booking_id):
     booking = Booking.query.get_or_404(booking_id)
     booking.status = BookingStatusEnum.CANCELED
@@ -423,6 +506,7 @@ def cancel_booking(booking_id):
 #Delete Booking
 @app.route('/delete_booking/<int:booking_id>', methods=['GET'])
 @login_required
+@activation_required
 def delete_booking(booking_id):
     booking = Booking.query.get_or_404(booking_id)
     db.session.delete(booking)
@@ -434,6 +518,7 @@ def delete_booking(booking_id):
 #Delete All Bookings
 @app.route('/delete_all_bookings', methods=['POST'])
 @login_required
+@activation_required
 def delete_all_bookings():
     Booking.query.delete()
     db.session.commit()
@@ -441,11 +526,10 @@ def delete_all_bookings():
     return redirect(url_for('account'))
 
 
+
 @app.route('/tour/trekking')
 def trekking_tour():
     return render_template('tour_trekking.html')
-
-
 
 
 @app.route('/tour/full-island-tour')

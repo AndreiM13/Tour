@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="reset-request-section main-section">
+  <div class="reset-request-container">
+    <h2 class="reset-request-title">Request Password Reset</h2>
+    <form method="POST" class="reset-request-form" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="reset-form-group">
+        {{ form.email.label(class="reset-label") }}
+        {{ form.email(class="reset-input") }}
+        {% for error in form.email.errors %}
+          <div class="reset-error">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="reset-submit-btn">Send Reset Email</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -121,6 +121,12 @@ CONTACT BANNER SECTION (Full div image + overlay text/form)
     height: 900px;
   }
 
+  .div-contact-img {
+    width: 95%;
+    height: auto;
+    object-fit: contain;
+  }
+
   .div-text-contact {
     top: 20%;
     transform: translate(-50%, -20%);
@@ -150,6 +156,16 @@ CONTACT BANNER SECTION (Full div image + overlay text/form)
   .image-div-contact {
     height: 1000px;
   }
+  .div-contact-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center; /* Shift focus to left side */
+  display: block;
+}
+
+ 
+
 
   .div-text-contact {
     top: 30%;
@@ -168,7 +184,7 @@ CONTACT BANNER SECTION (Full div image + overlay text/form)
   }
 
   .contact-form-wrapper {
-    margin-top: 200px; /* ✅ This moves the form down */
+    margin-top: 200px;
   }
 
   .contact-form input,
