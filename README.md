@@ -12,6 +12,7 @@ Tour/
 ├── countries.json      # JSON file containing country data
 ├── requirements.txt    # Python dependencies
 |── render.yaml
+|── activate_account.py
 └── .gitignore          # Git ignore file
 ```
 🚀 Getting Started
@@ -48,6 +49,10 @@ Add information to the database:
 ```
 python add_tour.py
 ```
+Activate the admin account
+'''
+python activate_account.py
+'''
 Start the application server:
 
 ```
