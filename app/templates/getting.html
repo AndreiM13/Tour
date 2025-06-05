@@ -52,51 +52,55 @@
     </tr>
 
   </table>
-
-
-
-      <!-- Visa & Travel Tips Cards -->
-      <div class="getting-main__visa-travel-tips-wrapper">
-        <div class="getting-main__visa card">
-            <h4>Visa & Documentation</h4>
-            <div class="getting-main__visa-p-wrapper">
-              <img src="{{ url_for('static', filename='images/pasport-removebg-preview.png') }}" alt="Passport" class="travel-card__img" />
-              <p>Visa (150 USD) required with all tours</p>
-              <p>Passport must be valid for 6+ months</p>
-              <p>We handle all visa related formalities. You just sit and enjoy!</p>
-            </div>
-          </div>
-
-
-
-
-        <div class="getting-main__travel-tips">
-          <div class="travel-card">
-            <h4>Pack light but smart</h4>
-            <img src="{{ url_for('static', filename='images/backpack_1.png') }}" alt="Backpack" class="travel-card__img" />
-            <p>Desert sun, ocean spray,<br>mountain chill—we’ll send a list.</p>
-          </div>
-
-          <div class="travel-card">
-            <h4>Local SIM </h4>
-            <img src="{{ url_for('static', filename='images/sim-removebg-preview.png') }}" alt="SIM and Cash" class="travel-card__img" />
-            <p>No roaming will work here. Etisalat sim card works in some places in Socotra (purchased from Abu Dhabi).</p>
-          </div>
-
-                    <div class="travel-card">
-            <h4>Cash</h4>
-            <img src="{{ url_for('static', filename='images/money.png') }}" alt="SIM and Cash" class="travel-card__img" />
-            <p>Cash is king on the island. Please ensure you only bring new USD notes with you</p>
-          </div>
-        </div>
-      </div>
+      
     </div>
+ <!-- Visa & Travel Tips Cards -->
+<div class="getting-main__visa-travel-tips-wrapper">
+  <!-- Visa & Documentation Card -->
+  <div class="getting-main__visa card">
+    <h4>Visa & Documentation</h4>
+    <img src="{{ url_for('static', filename='images/pasport-removebg-preview.png') }}" alt="Passport" class="travel-card__img" />
+    <div class="getting-main__visa-p-wrapper">
+      <p>Visa (150 USD) required with all tours
+      Passport must be valid for 6+ months
+      We handle all visa related formalities. You just sit and enjoy!</p>
+    </div>
+  </div>
+
+  <!-- Pack light but smart Card -->
+  <div class="travel-card card">
+    <h4>Pack light but smart</h4>
+    <img src="{{ url_for('static', filename='images/backpack_1.png') }}" alt="Backpack" class="travel-card__img" />
+    <div class="travel-card-p-wrapper">
+      <p>Be sure to pack sunscreen, as it's not available on the island.
+      Bring comfortable, breathable clothing, a sun hat for protection, and a headlamp for evenings.
+      Most importantly, come with a good mood and a sense of adventure.</p>
+    </div>
+  </div>
+
+  <!-- Local SIM Card -->
+  <div class="travel-card card">
+    <h4>Local SIM</h4>
+    <img src="{{ url_for('static', filename='images/sim-removebg-preview.png') }}" alt="SIM and Cash" class="travel-card__img" />
+    <div class="travel-card-p-wrapper">
+      <p>No roaming will work here. Etisalat sim card works in some places in Socotra (purchased from Abu Dhabi).</p>
+    </div>
+  </div>
+
+  <!-- Cash Card -->
+  <div class="travel-card card">
+    <h4>Cash</h4>
+    <img src="{{ url_for('static', filename='images/money.png') }}" alt="Cash" class="travel-card__img" />
+    <div class="travel-card-p-wrapper">
+      <p>Cash is king on the island. Please ensure you only bring new USD notes with you.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ROUTE BANNER -->
 <div class="route-banner">
   <img src="{{ url_for('static', filename='images/newewst_map.jpeg') }}" alt="Way to Socotra" class="route-banner__img" />
 </div>
-
 <!-- HOW TO GET HERE STEPS -->
 <div class="getting-howto">
   <h2>How to Get Here</h2>

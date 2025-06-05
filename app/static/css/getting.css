@@ -37,12 +37,12 @@
 }
 
 .getting-banner-text-overlay h1 {
-  font-size: 48px;
+  font-size: 45px;
   margin-bottom: 14px;
 }
 
 .getting-banner-text-overlay p {
-  font-size: 32px;
+  font-size: 30px;
   margin: 0;
   line-height: 1.2;
 }
@@ -53,29 +53,34 @@
 /* ROUTE BANNER (full width) */
 .route-banner {
   width: 100%;
-}
-
-.route-banner__img {
   margin: 0;
-  width: 100%;
-  height: 700px;   /* large on desktop */
-  object-fit: cover;
-  display: block;
+  padding: 0;
+  line-height: 0;
 }
 
-/* Responsive adjustments for route banner on mobile */
+/* Route banner image */
+.route-banner__img {
+  display: block;
+  width: 100%;
+  height: 680px;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive: mobile */
 @media (max-width: 768px) {
   .route-banner__img {
-    height: 300px;    /* smaller height for mobile */
+    height: 300px;
   }
 }
 
-/* Optional: even smaller on very small devices */
 @media (max-width: 480px) {
   .route-banner__img {
     height: 220px;
   }
 }
+
 
 /* ====================================================
    "GETTING" TABLE STYLES
@@ -83,7 +88,7 @@
 .getting-table {
   width: 100%;
   max-width: 1000px;
-  margin: 1rem 7rem 3rem 16.5rem;  /* left margin moved more right */
+  margin: 0rem 7rem 3rem 22rem;  /* left margin moved more right */
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -117,7 +122,7 @@
   border: none;
   box-sizing: border-box;
   vertical-align: top;
-  font-size: 1.75rem;
+  font-size: 1.3rem;
 }
 
 /* Headings */
@@ -126,7 +131,7 @@
   color: #5c2e00;
   font-weight: bold;
   margin: 0 0 0.5rem;
-  font-size: 2.2rem;
+  font-size: 1.2rem;
 }
 
 /* Tighten title bottom margin */
@@ -142,7 +147,7 @@
 }
 
 .getting-table .emoji {
-  font-size: 2rem;
+  font-size: 1rem;
   margin-right: 0.5rem;
   vertical-align: middle;
   font-weight: normal;
@@ -185,130 +190,158 @@
 }
 
 /* ====================================================
-   VISA / TIPS CARDS
+   VISA / TRAVEL TIPS CARDS (Updated for desktop and mobile)
    ==================================================== */
+
+
 .getting-main__visa-travel-tips-wrapper {
-  max-width: 950px;
-  margin: 0 auto 3rem auto;
   display: flex;
-  flex-wrap: nowrap;      /* Keep cards on one line */
-  gap: 2rem;
-  padding: 0 1rem;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-/* Visa card wider on desktop */
-.getting-main__visa {
-  flex: 0 0 400px;    /* fixed width so cards don't shrink */
-  background-color: #fff8f2;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(224, 122, 95, 0.15);
-  font-size: 1.6rem;
-  color: #333;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Container for visa paragraphs as flex row */
-.getting-main__visa-p-wrapper {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;         /* Allow paragraphs to wrap inside */
-  width: 100%;
-  max-width: 380px;
-  overflow-x: visible;     /* No horizontal scroll */
-}
-
-.getting-main__visa-p-wrapper p {
-  text-align: left;
-  margin: 0;
-  flex-shrink: 1;          /* allow shrinking */
-  white-space: normal;     /* allow line breaks */
-  word-break: break-word;  /* break long words */
-  flex-basis: 100%;        /* stack paragraphs vertically */
-}
-
-/* Travel cards unchanged */
-.travel-card {
-  flex: 0 0 280px;
-  background-color: #fff8f2;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(224, 122, 95, 0.15);
-  font-size: 1.6rem;
-  color: #333;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Container for the two travel cards */
-.getting-main__travel-tips {
-  display: flex;
-  gap: 2rem;
   flex-wrap: nowrap;
+  justify-content: center;        /* center cards horizontally */
+  align-items: stretch;
+  overflow-x: hidden;
+  gap: 20px;
+  padding: 60px 20px;             /* increased top & bottom padding */
+  /* box-sizing: border-box; */
+  /* background-color: #fff8f0;      main div bg color */
+  scroll-behavior: smooth;
+  min-height: 460px;              /* increased height to avoid scroll */
+  /* optionally add max-width and margin auto to center container on page */
+  max-width: 100%; 
+  margin: 0 auto;
+}
+
+/* Cards styling */
+.card,
+.travel-card,
+.getting-main__visa {
   flex: 0 0 auto;
-  justify-content: center;
+  width: 260px;
+  height: auto;
+  min-height: 340px;              /* slightly taller cards */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+  /* color: #555; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  cursor: default;
+  overflow-wrap: break-word;
+}
+
+/* Hover effect */
+.card:hover,
+.travel-card:hover,
+.getting-main__visa:hover {
+  transform: translateY(-5px);
 }
 
 /* Headings */
-.getting-main__visa h4,
-.travel-card h4 {
-  color: #5c2e00;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.card h4,
+.travel-card h4,
+.getting-main__visa h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #8C3B00;
+  margin-bottom: 15px;            /* space below title for image */
+  font-family: 'Merriweather', Georgia, serif;
 }
 
-/* Smaller card images */
+/* Image below title */
 .travel-card__img {
-  width: 60px;
-  height: auto;
-  border-radius: 8px;
-  margin: 1rem auto;
-  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0;                      /* remove bottom margin */
+  object-fit: contain;
+  order: 2;                      /* place image after title */
+  margin-top: 10px;              /* spacing between title and image */
 }
 
-/* Responsive tweaks for smaller screens */
-@media (max-width: 768px) {
+/* Paragraph container unified for all cards */
+.getting-main__visa-p-wrapper,
+.travel-card-p-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  text-align: center;
+  font-size: 0.95rem;
+  /* color: #555; */
+  line-height: 1.6;
+  overflow: visible;
+  max-height: none;
+  order: 3;                      /* make sure paragraphs come after image */
+}
+
+/* Paragraph text */
+.travel-card p,
+.getting-main__visa-p-wrapper p,
+.travel-card-p-wrapper p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* Hide scrollbar in WebKit browsers */
+.getting-main__visa-travel-tips-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive adjustment: Keep horizontal scroll on smaller screens */
+@media (max-width: 1100px) {
   .getting-main__visa-travel-tips-wrapper {
-    flex-wrap: wrap;   /* allow wrapping on small screens */
-    padding: 0 0.5rem;
+    padding: 40px 10px;
+    min-height: 300px;
+    justify-content: flex-start;   /* align left on smaller screens */
   }
 
-  .getting-main__visa,
-  .travel-card {
-    flex: 1 1 100%;
-    max-width: 100%;
-    padding: 1.5rem;
-    font-size: 1.2rem;
-  }
-
-  .getting-main__visa-p-wrapper {
-    max-width: 100%;
-    overflow-x: visible;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .getting-main__visa-p-wrapper p {
-    white-space: normal;
-    flex-shrink: 1;
-    flex-basis: auto;
-  }
-
-  .getting-main__travel-tips {
-    flex-direction: column;
-    gap: 1rem;
+  .card,
+  .travel-card,
+  .getting-main__visa {
+    width: 260px;
+    min-height: 300px;
   }
 }
 
+/* Smaller screens */
+@media (max-width: 600px) {
+  .getting-main__visa-travel-tips-wrapper {
+    padding: 30px 10px;
+    min-height: 280px;
+    justify-content: flex-start;   /* align left on small screens */
+  }
 
+  .card,
+  .travel-card,
+  .getting-main__visa {
+    width: 220px;
+    min-height: 280px;
+  }
+
+  .travel-card__img {
+    width: 48px;
+    height: 48px;
+    margin-top: 8px;
+  }
+
+  .card h4,
+  .travel-card h4,
+  .getting-main__visa h4 {
+    font-size: 1rem;
+  }
+}
 
 
 /* ====================================================
@@ -321,7 +354,7 @@
 }
 
 .getting-howto h2 {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   color: #5c2e00;
   text-align: center;
   margin-bottom: 2rem;
@@ -336,7 +369,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 .getting-howto__icon {
@@ -352,7 +385,7 @@
 @media (max-width: 768px) {
   /* Table */
   .getting-table {
-    font-size: 1.1rem;  /* decreased from 1.5rem */
+    font-size: 1rem;  /* decreased from 1.5rem */
     margin: 1rem 0 2rem 0;
     border-radius: 8px;
     width: 100%;
@@ -367,7 +400,7 @@
   }
 
   .getting-table .emoji {
-    font-size: 1.1rem;  /* decreased from 1.5rem */
+    font-size: 1rem;  /* decreased from 1.5rem */
   }
 
   /* Icon & spacer hidden or reset */
@@ -377,7 +410,7 @@
     text-align: left;
     margin-top: 0.5rem;
     flex: none;
-    font-size: 1.1rem;  /* ensure icon text matches */
+    font-size: 1rem;  /* ensure icon text matches */
   }
 
   .cell-fly-calls,
@@ -404,7 +437,7 @@
   .travel-card {
     width: 100%;
     padding: 1.5rem;
-    font-size: 1.1rem;  /* decreased from 1.6rem */
+    font-size: 1rem;  /* decreased from 1.6rem */
   }
 
   .getting-main__travel-tips {
@@ -429,7 +462,7 @@
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
-    font-size: 1.1rem;  /* decreased from 1.6rem */
+    font-size: 1rem;  /* decreased from 1.6rem */
   }
 
   .getting-howto__icon {
