@@ -88,7 +88,7 @@
 .getting-table {
   width: 100%;
   max-width: 1000px;
-  margin: 0rem 7rem 3rem 22rem;  /* left margin moved more right */
+  margin: 0rem 7rem 3rem 12rem;  /* left margin moved more right */
   display: flex;
   flex-direction: column;
   gap: 2rem;
